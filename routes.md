@@ -35,7 +35,7 @@
 | `back/character/add`         | `POST`      | `Back/CharacterController` | `add`    | Ajouter un personnage                        | add a character    | -                                                  |
 | `back/character/[id]`        | `GET`       | `Back/CharacterController` | `show`   | [nom du personnage]                          | character page     | -                                                  |
 | `back/character/[id]/edit`   | `POST`      | `Back/CharacterController` | `edit`   | Editer un personnage [nom du personnage]     | edit a character   | -                                                  |
-| `back/character/[id]/delete` | `POST`      | `Back/CharacterController` | `delete` | -                                            | delete a character | - -                                                |
+| `back/character/[id]/delete` | `POST`      | `Back/CharacterController` | `delete` | -                                            | delete a character | -                                                |
 | `back/image`                 | `GET`       | `Back/ImageController`     | `list`   | Liste des images                             | user list          | -                                                  |
 | `back/image/add`             | `POST`      | `Back/ImageController`     | `add`    | Ajouter une image                            | add an image       | -                                                  |
 | `back/image/[id]`            | `GET`       | `Back/ImageController`     | `show`   | [nom de l'image]                             | image page         | -                                                  |

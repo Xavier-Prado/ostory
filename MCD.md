@@ -1,13 +1,15 @@
 # MCD O'Story book
 
-LOCATION: id, name, description, image
-    CONTAIN, 1N LOCATION, 1N STORY
-USER: id, nickname, email, password, role
+USER: nickname, _email, password, role
     ILLUSTRATE, 01 USER, 0N IMAGE
-STORY: id, title, content, image, status, slug
-  OWN, 1N CHARACTER, 0N STORY
-IMAGE: id, name, url
-  ALLOW, 1N ACTION, 1N STORY
-CHARACTER: id, name, description
+IMAGE: name, url
+LOCATION: name, description, image
     REPRESENT, 11 CHARACTER, 11 IMAGE
-ACTION: id, name
+CHARACTER: name, description
+    BELONG, 1N LOCATION, 11 STEP
+    INSERT, 1N CHARACTER, 11 STEP
+STEP: id, title, content
+    HAS, 1N STORY, 11 STEP
+STORY: title, content, image, status, slug
+  INCLUDE, 1N ACTION, 11 STEP
+ACTION: name
