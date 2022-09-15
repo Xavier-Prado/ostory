@@ -5,9 +5,9 @@
 | `/connexion`                   | `POST`      | `Front/LoginController` | `login`      | Connexion              | login page         | -       |
 | `/inscription`                 | `POST`      | `Front/LoginController` | `sign-in`    | Inscription            | sign-in page       | -       |
 | `/deconnexion`                 | `POST`      | `Front/LoginController` | `logout`     | -                      | logout page        | -       |
-| `/histoires`                   | `GET`       | `Front/StoryController` | `list`       | Les histoires          | story list         | -       |
-| `/histoires/[slug]/[id]`       | `GET`       | `Front/StoryController` | `show`       | [Nom de l'histoire]    | story page         | -       |
-| `/histoires/[slug]/[id]/jouer` | `GET`       | `Front/StoryController` | `play`       | [Nom de l'histoire]    | story page game    | -       |
+| `/histoire`                   | `GET`       | `Front/StoryController` | `list`       | Les histoires          | story list         | -       |
+| `/histoire/[slug]/[id]`       | `GET`       | `Front/StoryController` | `show`       | [Nom de l'histoire]    | story page         | -       |
+| `/histoire/[slug]/[id]/jouer` | `GET`       | `Front/StoryController` | `play`       | [Nom de l'histoire]    | story page game    | -       |
 | `/mentions-legales`            | `GET`       | `Front/MainController`  | `legals`     | Mentions légales       | legals mentions    | -       |
 | `/conditions-generales`        | `GET`       | `Front/MainController`  | `conditions` | Conditions générales   | general conditions | -       |
 | `/contact`                     | `GET`       | `Front/MainController`  | `contact`    | Nous contacter         | contact            | -       |
