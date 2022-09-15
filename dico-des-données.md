@@ -10,9 +10,8 @@
 | status     | TINYINT(1)    | NOT NULL, DEFAULT 0                             | Le statut de l'histoire (1=dispo, 2=pas dispo) |
 | created_at | TIMESTAMP     | NOT NULL, DEFAULT CURRENT_TIMESTAMP             | La date de création de l'histoire              |
 | updated_at | TIMESTAMP     | NULL                                            | La date de la dernière mise à jour de l'image  |
-| character  | entity        | NULL                                            | Les personnages (autre entité) de l'histoire   |
-| action     | entity        | NOT NULL                                        | Les actions (autre entité) de l'histoire       |
-| location   | entity        | NOT NULL                                        | Le lieu (autre entité) de l'histoire           |
+| step       | entity        | NOT NULL                                        | Les étapes (autre entité) de l'histoire        |
+
 
 ## Action (`action`)
 
@@ -68,3 +67,18 @@
 | image      | VARCHAR(2083) | NOT NULL                                        | L'url de l'image                              |
 | created_at | TIMESTAMP     | NOT NULL, DEFAULT CURRENT_TIMESTAMP             | La date de création de l'image                |
 | updated_at | TIMESTAMP     | NULL                                            | La date de la dernière mise à jour de l'image |
+
+
+## step (`step`)
+
+| Champ      | Type          | Spécificités                                    | Description                                             |
+| ---------- | ------------- | ----------------------------------------------- | ------------------------------------------------------- |
+| id         | INT           | PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT | L'identifiant de l'étape                                |
+| title      | VARCHAR(128)  | NOT NULL                                        | Le nom de l'image                                       |
+| content    | VARCHAR(2083) | NOT NULL                                        | L'url de l'image                                        |
+| created_at | TIMESTAMP     | NOT NULL, DEFAULT CURRENT_TIMESTAMP             | La date de création de l'image                          |
+| updated_at | TIMESTAMP     | NULL                                            | La date de la dernière mise à jour de l'image           |
+| location   | entity        | NOT NULL                                        | Informations sur le lieu (info, images, etc) de l'étape |
+| character  | entity        | NULL                                            | Les personnages (autre entité) liées à l'étape          |
+| action     | entity        | NOT NULL                                        | Les actions (autre entité) liées à l'étape              |
+| story      | entity        | NOT NULL                                        | Les histoires (autre entité) liées à l'étape            |
