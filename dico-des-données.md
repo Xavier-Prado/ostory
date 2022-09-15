@@ -25,13 +25,13 @@
 
 ## Personnage (`character`)
 
-| Champ      | Type          | Spécificités                                    | Description                                      |
-| ---------- | ------------- | ----------------------------------------------- | ------------------------------------------------ |
-| id         | INT           | PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT | L'identifiant du personnage                      |
-| name       | VARCHAR(50)   | NOT NULL                                        | Le nom du personnage                             |
-| image      | VARCHAR(2083) | NOT NULL                                        | L'url de l'image du personnage                   |
-| created_at | TIMESTAMP     | NOT NULL, DEFAULT CURRENT_TIMESTAMP             | La date de création du personnage                |
-| updated_at | TIMESTAMP     | NULL                                            | La date de la dernière mise à jour du personnage |
+| Champ      | Type        | Spécificités                                    | Description                                      |
+| ---------- | ----------- | ----------------------------------------------- | ------------------------------------------------ |
+| id         | INT         | PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT | L'identifiant du personnage                      |
+| name       | VARCHAR(50) | NOT NULL                                        | Le nom du personnage                             |
+| image      | entity      | NULL                                            | Avatar de l'utilisateur                          |
+| created_at | TIMESTAMP   | NOT NULL, DEFAULT CURRENT_TIMESTAMP             | La date de création du personnage                |
+| updated_at | TIMESTAMP   | NULL                                            | La date de la dernière mise à jour du personnage |
 
 
 ## Lieu (`location`)
@@ -57,3 +57,14 @@
 | role       | VARCHAR(50)   | NOT NULL                                        | Le rôle de l'utilisateur                            |
 | created_at | TIMESTAMP     | NOT NULL, DEFAULT CURRENT_TIMESTAMP             | La date de création de l'utilisateur                |
 | updated_at | TIMESTAMP     | NULL                                            | La date de la dernière mise à jour de l'utilisateur |
+| image      | entity        | NULL                                            | Avatar de l'utilisateur                             |
+
+## image (`image`)
+
+| Champ      | Type          | Spécificités                                    | Description                                   |
+| ---------- | ------------- | ----------------------------------------------- | --------------------------------------------- |
+| id         | INT           | PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT | L'identifiant de l'image                      |
+| name       | VARCHAR(50)   | NOT NULL                                        | Le nom de l'image                             |
+| image      | VARCHAR(2083) | NOT NULL                                        | L'url de l'image                              |
+| created_at | TIMESTAMP     | NOT NULL, DEFAULT CURRENT_TIMESTAMP             | La date de création de l'image                |
+| updated_at | TIMESTAMP     | NULL                                            | La date de la dernière mise à jour de l'image |
