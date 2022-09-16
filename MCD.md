@@ -1,11 +1,12 @@
-goto, 11 PAGE, 1N PAGE
-:
-:
-
-PAGE: _title, content, choice_pages, description_pages, image_url, slug
   play, 0N USER, 0N STORY
 USER: nickname, _email, password, role
-
-    contain, 1N STORY, 11 PAGE
-STORY: _title, content, image_url, slug
 :
+
+STORY: _title, content, image_url, slug
+    contain, 1N STORY, 11 PAGE
+:
+
+:
+PAGE: _title, content, image_url, slug
+refer, 1N PAGE, 11 CHOICE
+CHOICE : _name, page_id, description
