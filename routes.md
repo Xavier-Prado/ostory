@@ -1,4 +1,7 @@
+# Routes
+
 ## Front-office
+
 | URL                            | HTTP Method | Controller              | Method       | Title                  | Content            | Comment |
 | ------------------------------ | ----------- | ----------------------- | ------------ | ---------------------- | ------------------ | ------- |
 | `/`                            | `GET`       | `Front/MainController`  | `home`       | Accueil                | homepage           | -       |
@@ -7,7 +10,7 @@
 | `/deconnexion`                 | `POST`      | `Front/LoginController` | `logout`     | -                      | logout page        | -       |
 | `/histoire`                   | `GET`       | `Front/StoryController` | `list`       | Les histoires          | story list         | -       |
 | `/histoire/[slug]/[id]`       | `GET`       | `Front/StoryController` | `show`       | [Nom de l'histoire]    | story page         | -       |
-| `/histoire/[slug]/[id]/jouer` | `GET`       | `Front/StoryController` | `play`       | [Nom de l'histoire]    | story page game    | -       |
+| `/histoire/[slug]/[id]/[page:id]` | `GET`       | `Front/StoryController` | `play`       | [Nom de l'histoire]    | story page game    | -       |
 | `/mentions-legales`            | `GET`       | `Front/MainController`  | `legals`     | Mentions légales       | legals mentions    | -       |
 | `/conditions-generales`        | `GET`       | `Front/MainController`  | `conditions` | Conditions générales   | general conditions | -       |
 | `/contact`                     | `GET`       | `Front/MainController`  | `contact`    | Nous contacter         | contact            | -       |
@@ -17,6 +20,7 @@
 | `/histoire/[id]/supprimer`     | `POST`      | `Front/StoryController` | `delete`     | Supprimer une histoire | delete a story     | V2      |
 
 ## Back-office
+
 | URL                          | HTTP Method | Controller                 | Method   | Title                                        | Content            | Comment                                            |
 | ---------------------------- | ----------- | -------------------------- | -------- | -------------------------------------------- | ------------------ | -------------------------------------------------- |
 | `back/`                      | `GET`       | `Back/MainController`      | `home`   | Accueil                                      | story list         | -                                                  |
@@ -48,7 +52,11 @@
 | `back/image/add`             | `POST`      | `Back/ImageController`     | `add`    | Ajouter une image                            | add an image       | -                                                  |
 | `back/image/[id]`            | `GET`       | `Back/ImageController`     | `show`   | [nom de l'image]                             | image page         | -                                                  |
 | `back/image/[id]/edit`       | `POST`      | `Back/ImageController`     | `edit`   | Editer une image [nom de l'utilisateur]      | edit an image      | -                                                  |
-| `back/action`              | `GET`       | `Back/ActionController`  | `list`   | Liste des lieux                              | action list      | -                                                  |
-| `back/action/add`          | `POST`      | `Back/ActionController`  | `add`    | Ajouter un lieu                              | add an action    | -                                                  |
-| `back/action/[id]`         | `GET`       | `Back/ActionController`  | `show`   | [nom du lieu]                                | action page      | -                                                  |
-| `back/action/[id]/edit`    | `POST`      | `Back/ActionController`  | `edit`   | Editer un lieu [nom du lieu]                 | edit an action   |
+| `back/page`              | `GET`       | `Back/PageController`  | `list`   | Liste des pages                              | page list      | -                                                  |
+| `back/page/add`          | `POST`      | `Back/PageController`  | `add`    | Ajouter une page                              | add an page    | -                                                  |
+| `back/page/[id]`         | `GET`       | `Back/PageController`  | `show`   | [nom de la page]                                | page page      | -                                                  |
+| `back/page/[id]/edit`    | `POST`      | `Back/PageController`  | `edit`   | Editer une page [nom de la page]                 | edit an page   |                                                  |
+| `back/choice`              | `GET`       | `Back/ChoiceController`  | `list`   | Liste des choix                              | choice list      | -                                                  |
+| `back/choice/add`          | `POST`      | `Back/ChoiceController`  | `add`    | Ajouter un choix                              | add an choice    | -                                                  |
+| `back/choice/[id]`         | `GET`       | `Back/ChoiceController`  | `show`   | [nom du choix]                                | choice page      | -                                                  |
+| `back/choice/[id]/edit`    | `POST`      | `Back/ChoiceController`  | `edit`   | Editer un choix [nom du choix]                 | edit an choice   |

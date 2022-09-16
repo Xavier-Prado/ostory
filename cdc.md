@@ -1,4 +1,4 @@
-# Cahier des charges du projet de blog (modele)
+# Cahier des charges du projet de site (modele)
 
 ## Contexte
 
@@ -55,12 +55,12 @@ En français uniquement.
 - Accueil
   - Histoires (liste)
     - Détails
-      - Détail des chapitres
     - Ajout
-      - ajout d'un chapitre
     - Edition
-      - Edition d'un chapitre
-
+  - Pages (liste)
+    - Détails
+    - Ajout
+    - Edition
   - Users (liste)
     - Détails
     - Ajout
@@ -73,10 +73,7 @@ En français uniquement.
     - Détails
     - Ajout
     - Edition
-  - Action (liste)
-    - Détails
-    - Ajout
-    - Edition
+  
   
 
 ### Navigation sur le site
@@ -124,7 +121,7 @@ En français uniquement.
 
 ### Architecture logicielle choisie
 
-Le blog sera conçu avec :
+Le site sera conçu avec :
 
 #### Côté front
 
