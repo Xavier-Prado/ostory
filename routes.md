@@ -17,13 +17,13 @@
 
 ## Back-office
 
-| URL                     | HTTP Method | Controller             | Method   | Title                                        | Content       | Comment                                            |
-| ----------------------- | ----------- | ---------------------- | -------- | -------------------------------------------- | ------------- | -------------------------------------------------- |
-| `back/`                 | `GET`       | `Back/MainController`  | `home`   | Accueil                                      | story list    | -                                                  |
-| `back/deconnexion`      | `POST`      | `Back/LoginController` | `logout` | -                                            | logout page   | A préciser sur le lien back/front si projet séparé |
-| `back/user`             | `GET`       | `Back/UserController`  | `list`   | Liste des utilisateurs                       | user list     | -                                                  |
-| `back/user/add`         | `POST`      | `Back/UserController`  | `add`    | Ajouter un utilisateur                       | add a user    | -                                                  |
-| `back/user/[id]`        | `GET`       | `Back/UserController`  | `show`   | [nom de l'utilisateur]                       | user page     | -                                                  |
-| `back/user/[id]/edit`   | `POST`      | `Back/UserController`  | `edit`   | Editer un utilisateur [nom de l'utilisateur] | edit a user   | -                                                  |
-| `back/user/[id]/delete` | `POST`      | `Back/UserController`  | `delete` | -                                            | delete a user | -                                                  | - |
+| URL                     | HTTP Method   | Controller             | Method   | Title                                        | Content       | Comment                                            |
+| ----------------------- | ------------- | ---------------------- | -------- | -------------------------------------------- | ------------- | -------------------------------------------------- |
+| `back/`                 | `GET`         | `Back/MainController`  | `home`   | Accueil                                      | story list    | -                                                  |
+| `back/deconnexion`      | `POST`        | `Back/LoginController` | `logout` | -                                            | logout page   | A préciser sur le lien back/front si projet séparé |
+| `back/user`             | `GET`         | `Back/UserController`  | `list`   | Liste des utilisateurs                       | user list     | -                                                  |
+| `back/user/add`         | `POST`        | `Back/UserController`  | `add`    | Ajouter un utilisateur                       | add a user    | -                                                  |
+| `back/user/[id]`        | `GET`         | `Back/UserController`  | `show`   | [nom de l'utilisateur]                       | user page     | -                                                  |
+| `back/user/[id]/edit`   | `PUT` `PATCH` | `Back/UserController`  | `edit`   | Editer un utilisateur [nom de l'utilisateur] | edit a user   | -                                                  |
+| `back/user/[id]/delete` | `DELETE`      | `Back/UserController`  | `delete` | -                                            | delete a user | -                                                  | - |
 
