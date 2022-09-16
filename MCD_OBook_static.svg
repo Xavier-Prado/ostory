@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="312" height="356" viewBox="0 0 312 356" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="312" height="356" fill="#f7f7f7" stroke="none" stroke-width="0"/>
+
+<!-- Association goto -->
+<g>
+	<path d="M69 152 C27.67 84 27.67 44.67 69 34" fill="none" stroke="#8073ac" stroke-width="2"/>
+	<text x="45" y="76" fill="#b35806" font-family="Verdana" font-size="12">1,1</text>
+	<path d="M69 152 C111.67 84 111.67 44.67 69 34" fill="none" stroke="#8073ac" stroke-width="2"/>
+	<text x="72" y="76" fill="#b35806" font-family="Verdana" font-size="12">1,N</text>
+	<g>
+		<path d="M76 9 a14 14 90 0 1 14 14 V34 h-42 V23 a14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+		<path d="M90 34 v11 a14 14 90 0 1 -14 14 H62 a14 14 90 0 1 -14 -14 V34 H42" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+		<rect x="48" y="9" width="42" height="50" fill="none" rx="14" stroke="#8073ac" stroke-width="2"/>
+		<line x1="48" y1="34" x2="90" y2="34" stroke="#8073ac" stroke-width="1"/>
+		<text x="55" y="26.75" fill="#000" font-family="Verdana" font-size="12">goto</text>
+	</g>
+</g>
+
+<!-- Association play -->
+<g>
+	<line x1="268" y1="152" x2="181" y2="152" stroke="#8073ac" stroke-width="2"/>
+	<text x="206" y="169" fill="#b35806" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="181" y1="296" x2="181" y2="152" stroke="#8073ac" stroke-width="2"/>
+	<text x="186" y="237" fill="#b35806" font-family="Verdana" font-size="12">0,N</text>
+	<g>
+		<path d="M187 127 a14 14 90 0 1 14 14 V152 h-40 V141 a14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+		<path d="M201 152 v11 a14 14 90 0 1 -14 14 H175 a14 14 90 0 1 -14 -14 V152 H40" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+		<rect x="161" y="127" width="40" height="50" fill="none" rx="14" stroke="#8073ac" stroke-width="2"/>
+		<line x1="161" y1="152" x2="201" y2="152" stroke="#8073ac" stroke-width="1"/>
+		<text x="168" y="144.75" fill="#000" font-family="Verdana" font-size="12">play</text>
+	</g>
+</g>
+
+<!-- Association contain -->
+<g>
+	<line x1="181" y1="296" x2="69" y2="296" stroke="#8073ac" stroke-width="2"/>
+	<text x="118" y="313" fill="#b35806" font-family="Verdana" font-size="12">1,N</text>
+	<line x1="69" y1="152" x2="69" y2="296" stroke="#8073ac" stroke-width="2"/>
+	<text x="74" y="237" fill="#b35806" font-family="Verdana" font-size="12">1,1</text>
+	<g>
+		<path d="M85 271 a14 14 90 0 1 14 14 V296 h-60 V285 a14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+		<path d="M99 296 v11 a14 14 90 0 1 -14 14 H53 a14 14 90 0 1 -14 -14 V296 H60" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+		<rect x="39" y="271" width="60" height="50" fill="none" rx="14" stroke="#8073ac" stroke-width="2"/>
+		<line x1="39" y1="296" x2="99" y2="296" stroke="#8073ac" stroke-width="1"/>
+		<text x="47" y="288.75" fill="#000" font-family="Verdana" font-size="12">contain</text>
+	</g>
+</g>
+
+<!-- Entity PAGE -->
+<g>
+	<g>
+		<rect x="9" y="84" width="120" height="25" fill="#fdb863" stroke="#fdb863" stroke-width="0" opacity="1"/>
+		<rect x="9" y="109" width="120" height="111" fill="#fee0b6" stroke="#fee0b6" stroke-width="0" opacity="1"/>
+		<rect x="9" y="84" width="120" height="136" fill="none" stroke="#e08214" stroke-width="2" opacity="1"/>
+		<line x1="9" y1="109" x2="129" y2="109" stroke="#e08214" stroke-width="1"/>
+	</g>
+	<text x="53" y="101.75" fill="#000" font-family="Verdana" font-size="12">PAGE</text>
+	<text x="14" y="126.8" fill="#000" font-family="Verdana" font-size="12">title</text>
+	<text x="14" y="143.8" fill="#000" font-family="Verdana" font-size="12">content</text>
+	<text x="14" y="160.8" fill="#000" font-family="Verdana" font-size="12">choice_pages</text>
+	<text x="14" y="177.8" fill="#000" font-family="Verdana" font-size="12">description_pages</text>
+	<text x="14" y="194.8" fill="#000" font-family="Verdana" font-size="12">image_url</text>
+	<text x="14" y="211.8" fill="#000" font-family="Verdana" font-size="12">slug</text>
+</g>
+
+<!-- Entity USER -->
+<g>
+	<g>
+		<rect x="233" y="101" width="70" height="25" fill="#fdb863" stroke="#fdb863" stroke-width="0" opacity="1"/>
+		<rect x="233" y="126" width="70" height="77" fill="#fee0b6" stroke="#fee0b6" stroke-width="0" opacity="1"/>
+		<rect x="233" y="101" width="70" height="102" fill="none" stroke="#e08214" stroke-width="2" opacity="1"/>
+		<line x1="233" y1="126" x2="303" y2="126" stroke="#e08214" stroke-width="1"/>
+	</g>
+	<text x="251" y="118.75" fill="#000" font-family="Verdana" font-size="12">USER</text>
+	<text x="238" y="143.8" fill="#000" font-family="Verdana" font-size="12">nickname</text>
+	<line x1="238" y1="146" x2="297" y2="146" stroke="#000" stroke-width="1"/>
+	<text x="238" y="160.8" fill="#000" font-family="Verdana" font-size="12">email</text>
+	<line x1="238" y1="163" x2="272" y2="163" stroke="#000" stroke-width="1"/>
+	<text x="238" y="177.8" fill="#000" font-family="Verdana" font-size="12">password</text>
+	<text x="238" y="194.8" fill="#000" font-family="Verdana" font-size="12">role</text>
+</g>
+
+<!-- Entity STORY -->
+<g>
+	<g>
+		<rect x="145" y="245" width="72" height="25" fill="#fdb863" stroke="#fdb863" stroke-width="0" opacity="1"/>
+		<rect x="145" y="270" width="72" height="77" fill="#fee0b6" stroke="#fee0b6" stroke-width="0" opacity="1"/>
+		<rect x="145" y="245" width="72" height="102" fill="none" stroke="#e08214" stroke-width="2" opacity="1"/>
+		<line x1="145" y1="270" x2="217" y2="270" stroke="#e08214" stroke-width="1"/>
+	</g>
+	<text x="160" y="262.75" fill="#000" font-family="Verdana" font-size="12">STORY</text>
+	<text x="150" y="287.8" fill="#000" font-family="Verdana" font-size="12">title</text>
+	<text x="150" y="304.8" fill="#000" font-family="Verdana" font-size="12">content</text>
+	<text x="150" y="321.8" fill="#000" font-family="Verdana" font-size="12">image_url</text>
+	<text x="150" y="338.8" fill="#000" font-family="Verdana" font-size="12">slug</text>
+</g>
+</svg>
