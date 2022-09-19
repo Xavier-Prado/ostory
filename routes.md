@@ -8,6 +8,10 @@
 | `/connexion`                      | `POST`      | `Front/LoginController` | `login`      | Connexion            | login page         | -       |
 | `/inscription`                    | `POST`      | `Front/LoginController` | `sign-in`    | Inscription          | sign-in page       | -       |
 | `/deconnexion`                    | `POST`      | `Front/LoginController` | `logout`     | -                    | logout page        | -       |
+| `/user/[id]`                      | `GET`       | `Front/UserController`  | `show`       | -                    | Show user page     | -       |
+| `/user/[id]/edit`                 | `POST`      | `Front/UserController`  | `edit`       | -                    | Edit user page     | -       |
+| `/user/[id]/delete`               | `POST`      | `Front/UserController`  | `delete`     | -                    | Delete user        | -       |
+| `/credits`                        | `GET`       | `Front/MainController`  | `credits`    | Page des crédits     | links              | -       |
 | `/histoire`                       | `GET`       | `Front/StoryController` | `list`       | Les histoires        | story list         | -       |
 | `/histoire/[slug]/[id]/[page:id]` | `GET`       | `Front/StoryController` | `play`       | [Nom de l'histoire]  | story page game    | -       |
 | `/mentions-legales`               | `GET`       | `Front/MainController`  | `legals`     | Mentions légales     | legals mentions    | -       |
