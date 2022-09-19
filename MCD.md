@@ -8,5 +8,5 @@ STORY: _title, content, image_url, slug
 
 :
 PAGE: _title, content, image_url, slug
-refer, 1N PAGE, 11 CHOICE
-CHOICE : _name, page_id, description
+refer, 0N PAGE, 11 CHOICE
+CHOICE : _name, description
