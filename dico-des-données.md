@@ -3,8 +3,8 @@
 | Champ      | Type         | Spécificités                                    | Description                                         |
 | ---------- | ------------ | ----------------------------------------------- | --------------------------------------------------- |
 | id         | INT          | PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT | L'identifiant de l'utilisteur                       |
-| nickname   | VARCHAR(50)  | NOT NULL                                        | Le pseudo de l'utilisateur                          |
-| email      | VARCHAR(255) | NOT NULL                                        | Email de l'utilisateur                              |
+| nickname   | VARCHAR(50)  | NOT NULL, UNIQUE                                        | Le pseudo de l'utilisateur                          |
+| email      | VARCHAR(255) | NOT NULL, UNIQUE                                       | Email de l'utilisateur                              |
 | password   | VARCHAR(255) | NOT NULL                                        | Mot de passe de l'utilisateur                       |
 | role       | VARCHAR(50)  | NOT NULL                                        | Le rôle de l'utilisateur                            |
 | created_at | TIMESTAMP    | NOT NULL, DEFAULT CURRENT_TIMESTAMP             | La date de création de l'utilisateur                |
