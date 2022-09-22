@@ -33,5 +33,5 @@ you should see
 6- To run the php server 
 
 ```bash
-    php -S 0.0.0.0:8000 -t public
+    php -S 0.0.0.0:8080 -t public
 ```
