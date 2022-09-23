@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Story;
+use App\Entity\Page;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -38,6 +39,30 @@ class StoryRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+//     SELECT * FROM `story` 
+// INNER JOIN `page` 
+// ON `page`.`story_id` = `story`.`id`
+// WHERE `page`.`start` = 1
+
+// public function findStartPage()
+// {
+//     $entityManager = $this->getEntityManager();
+
+//     $qb = $entityManager->createQueryBuilder();
+
+//     $qb->select('s', 'p.id')
+//        ->from('App\Entity\Story','s')
+//        ->join('App\Entity\Page', 'p', 'WITH', 'p.story = s.id')
+//        ->where('p.start = true')
+//        ->orderBy('s.title', 'ASC');
+
+//     $query = $qb->getQuery();
+//     $result = $query->getResult();
+
+
+//     return $result;
+// }
 
 //    /**
 //     * @return Story[] Returns an array of Story objects
