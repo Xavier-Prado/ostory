@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Liste des utilisateurs{% endblock %}
 
 {% block body %}
+
+<div class="my-5 py-5">
+    <div class="col-lg-9 mx-auto">
     <h1>Liste des utilisateurs</h1>
 
     <table class="table">
@@ -10,7 +13,6 @@
             <tr>
                 <th>Email</th>
                 <th>Rôles</th>
-                <th>Password</th>
                 <th>Pseudo</th>
                 <th></th>
             </tr>
@@ -20,7 +22,6 @@
             <tr>
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
                 <td>{{ user.nickname }}</td>
                 <td>
                     <a href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a>
@@ -36,4 +37,6 @@
     </table>
 
     <a href="{{ path('app_user_new') }}">Créer un nouvel utilisateur</a>
+    </div>
+</div>
 {% endblock %}

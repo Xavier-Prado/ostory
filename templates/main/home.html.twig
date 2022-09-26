@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<div class="row row-cols-1 row-cols-md-4 g-4 justify-content-around">
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Utilisateurs</h5>
+        <p class="card-text">Accéder à la liste des utilisateurs.</p>
+        <a href="{{ path('app_user_index') }}" class="btn btn-primary">Go !</a>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Histoires</h5>
+        <p class="card-text">Accéder à la liste des histoires.</p>
+        <a href="#" class="btn btn-primary disabled">Prochainement</a>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Personnages</h5>
+        <p class="card-text">Accéder à la liste des personnages.</p>
+        <a href="#" class="btn btn-primary disabled">Prochainement</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
