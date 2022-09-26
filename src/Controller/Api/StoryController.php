@@ -75,7 +75,7 @@ class StoryController extends AbstractController
             $acceptedPages[] = $relatedPage->getId();
         }
 
-        // Check whether the stroy pages array contains the page id selected
+        // Check whether the story pages array contains the page id selected
         if(!in_array($page->getId(), $acceptedPages)) {
             return $this->json('You cannot access this page from here', Response::HTTP_FORBIDDEN, [],[]);
         } 
