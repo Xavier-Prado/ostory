@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ChoiceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * @ORM\Entity(repositoryClass=ChoiceRepository::class)
@@ -24,11 +26,15 @@ class Choice
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"page_content"})
+     * 
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"page_content"})
+     * 
      */
     private $page_id;
 

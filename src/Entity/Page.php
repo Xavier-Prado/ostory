@@ -24,16 +24,21 @@ class Page
 
     /**
      * @ORM\Column(type="string", length=128)
+     * @Groups({"page_content"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=2083)
+     * @Groups({"page_content"})
+     * 
      */
     private $image;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"page_content"})
+     * 
      */
     private $content;
 
@@ -45,6 +50,8 @@ class Page
 
     /**
      * @ORM\Column(type="array")
+     * @Groups({"page_content"})
+     * 
      */
     private $page_end = [];
 
@@ -55,6 +62,8 @@ class Page
 
     /**
      * @ORM\OneToMany(targetEntity=Choice::class, mappedBy="pages")
+     * @Groups({"page_content"})
+     * 
      */
     private $choices;
 
