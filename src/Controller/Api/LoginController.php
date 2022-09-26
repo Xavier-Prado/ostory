@@ -13,6 +13,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 
 /**
@@ -23,18 +24,33 @@ class LoginController extends AbstractController
     /**
      * @Route("/login", name="api_login")
      */
-    public function login(): JsonResponse
+    public function login(Request $request, SerializerInterface $serializer): JsonResponse
     {
+
+        // récupère le contenu JSON dans la requête HTTP en provenance du front
+        $json = $request->getContent();
+
+        // désérialisation
+        $user = $serializer->deserialize($json, User::class, 'json');
+        
+        if (null === $user) {
+            return $this->json([
+                'message' => 'missing credentials',
+            ], Response::HTTP_UNAUTHORIZED);
+        }
+
+
         return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/Api/LoginController.php',
-        ]);
+            'user'  => $user,       
+            ]);
+
+
     }
 
 
 
     /**
-     * @Route("/signin", name="app_register")
+     * @Route("/signin", name="api_signin")
      */
     public function signin(Request $request, 
         UserPasswordHasherInterface $userPasswordHasher, 
