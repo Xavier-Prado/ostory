@@ -22,28 +22,39 @@ use Symfony\Component\Security\Http\Attribute\CurrentUser;
 class LoginController extends AbstractController
 {
     /**
+     * @Route("/logout", name="api_logout")
+     */
+    public function logout() {
+        
+    }
+
+    /**
      * @Route("/login", name="api_login")
      */
     public function login(Request $request, SerializerInterface $serializer): JsonResponse
     {
-
         // récupère le contenu JSON dans la requête HTTP en provenance du front
+        
         $json = $request->getContent();
 
-        // désérialisation
+        if($json) {
+            // désérialisation
         $user = $serializer->deserialize($json, User::class, 'json');
-        
+
         if (null === $user) {
             return $this->json([
                 'message' => 'missing credentials',
             ], Response::HTTP_UNAUTHORIZED);
         }
 
-
         return $this->json([
             'user'  => $user,       
             ]);
+        }
 
+        //TODO : retourner la vue du frontoffice (accueil ou page login)
+        return $this->json('Todo');
+        
 
     }
 

@@ -24,6 +24,10 @@ security:
 
                 username_path: email
                 password_path: password
+
+            logout:
+                path: api_logout
+                target: /api/login
             
 
             # activate different ways to authenticate
