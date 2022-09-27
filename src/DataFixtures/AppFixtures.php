@@ -127,11 +127,6 @@ class AppFixtures extends Fixture
                             // Chose a random number between 0 and the last index of the array
                             // This number correspond to the index which holds redirection page
                             $randomEntry = array_rand($pagesList);
-                            // If this is the page we are currently on, select another number
-                            while($pagesList[$randomEntry]->getId() == $page->getId()) {
-                                $randomEntry = array_rand($pagesList);
-                            }
-                            $entry->setPageId($pagesList[$randomEntry]->getId());
                         }
                     }
                 }
