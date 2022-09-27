@@ -39,7 +39,8 @@ class Choice
     private $page_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Page::class, inversedBy="choices")
+     * @ORM\ManyToOne(targetEntity=Page::class, inversedBy="choices", cascade={"remove"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $pages;
 

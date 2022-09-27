@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220922131652 extends AbstractMigration
+final class Version20220927145530 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -26,8 +26,8 @@ final class Version20220922131652 extends AbstractMigration
         $this->addSql('CREATE TABLE `user` (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles LONGTEXT NOT NULL COMMENT \'(DC2Type:json)\', password VARCHAR(255) NOT NULL, nickname VARCHAR(50) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE user_story (id INT AUTO_INCREMENT NOT NULL, users_id INT NOT NULL, stories_id INT NOT NULL, start_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_994FF6067B3B43D (users_id), INDEX IDX_994FF60BF2402DE (stories_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE messenger_messages (id BIGINT AUTO_INCREMENT NOT NULL, body LONGTEXT NOT NULL, headers LONGTEXT NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at DATETIME NOT NULL, available_at DATETIME NOT NULL, delivered_at DATETIME DEFAULT NULL, INDEX IDX_75EA56E0FB7336F0 (queue_name), INDEX IDX_75EA56E0E3BD61CE (available_at), INDEX IDX_75EA56E016BA31DB (delivered_at), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE choice ADD CONSTRAINT FK_C1AB5A92401ADD27 FOREIGN KEY (pages_id) REFERENCES page (id)');
-        $this->addSql('ALTER TABLE page ADD CONSTRAINT FK_140AB620AA5D4036 FOREIGN KEY (story_id) REFERENCES story (id)');
+        $this->addSql('ALTER TABLE choice ADD CONSTRAINT FK_C1AB5A92401ADD27 FOREIGN KEY (pages_id) REFERENCES page (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE page ADD CONSTRAINT FK_140AB620AA5D4036 FOREIGN KEY (story_id) REFERENCES story (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE user_story ADD CONSTRAINT FK_994FF6067B3B43D FOREIGN KEY (users_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE user_story ADD CONSTRAINT FK_994FF60BF2402DE FOREIGN KEY (stories_id) REFERENCES story (id)');
     }

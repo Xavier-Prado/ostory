@@ -56,7 +56,8 @@ class Page
     private $page_end = [];
 
     /**
-     * @ORM\ManyToOne(targetEntity=Story::class, inversedBy="pages")
+     * @ORM\ManyToOne(targetEntity=Story::class, inversedBy="pages", cascade={"remove"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $story;
 
