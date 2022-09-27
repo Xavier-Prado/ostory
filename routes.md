@@ -27,7 +27,6 @@
 | `/api/histoire`                   | `GET`         | `Api/StoryController` | `list`   | -           | API story list     | -       |
 | `/api/histoire/[id]/[page:id]`    | `GET`         | `Api/StoryController` | `page`   | -           | API story page     | -       |
 | `/api/user/[id]`                  | `GET`         | `Api/UserController`  | `show`   | -           | API user           | -       |
-| `/api/user/add`                   | `POST`        | `Api/UserController`  | `add`    | -           | API user add       | -       |
 | `/api/user/[id]/edit`             | `PUT` `PATCH` | `Api/UserController`  | `edit`   | -           | API user edit      | -       |
 | `/api/user/[id]/delete`           | `DELETE`      | `Api/UserController`  | `delete` | -           | API user delete    | -       |
 
