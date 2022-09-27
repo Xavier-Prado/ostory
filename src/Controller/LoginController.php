@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Api;
+namespace App\Controller;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,20 +16,17 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 
-/**
- * @Route("/api")
- */
 class LoginController extends AbstractController
 {
     /**
-     * @Route("/logout", name="api_logout")
+     * @Route("/logout", name="logout")
      */
     public function logout() {
         
     }
 
     /**
-     * @Route("/login", name="api_login")
+     * @Route("/login", name="login")
      */
     public function login(Request $request, SerializerInterface $serializer): JsonResponse
     {
@@ -39,15 +36,17 @@ class LoginController extends AbstractController
 
         if($json) {
             // désérialisation
-        $user = $serializer->deserialize($json, User::class, 'json');
+            $user = $serializer->deserialize($json, User::class, 'json');
 
-        if (null === $user) {
-            return $this->json([
-                'message' () => 'missing credentials',
-            ], Response::HTTP_UNAUTHORIZED);
-        }
+            if (null === $user) {
+                return $this->json([
+                    'message' () => 'missing credentials',
+                ], Response::HTTP_UNAUTHORIZED);
+            }
+        
 
-        return $this->json([
+
+             return $this->json([
             'user'  => $user,       
             ]);
         }
@@ -57,10 +56,11 @@ class LoginController extends AbstractController
         
 
     }
+    
 
 
     /**
-     * @Route("/signin", name="api_signin")
+     * @Route("/signin", name="signin")
      */
     public function signin(Request $request, 
         UserPasswordHasherInterface $userPasswordHasher, 
