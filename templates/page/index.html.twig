@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des pages{% endblock %}
+
+{% block body %}
+<div class="my-5 py-5">
+    <div class="col-lg-9 mx-auto">
+        <h1>Liste des pages</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Titre</th>
+                    <th>Image</th>
+                    <th>Contenu</th>
+                    <th>Page de démarrage</th>
+                    <th>Résultat de la page</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for page in pages %}
+                <tr>
+                    <td>{{ page.id }}</td>
+                    <td>{{ page.title }}</td>
+                    <td><img src="{{ page.image }}" height="100px" alt="poster de {{ page.title }}"></td>
+                    <td>{{ page.content|length > 80 ? page.content|slice(0, 80)|split(' ')|slice(0, -1)|join(' ') ~ '…' : page.content }}</td>
+                    <td>{{ page.start ? 'Oui' : 'Non' }}</td>
+                    <td>{{ page.pageEnd ? page.pageEnd|join(', ') : '' }}</td>
+                    <td>
+                        <button class="btn btn-info"><a href="{{ path('app_page_show', {'id': page.id}) }}">Voir</a></button>
+                        <button class="btn btn-warning"><a href="{{ path('app_page_edit', {'id': page.id}) }}">Modifier</a></button>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">Pas de pages trouvées</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <button class="btn btn-info"><a href="{{ path('app_page_new') }}">Créer une nouvelle page</a></button>
+    </div>
+</div>
+
+{% endblock %}
