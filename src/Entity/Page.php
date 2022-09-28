@@ -18,6 +18,7 @@ class Page
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"story_list"})
      * 
      */
     private $id;
@@ -44,6 +45,7 @@ class Page
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"story_list"})
      * 
      */
     private $start;
