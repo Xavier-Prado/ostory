@@ -29,9 +29,9 @@ class StoryController extends AbstractController
         $stories = $storyRepository->findAll();
         $storyList = [];
         
-        foreach($stories as $story) {
+        foreach($stories as $key => $story) {
             // check whether the page has start value to true
-            foreach($story->getPages() as $key => $page) {
+            foreach($story->getPages() as $page) {
                 // if it has start value, it's id will be added to the $storyList array
                 // at the 'start_page' key
                 if($page->isStart()) {
