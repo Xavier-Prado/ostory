@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page{% endblock %}
+
+{% block body %}
+<div class="my-5 py-5">
+    <div class="col-lg-6 mx-auto">
+    <h1>Page</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ page.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ page.title }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ page.image }}" height="100px" alt="poster de {{ page.title }}"></td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ page.content }}</td>
+            </tr>
+            <tr>
+                <th>Page de démarrage</th>
+                <td>{{ page.start ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Résultat de la page</th>
+                <td>{{ page.pageEnd ? page.pageEnd|join(', ') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-info"><a href="{{ path('app_page_index') }}">Revenir à la liste</a></button>
+
+    <button class="btn btn-warning"><a href="{{ path('app_page_edit', {'id': page.id}) }}">Modifier</a></button>
+
+    {{ include('page/_delete_form.html.twig') }}
+        </div>
+</div>
+{% endblock %}
