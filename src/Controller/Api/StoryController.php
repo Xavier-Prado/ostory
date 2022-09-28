@@ -27,21 +27,9 @@ class StoryController extends AbstractController
     public function list(StoryRepository $storyRepository): JsonResponse
     {
         $stories = $storyRepository->findAll();
-        $storyList = [];
         
-        foreach($stories as $key => $story) {
-            // check whether the page has start value to true
-            foreach($story->getPages() as $page) {
-                // if it has start value, it's id will be added to the $storyList array
-                // at the 'start_page' key
-                if($page->isStart()) {
-                    $storyList[$key]['story'] = $story;
-                    $storyList[$key]['start_page'] = $page->getId();
-                }
-            }
-        }
 
-        return $this->json($storyList, Response::HTTP_OK, [], [
+        return $this->json($stories, Response::HTTP_OK, [], [
             'groups' => 'story_list'
         ]);
     }
