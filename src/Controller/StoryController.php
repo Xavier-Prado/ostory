@@ -5,13 +5,14 @@ namespace App\Controller;
 use App\Entity\Story;
 use App\Form\StoryType;
 use App\Repository\StoryRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/story")
+ * @Route("back/story")
  */
 class StoryController extends AbstractController
 {
@@ -28,13 +29,14 @@ class StoryController extends AbstractController
     /**
      * @Route("/new", name="app_story_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, StoryRepository $storyRepository): Response
+    public function new(Request $request, StoryRepository $storyRepository, SluggerInterface $slugger): Response
     {
         $story = new Story();
         $form = $this->createForm(StoryType::class, $story);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $story->setSlug($slugger->slug($story->getTitle())->lower());
             $storyRepository->add($story, true);
 
             return $this->redirectToRoute('app_story_index', [], Response::HTTP_SEE_OTHER);
@@ -59,12 +61,13 @@ class StoryController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_story_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Story $story, StoryRepository $storyRepository): Response
+    public function edit(Request $request, Story $story, StoryRepository $storyRepository, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(StoryType::class, $story);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $story->setSlug($slugger->slug($story->getTitle())->lower());
             $storyRepository->add($story, true);
 
             return $this->redirectToRoute('app_story_index', [], Response::HTTP_SEE_OTHER);
