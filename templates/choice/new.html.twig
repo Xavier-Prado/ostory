@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Choice{% endblock %}
+{% block title %}Ajouter un choix{% endblock %}
 
 {% block body %}
-    <h1>Create new Choice</h1>
+<div class="my-5 py-5">
+    <div class="col-lg-6 mx-auto">
+    <h1>Ajouter un choix</h1>
 
     {{ include('choice/_form.html.twig') }}
 
-    <a href="{{ path('app_choice_index') }}">back to list</a>
+    <a href="{{ path('app_choice_index') }}">Revenir à la liste</a>
+    </div>
+</div>
 {% endblock %}
