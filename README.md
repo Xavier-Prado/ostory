@@ -30,8 +30,14 @@ you should see
     bin/console doctrine:fixtures:load
 ```
 
-6- To run the php server 
+6- Add keypair security to generate token 
 
 ```bash
-    php -S 0.0.0.0:8080 -t public
+    bin/console lexik:jwt:generate-keypair
+```
+
+7- To run the php server 
+
+```bash
+    php -S 0.0.0.0:8000 -t public
 ```
