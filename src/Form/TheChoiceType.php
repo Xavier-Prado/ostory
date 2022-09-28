@@ -27,9 +27,6 @@ class TheChoiceType extends AbstractType
                     'rows' => 3
                 ]
             ])
-            ->add('page_id', IntegerType::class, [
-                'label' => 'Identifiant de la page suivante',
-            ])
             ->add('pages', EntityType::class, [
                 'class' => Page::class,
                 'label' => 'Page liée au choix',
@@ -37,7 +34,11 @@ class TheChoiceType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
             ])
-        ;
+            ->add('page_id', IntegerType::class, [
+                'label' => 'Page suivante',
+            ]);
+            
+        
     }
 
     public function configureOptions(OptionsResolver $resolver): void
