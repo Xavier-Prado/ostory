@@ -32,12 +32,10 @@ class PageType extends AbstractType
             ])
             ->add('start',ChoiceType::class, [
                 'label' => 'Page de démarrage de l\'histoire?',
-                'choices' => [
-                    'Oui' => true,
-                    'Non' => false,
-                ],
+                'choices' => self::START,
                 'multiple' => false,
-                'expanded' => true
+                'expanded' => true,
+                'data' => false
             ])
             ->add('page_end')
             // ,ChoiceType::class, [
@@ -57,6 +55,11 @@ class PageType extends AbstractType
             ])
         ;
     }
+
+    const START = [
+        'Oui' => true,
+        'Non' => false
+    ];
 
     public function configureOptions(OptionsResolver $resolver): void
     {

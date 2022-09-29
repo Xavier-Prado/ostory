@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use App\Form\PageType;
 
 
 /**
@@ -25,12 +27,23 @@ class Page
 
     /**
      * @ORM\Column(type="string", length=128)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 128,
+     *      minMessage = "Le titre doit faire au moins {{ limit }} caractères !",
+     *      maxMessage = "Le titre ne doit pas faire plus de {{ limit }} caractères !"
+     * )
      * @Groups({"page_content"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=2083)
+     * @Assert\NotBlank
+     * @Assert\Url(
+     *    protocols = {"http", "https"}
+     * )
      * @Groups({"page_content"})
      * 
      */
@@ -38,27 +51,34 @@ class Page
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Le contenu doit faire au moins {{ limit }} caractères !",
+     * )
      * @Groups({"page_content"})
      * 
      */
     private $content;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="json", nullable=true)
+     * @Assert\NotNull
+     * @Assert\Choice(choices=PageType::START)
      * @Groups({"story_list"})
      * 
      */
     private $start;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="integer")
      * @Groups({"page_content"})
      * 
      */
-    private $page_end = [];
+    private $page_end;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Story::class, inversedBy="pages", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity=Story::class, inversedBy="pages")
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $story;
@@ -128,12 +148,12 @@ class Page
         return $this;
     }
 
-    public function getPageEnd(): ?array
+    public function getPageEnd(): ?int
     {
         return $this->page_end;
     }
 
-    public function setPageEnd(array $page_end): self
+    public function setPageEnd(int $page_end): self
     {
         $this->page_end = $page_end;
 

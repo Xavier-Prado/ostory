@@ -6,6 +6,7 @@ use App\Repository\StoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -23,12 +24,24 @@ class Story
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Le titre doit faire au moins {{ limit }} caractères !",
+     *      maxMessage = "Le titre ne doit pas faire plus de {{ limit }} caractères !"
+     * )
      * @Groups({"story_list"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Le contenu doit faire au moins {{ limit }} caractères !",
+     * )
      * @Groups({"story_list"})
      */
     private $content;
@@ -41,6 +54,10 @@ class Story
 
     /**
      * @ORM\Column(type="string", length=2083)
+     * @Assert\NotBlank
+     * @Assert\Url(
+     *    protocols = {"http", "https"}
+     * )
      * @Groups({"story_list"})
      */
     private $image;

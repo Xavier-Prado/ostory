@@ -5,8 +5,8 @@
 {% block body %}
 <div class="my-5 py-5">
     <div class="col-lg-9 mx-auto">
-    <h1>Liste des choix</h1>
-    <a class="btn btn-primary float-end m-2" href="{{ path('app_choice_new') }}">Créer un nouveau choix</a>
+      <h1>Liste des choix</h1>
+      <a class="btn btn-primary float-end m-2" href="{{ path('app_choice_new') }}">Créer un nouveau choix</a>
 
     <table class="table table-hover">
         <thead>
@@ -24,7 +24,7 @@
                 <td>{{ choice.id }}</td>
                 <td>{{ choice.name }}</td>
                 <td>{{ choice.description }}</td>
-                <td>{{ choice.pageId }}</td>
+                <td>{{ choice.pageToRedirect }}</td>
                 <td>
                 <div class="btn-group-vertical">
                     <a class="btn btn-info m-1" href="{{ path('app_choice_show', {'id': choice.id}) }}">Voir</a>
