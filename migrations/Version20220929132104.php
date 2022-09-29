@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220929073535 extends AbstractMigration
+final class Version20220929132104 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,12 @@ final class Version20220929073535 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE choice CHANGE page_id page_to_redirect INT NOT NULL');
+        $this->addSql('ALTER TABLE page CHANGE start start LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:json)\', CHANGE page_end page_end INT NOT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE choice CHANGE page_to_redirect page_id INT NOT NULL');
+        $this->addSql('ALTER TABLE page CHANGE start start TINYINT(1) DEFAULT NULL, CHANGE page_end page_end LONGTEXT NOT NULL COMMENT \'(DC2Type:array)\'');
     }
 }

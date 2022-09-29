@@ -6,9 +6,9 @@ use App\Repository\PageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Form\PageType;
 
 
 /**
@@ -62,14 +62,9 @@ class Page
     private $content;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @Assert\NotBlank
-     * @Assert\Positive
-     * @Assert\Range(
-     *      min = 0,
-     *      max = 1,
-     *      notInRangeMessage = "{{ max }} correspond à la page de démarrage"
-     * )
+     * @ORM\Column(type="json", nullable=true)
+     * @Assert\NotNull
+     * @Assert\Choice(choices=PageType::START)
      * @Groups({"story_list"})
      * 
      */
