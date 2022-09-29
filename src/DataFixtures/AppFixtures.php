@@ -101,7 +101,7 @@ class AppFixtures extends Fixture
                     $choice->setName('Choice' .$k);
                     $choice->setDescription("Choice $k description : A genoux, pas à genoux c’est une chose... Enfin en attendant je vous donne pas tout notre or. Ils sont encore là, ces cons! Merde j'ai plus de pierres qu'est-ce qu'on fait?");
                     $choice->setPages($entry);
-                    $choice->setPageId(1);
+                    $choice->setPage_to_redirect(1);
                     $manager->persist($choice);
                 }
             }
@@ -129,7 +129,7 @@ class AppFixtures extends Fixture
                             $randomEntry = array_rand($pagesList);
                             // If this is the page we are currently on, select another number
                            
-                            $entry->setPageId($pagesList[$randomEntry]->getId());
+                            $entry->setPage_to_redirect($pagesList[$randomEntry]->getId());
                         }
                     }
                 }

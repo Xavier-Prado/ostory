@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -51,14 +52,15 @@ class Page
     private $start;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="integer")
      * @Groups({"page_content"})
+     * @Assert\Choice(['Continuer', 'Victoire', 'Défaite'])
      * 
      */
     private $page_end = [];
 
     /**
-     * @ORM\ManyToOne(targetEntity=Story::class, inversedBy="pages", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity=Story::class, inversedBy="pages")
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $story;
