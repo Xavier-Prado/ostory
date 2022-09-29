@@ -39,6 +39,32 @@ class ChoiceRepository extends ServiceEntityRepository
         }
     }
 
+    public function findStoryId($id)
+    {
+        // SELECT `story`.`id` FROM `story` 
+        // INNER JOIN `page` ON `page`.`story_id` = `story`.`id`
+        // INNER JOIN `choice` ON `choice`.`pages_id` = `page`.`id` 
+        // WHERE `choice`.`id` = 95
+
+    $entityManager = $this->getEntityManager();
+
+    $qb = $entityManager->createQueryBuilder();
+
+    $qb->select('s.id')
+       ->from('App\Entity\Story','s')
+       ->join('App\Entity\Page', 'p', 'WITH', 'p.story = s.id')
+       ->join('App\Entity\Choice', 'c', 'WITH', 'c.pages = p.id')
+       ->where('c.id = :id')
+       ->setParameter(':id', $id);
+
+    $query = $qb->getQuery();
+    $result = $query->getSingleResult();
+    
+
+
+    return $result;
+    }
+
 //    /**
 //     * @return Choice[] Returns an array of Choice objects
 //     */

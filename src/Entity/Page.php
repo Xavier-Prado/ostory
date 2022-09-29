@@ -54,10 +54,9 @@ class Page
     /**
      * @ORM\Column(type="integer")
      * @Groups({"page_content"})
-     * @Assert\Choice(['Continuer', 'Victoire', 'Défaite'])
      * 
      */
-    private $page_end = [];
+    private $page_end;
 
     /**
      * @ORM\ManyToOne(targetEntity=Story::class, inversedBy="pages")
@@ -130,12 +129,12 @@ class Page
         return $this;
     }
 
-    public function getPageEnd(): ?array
+    public function getPageEnd(): ?int
     {
         return $this->page_end;
     }
 
-    public function setPageEnd(array $page_end): self
+    public function setPageEnd(int $page_end): self
     {
         $this->page_end = $page_end;
 

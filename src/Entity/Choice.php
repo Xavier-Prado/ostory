@@ -88,7 +88,7 @@ class Choice
     /**
      * Get the value of page_to_redirect
      */ 
-    public function getPage_to_redirect()
+    public function getPageToRedirect()
     {
         return $this->page_to_redirect;
     }
@@ -98,10 +98,11 @@ class Choice
      *
      * @return  self
      */ 
-    public function setPage_to_redirect($page_to_redirect)
+    public function setPageToRedirect($page_to_redirect)
     {
         $this->page_to_redirect = $page_to_redirect;
 
         return $this;
     }
+
 }

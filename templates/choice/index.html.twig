@@ -13,7 +13,7 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Description</th>
-                <th>Page_id</th>
+                <th>Page vers laquelle rediriger</th>
                 <th></th>
             </tr>
         </thead>
@@ -23,7 +23,7 @@
                 <td>{{ choice.id }}</td>
                 <td>{{ choice.name }}</td>
                 <td>{{ choice.description }}</td>
-                <td>{{ choice.pageId }}</td>
+                <td>{{ choice.pageToRedirect }}</td>
                 <td>
                     <a href="{{ path('app_choice_show', {'id': choice.id}) }}">Voir</a>
                     <a href="{{ path('app_choice_edit', {'id': choice.id}) }}">Modifier</a>
