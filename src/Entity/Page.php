@@ -51,7 +51,7 @@ class Page
      * @ORM\Column(type="text")
      * @Assert\NotBlank
      * @Assert\Length(
-     *      min = 50,
+     *      min = 10,
      *      minMessage = "Le contenu doit faire au moins {{ limit }} caractères !",
      * )
      * @Groups({"page_content"})

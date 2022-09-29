@@ -45,6 +45,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 50,
+     *      minMessage = "Le pseudo doit faire au moins {{ limit }} caractères !",
+     *      maxMessage = "Le pseudo ne doit pas faire plus de {{ limit }} caractères !"
+     * )
      */
     private $nickname;
 

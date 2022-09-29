@@ -35,7 +35,7 @@ class Choice
      * @ORM\Column(type="text")
      * @Assert\NotBlank
      * @Assert\Length(
-     *      min = 50,
+     *      min = 10,
      *      minMessage = "La description doit faire au moins {{ limit }} caractères !",
      * )
      * @Groups({"page_content"})
