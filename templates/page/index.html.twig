@@ -6,8 +6,9 @@
 <div class="my-5 py-5">
     <div class="col-lg-9 mx-auto">
         <h1>Liste des pages</h1>
+        <a class="btn btn-primary float-end m-2"href="{{ path('app_page_new') }}">Créer une nouvelle page</a>
 
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -15,7 +16,7 @@
                     <th>Image</th>
                     <th>Contenu</th>
                     <th>Page de démarrage</th>
-                    <th>Résultat de la page</th>
+                    <th>Type de page</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,9 +29,11 @@
                     <td>{{ page.start ? 'Oui' : 'Non' }}</td>
                     <td>{{ page.pageEnd ? page.pageEnd|join(', ') : '' }}</td>
                     <td>
-                        <button class="btn btn-info"><a href="{{ path('app_page_show', {'id': page.id}) }}">Voir</a></button>
-                        <button class="btn btn-warning"><a href="{{ path('app_page_edit', {'id': page.id}) }}">Modifier</a></button>
+                    <div class="btn-group-vertical">
+                        <a class="btn btn-info m-1" href="{{ path('app_page_show', {'id': page.id}) }}">Voir</a>
+                        <a class="btn btn-warning m-1" href="{{ path('app_page_edit', {'id': page.id}) }}">Modifier</a>
                     </td>
+                    </div>
                 </tr>
             {% else %}
                 <tr>
@@ -40,7 +43,6 @@
             </tbody>
         </table>
 
-        <button class="btn btn-info"><a href="{{ path('app_page_new') }}">Créer une nouvelle page</a></button>
     </div>
 </div>
 
