@@ -21,23 +21,11 @@ class Choice
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 50,
-     *      minMessage = "Le nom de la page doit faire au moins {{ limit }} caractères !",
-     *      maxMessage = "Le nom de la page ne doit pas faire plus de {{ limit }} caractères !"
-     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank
-     * @Assert\Length(
-     *      min = 10,
-     *      minMessage = "La description doit faire au moins {{ limit }} caractères !",
-     * )
      * @Groups({"page_content"})
      * 
      */
