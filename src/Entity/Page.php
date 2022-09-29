@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -75,14 +76,14 @@ class Page
     private $start;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="integer")
      * @Groups({"page_content"})
      * 
      */
-    private $page_end = [];
+    private $page_end;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Story::class, inversedBy="pages", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity=Story::class, inversedBy="pages")
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $story;
@@ -152,12 +153,12 @@ class Page
         return $this;
     }
 
-    public function getPageEnd(): ?array
+    public function getPageEnd(): ?int
     {
         return $this->page_end;
     }
 
-    public function setPageEnd(array $page_end): self
+    public function setPageEnd(int $page_end): self
     {
         $this->page_end = $page_end;
 

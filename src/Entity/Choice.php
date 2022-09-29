@@ -49,10 +49,10 @@ class Choice
      * @Groups({"page_content"})
      * 
      */
-    private $page_id;
+    private $page_to_redirect;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Page::class, inversedBy="choices", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity=Page::class, inversedBy="choices")
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $pages;
@@ -86,18 +86,6 @@ class Choice
         return $this;
     }
 
-    public function getPageId(): ?int
-    {
-        return $this->page_id;
-    }
-
-    public function setPageId(int $page_id): self
-    {
-        $this->page_id = $page_id;
-
-        return $this;
-    }
-
     public function getPages(): ?Page
     {
         return $this->pages;
@@ -109,4 +97,25 @@ class Choice
 
         return $this;
     }
+
+    /**
+     * Get the value of page_to_redirect
+     */ 
+    public function getPageToRedirect()
+    {
+        return $this->page_to_redirect;
+    }
+
+    /**
+     * Set the value of page_to_redirect
+     *
+     * @return  self
+     */ 
+    public function setPageToRedirect($page_to_redirect)
+    {
+        $this->page_to_redirect = $page_to_redirect;
+
+        return $this;
+    }
+
 }

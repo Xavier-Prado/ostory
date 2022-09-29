@@ -88,7 +88,7 @@ class AppFixtures extends Fixture
                 // Randomise the start page (not unique)
                 $page->setStart(false);
                 // Randomise the output of the page (0 => continue story, 1 => end with win, 2 => end with lost)
-                $page->setPageEnd([rand(0, 2)]);
+                $page->setPageEnd(rand(0, 2));
                 $page->setStory($storyArray[rand(0, (count($storyArray)-1) )]);
 
                 $manager->persist($page);
@@ -101,7 +101,7 @@ class AppFixtures extends Fixture
                     $choice->setName('Choice' .$k);
                     $choice->setDescription("Choice $k description : A genoux, pas à genoux c’est une chose... Enfin en attendant je vous donne pas tout notre or. Ils sont encore là, ces cons! Merde j'ai plus de pierres qu'est-ce qu'on fait?");
                     $choice->setPages($entry);
-                    $choice->setPageId(1);
+                    $choice->setPageToRedirect(1);
                     $manager->persist($choice);
                 }
             }
@@ -129,7 +129,7 @@ class AppFixtures extends Fixture
                             $randomEntry = array_rand($pagesList);
                             // If this is the page we are currently on, select another number
                            
-                            $entry->setPageId($pagesList[$randomEntry]->getId());
+                            $entry->setPageToRedirect($pagesList[$randomEntry]->getId());
                         }
                     }
                 }
