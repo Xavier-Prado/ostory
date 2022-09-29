@@ -25,12 +25,23 @@ class Page
 
     /**
      * @ORM\Column(type="string", length=128)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 128,
+     *      minMessage = "Le titre doit faire au moins {{ limit }} caractères !",
+     *      maxMessage = "Le titre ne doit pas faire plus de {{ limit }} caractères !"
+     * )
      * @Groups({"page_content"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=2083)
+     * @Assert\NotBlank
+     * @Assert\Url(
+     *    protocols = {"http", "https"}
+     * )
      * @Groups({"page_content"})
      * 
      */
@@ -38,6 +49,11 @@ class Page
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 50,
+     *      minMessage = "Le contenu doit faire au moins {{ limit }} caractères !",
+     * )
      * @Groups({"page_content"})
      * 
      */
@@ -45,6 +61,13 @@ class Page
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Positive
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 1,
+     *      notInRangeMessage = "{{ max }} correspond à la page de démarrage"
+     * )
      * @Groups({"story_list"})
      * 
      */
