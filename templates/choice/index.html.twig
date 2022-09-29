@@ -6,14 +6,15 @@
 <div class="my-5 py-5">
     <div class="col-lg-9 mx-auto">
     <h1>Liste des choix</h1>
+    <a class="btn btn-primary float-end m-2"href="{{ path('app_choice_new') }}">Créer un nouveau choix</a>
 
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Description</th>
-                <th>Page_id</th>
+                <th>Page suivante</th>
                 <th></th>
             </tr>
         </thead>
@@ -25,8 +26,10 @@
                 <td>{{ choice.description }}</td>
                 <td>{{ choice.pageId }}</td>
                 <td>
-                    <a href="{{ path('app_choice_show', {'id': choice.id}) }}">Voir</a>
-                    <a href="{{ path('app_choice_edit', {'id': choice.id}) }}">Modifier</a>
+                <div class="btn-group-vertical">
+                    <a class="btn btn-info m-1" href="{{ path('app_choice_show', {'id': choice.id}) }}">Voir</a>
+                    <a class="btn btn-warning m-1"href="{{ path('app_choice_edit', {'id': choice.id}) }}">Modifier</a>
+                </div>
                 </td>
             </tr>
         {% else %}
@@ -37,7 +40,6 @@
         </tbody>
     </table>
     
-    <a href="{{ path('app_choice_new') }}">Créer un nouveau choix</a>
     </div>
 </div>
 {% endblock %}
