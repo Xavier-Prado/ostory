@@ -6,9 +6,10 @@
 
 <div class="my-5 py-5">
     <div class="col-lg-6 mx-auto">
+        <a class="btn btn-info m-1 float-end" href="{{ path('app_user_index') }}">Revenir à la liste</a>
         <h1>Ajouter un utilisateur</h1>
         {{ include('user/_form.html.twig') }}
-        <a href="{{ path('app_user_index') }}">Revenir à la liste</a>
+        
     </div>
 </div>
 
