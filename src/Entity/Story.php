@@ -69,7 +69,6 @@ class Story
 
     /**
      * @ORM\OneToMany(targetEntity=Page::class, mappedBy="story")
-     * @Groups({"story_list"})
      * 
      */
     private $pages;

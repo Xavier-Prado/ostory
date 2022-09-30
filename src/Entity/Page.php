@@ -20,7 +20,6 @@ class Page
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"story_list"})
      * 
      */
     private $id;
@@ -65,7 +64,6 @@ class Page
      * @ORM\Column(type="json", nullable=true)
      * @Assert\NotNull
      * @Assert\Choice(choices=PageType::START)
-     * @Groups({"story_list"})
      * 
      */
     private $start;
