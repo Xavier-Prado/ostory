@@ -69,10 +69,14 @@ class Story
 
     /**
      * @ORM\OneToMany(targetEntity=Page::class, mappedBy="story")
-     * @Groups({"story_list"})
      * 
      */
     private $pages;
+
+    /**
+     * @Groups({"story_list"})
+     */
+    private $startPage;
 
     public function __construct()
     {
@@ -196,5 +200,17 @@ class Story
     public function __toString()
     {
         return $this->title;
+    }
+
+    public function getStartPage()
+    {
+        $pages = $this->getPages();
+        foreach($pages as $page) {
+            // if it has start value, it's id will be added to the $storyList array
+            // at the 'start_page' key
+            if($page->isStart()) {
+                return $page->getId();
+            }
+        }
     }
 }

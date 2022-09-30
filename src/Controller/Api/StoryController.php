@@ -27,7 +27,7 @@ class StoryController extends AbstractController
     public function list(StoryRepository $storyRepository): JsonResponse
     {
         $stories = $storyRepository->findAll();
-        
+       
 
         return $this->json($stories, Response::HTTP_OK, [], [
             'groups' => 'story_list'
