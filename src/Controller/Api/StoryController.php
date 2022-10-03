@@ -6,17 +6,48 @@ use App\Entity\Page;
 use App\Entity\Story;
 use App\Repository\PageRepository;
 use App\Repository\StoryRepository;
+use phpDocumentor\Reflection\Types\Integer;
 use phpDocumentor\Reflection\Types\Parent_;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Serializer\SerializerInterface;
+
 
 /**
  * @Route("/api")
  */
 class StoryController extends AbstractController
 {
+
+    /**
+     * Return list of available stories
+     * 
+     * @Route("/histoireV2", name="api_histoireV2")
+     * 
+     * @return JsonResponse
+     */
+    public function listV2(StoryRepository $storyRepository, Request $request, SerializerInterface $serializer): JsonResponse
+    {
+
+        $json = $request->getContent();
+        $limit = 1;
+
+        // désérialisation
+        $page = json_decode($json);
+
+        $stories = $storyRepository->findXfirst($page->page,$limit);
+
+        $storiesToDisplay = $this->checkStartPage($stories);
+
+
+
+        return $this->json($storiesToDisplay, Response::HTTP_OK, [], [
+            'groups' => 'story_list'
+        ]);
+    }
     /**
      * Return list of available stories
      * 
@@ -36,6 +67,8 @@ class StoryController extends AbstractController
             'groups' => 'story_list'
         ]);
     }
+
+    
 
     /**
      * Return data from required page from the required story
