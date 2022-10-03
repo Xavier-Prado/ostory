@@ -2,13 +2,14 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Choice;
+use Faker\Factory;
 use App\Entity\Page;
 use App\Entity\User;
 use App\Entity\Story;
-use App\Repository\ChoiceRepository;
+use App\Entity\Choice;
 use App\Repository\PageRepository;
 use App\Repository\StoryRepository;
+use App\Repository\ChoiceRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -35,7 +36,9 @@ class AppFixtures extends Fixture
     {
 
 
-
+        // Instantiate Faker
+            $faker = Factory::create('fr_FR');
+            
         // Create new user with ROLE_USER for testing purpose
             $user = new User();
             $user->setNickname('user');
@@ -62,11 +65,11 @@ class AppFixtures extends Fixture
             // empty array to store stories
             $storyArray=[];
 
-            // create 3 "stories"
-            for ($i=1; $i<4; $i++) {
+            // create 4 "stories"
+            for ($i=1; $i<5; $i++) {
                 $story = new Story();
-                $story->setTitle('Story'.$i);
-                $story->setContent('Story '. $i .' content : C’est une tarte aux myrtilles. Pourquoi elle vous revient pas? Ouais… Ouais je me suis gouré… N’empêche que j’suis une légende! Et on peut savoir depuis quand vous arpentez la Bretagne en racontant à tout le monde que vous vous appelez Provençal le Gaulois? Ben attendez, je vais vous rendre la vôtre.');
+                $story->setTitle($faker->realText(rand(10, 30)));
+                $story->setContent($faker->realText(rand(10,250)));
                 $story->setImage('https://media.istockphoto.com/vectors/cute-facial-expression-icon-of-the-raccoon-vector-id1402078709?s=612x612');
                 $story->setSlug(strtolower($this->slugger->slug($story->getTitle() . " test slugger")));
 
@@ -79,11 +82,11 @@ class AppFixtures extends Fixture
             $pagesArray=[];
 
             // add pages to random story
-            for ($j=1; $j<8; $j++) {
+            for ($j=1; $j<20; $j++) {
                 $page = new Page();
-                $page->setTitle('Page '.$j);
+                $page->setTitle($faker->realText(rand(10, 127)));
                 $page->setImage('http://cdn.shopify.com/s/files/1/0005/0384/0825/products/shopifykitsune_1200x1200.jpg?v=1616508512');
-                $page->setContent('Page ' . $j.' content : Mais arrêtez avec votre chevalier gaulois! Je vous dis que c’est des conneries! Qu’est ce que j’ai dit? Une connerie? On pourrait foutre le feu à la forêt pour les obliger à sortir. Allez-y mollo avec la joie! N’empêche que tout le monde parle de moi! C’est quand même un signe!');
+                $page->setContent($faker->realText(rand(10, 200)));
                 
                 // Randomise the start page (not unique)
                 $page->setStart(false);
@@ -98,8 +101,8 @@ class AppFixtures extends Fixture
             foreach ($pagesArray as $entry) {
                 for ($k=1; $k<=2; $k++) {
                     $choice = new Choice;
-                    $choice->setName('Choice' .$k);
-                    $choice->setDescription("Choice $k description : A genoux, pas à genoux c’est une chose... Enfin en attendant je vous donne pas tout notre or. Ils sont encore là, ces cons! Merde j'ai plus de pierres qu'est-ce qu'on fait?");
+                    $choice->setName($faker->realText(rand(10, 50)));
+                    $choice->setDescription($faker->realText(rand(10, 200)));
                     $choice->setPages($entry);
                     $choice->setPageToRedirect(1);
                     $manager->persist($choice);
