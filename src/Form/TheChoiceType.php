@@ -69,6 +69,9 @@ class TheChoiceType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Choice::class,
+            'attr' => [
+                'novalidate' => 'novalidate'
+            ]
         ]);
     }
 
