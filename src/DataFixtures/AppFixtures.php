@@ -102,7 +102,8 @@ class AppFixtures extends Fixture
                 for ($k=1; $k<=2; $k++) {
                     $choice = new Choice;
                     $choice->setName($faker->realText(rand(10, 50)));
-                    $choice->setDescription($faker->realText(rand(10, 200)));$choice->setPages($entry);
+                    $choice->setDescription($faker->realText(rand(10, 200)));
+                    $choice->setPages($entry);
                     $choice->setPageToRedirect(1);
                     $manager->persist($choice);
                 }
