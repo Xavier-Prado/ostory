@@ -40,29 +40,29 @@ class StoryRepository extends ServiceEntityRepository
         }
     }
 
-//     SELECT * FROM `story` 
-// INNER JOIN `page` 
-// ON `page`.`story_id` = `story`.`id`
-// WHERE `page`.`start` = 1
+    /**
+     * Return fixed number of stories based on the page the user is currently on and the limit decided
+     *
+     * @param integer $pageNumber = the number of the current page
+     * @param integer $limit = the limit of stories to display
+     * @return void
+     */
+    public function findXfirst(int $pageNumber,int $limit)
+    {
+        $entityManager = $this->getEntityManager();
+    
+        $qb = $entityManager->createQueryBuilder();
+    
+        $qb->select('s')
+           ->from('App\Entity\Story','s')
+           ->setFirstResult($pageNumber * $limit)
+           ->setMaxResults($limit);
+        $query = $qb->getQuery();
+    
+        $result = $query->getResult();
 
-// public function findStartPage()
-// {
-//     $entityManager = $this->getEntityManager();
-
-//     $qb = $entityManager->createQueryBuilder();
-
-//     $qb->select('s', 'p.id')
-//        ->from('App\Entity\Story','s')
-//        ->join('App\Entity\Page', 'p', 'WITH', 'p.story = s.id')
-//        ->where('p.start = true')
-//        ->orderBy('s.title', 'ASC');
-
-//     $query = $qb->getQuery();
-//     $result = $query->getResult();
-
-
-//     return $result;
-// }
+        return $result;
+    }
 
 //    /**
 //     * @return Story[] Returns an array of Story objects
