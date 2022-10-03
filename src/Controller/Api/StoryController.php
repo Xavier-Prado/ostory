@@ -27,9 +27,12 @@ class StoryController extends AbstractController
     public function list(StoryRepository $storyRepository): JsonResponse
     {
         $stories = $storyRepository->findAll();
-       
 
-        return $this->json($stories, Response::HTTP_OK, [], [
+        $storiesToDisplay = $this->checkStartPage($stories);
+
+
+
+        return $this->json($storiesToDisplay, Response::HTTP_OK, [], [
             'groups' => 'story_list'
         ]);
     }
@@ -72,5 +75,28 @@ class StoryController extends AbstractController
             'groups' => 'page_content'
         ]);
 
+    }
+
+        /**
+     * Return only stories that have a startPage
+     *
+     * @return Array
+     */
+    public function checkStartPage($stories) :array
+    {
+        $storiesToDisplay = [];
+
+        foreach($stories as $story) {
+            $startPage= [];
+            foreach($story->getPages() as $page) {
+                if ($page->isStart()) {
+                    $startPage[] = $page->getId();
+                }
+            }
+            if (!empty($startPage)) {
+                $storiesToDisplay[]= $story;
+            }
+        }
+        return $storiesToDisplay;
     }
 }
