@@ -27,9 +27,24 @@ class StoryController extends AbstractController
     public function list(StoryRepository $storyRepository): JsonResponse
     {
         $stories = $storyRepository->findAll();
-       
 
-        return $this->json($stories, Response::HTTP_OK, [], [
+        $storiesToDisplay = [];
+
+        foreach($stories as $story) {
+            $startPage= [];
+            foreach($story->getPages() as $page) {
+                if ($page->isStart()) {
+                    $startPage[] = $page->getId();
+                }
+            }
+            if (!empty($startPage)) {
+                $storiesToDisplay[]= $story;
+            }
+        }
+
+
+
+        return $this->json($storiesToDisplay, Response::HTTP_OK, [], [
             'groups' => 'story_list'
         ]);
     }
