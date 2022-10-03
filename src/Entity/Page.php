@@ -103,7 +103,7 @@ class Page
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -115,7 +115,7 @@ class Page
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
@@ -127,7 +127,7 @@ class Page
         return $this->content;
     }
 
-    public function setContent(string $content): self
+    public function setContent(?string $content): self
     {
         $this->content = $content;
 
@@ -151,7 +151,7 @@ class Page
         return $this->page_end;
     }
 
-    public function setPageEnd(int $page_end): self
+    public function setPageEnd(?int $page_end): self
     {
         $this->page_end = $page_end;
 
