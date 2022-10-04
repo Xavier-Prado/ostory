@@ -2,14 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -22,6 +23,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"app_user"})
      */
     private $id;
 
@@ -29,11 +31,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\NotBlank
      * @Assert\Email
+     * @Groups({"app_user"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"app_user"})
      */
     private $roles = [];
 
@@ -52,11 +56,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *      minMessage = "Le pseudo doit faire au moins {{ limit }} caractères !",
      *      maxMessage = "Le pseudo ne doit pas faire plus de {{ limit }} caractères !"
      * )
+     * @Groups({"app_user"})
      */
     private $nickname;
 
     /**
      * @ORM\OneToMany(targetEntity=UserStory::class, mappedBy="users", orphanRemoval=true)
+     * @Groups({"app_user"})
      */
     private $userStories;
 
