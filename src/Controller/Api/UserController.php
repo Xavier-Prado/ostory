@@ -14,55 +14,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
      */
 class UserController extends AbstractController
 {
-
+  
     /**
-     * @var Security
+     * @Route("/me", name="api_user")
      */
-    private $security;
-
-    public function __construct(Security $security)
+    public function show(Security $security): JsonResponse
     {
-       $this->security = $security;
-    }
-    
-    /**
-     * @Route("/{id}", name="api_user")
-     */
-    public function show(User $user, Security $security): JsonResponse
-    {
+        $user = $security->getUser();
 
-        if ($user->getId()) {
+
             return $this->json(
                 $user,
                 200,
                 [],
                 ["groups" => ["app_user"]]
             );
-        } else {
-            return $this->json(
-                [
-                "success" => false
-                ],
-                Response::HTTP_FORBIDDEN
-            );
-        }
-
-        // $connectedUser = $this->security->getUser();
-
-        // if ($connectedUser->getId() == $user->getId()) {
-        //     return $this->json(
-        //         $user,
-        //         200,
-        //         [],
-        //         ["groups" => ["app_user"]]
-        //     );
-        // } else {
-        //     return $this->json(
-        //         [
-        //         "success" => false
-        //         ],
-        //         Response::HTTP_FORBIDDEN
-        //     );
-        // }
     }
 }
