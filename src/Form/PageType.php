@@ -37,17 +37,16 @@ class PageType extends AbstractType
                 'expanded' => true,
                 'data' => false
             ])
-            ->add('page_end')
-            // ,ChoiceType::class, [
-            //     'label' => 'Page de démarrage de l\'histoire?',
-            //     'choices' => [
-            //         'Victoire' => 1,
-            //         'Défaite' => 2,
-            //         'Aller vers une autre page' => 3
-            //     ],
-            //     'multiple' => false,
-            //     'expanded' => true
-            // ])
+            ->add('page_end',ChoiceType::class, [
+                'label' => 'Type de page',
+                'choices' => [
+                    'Victoire' => 1,
+                    'Défaite' => 2,
+                    'Aller vers une autre page' => 0
+                ],
+                'multiple' => false,
+                'expanded' => true
+            ])
             ->add('story', EntityType::class, [
                 'class' => Story::class,
                 'choice_label' => 'title', 
