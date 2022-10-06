@@ -70,6 +70,7 @@ class Page
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotNull
      * @Groups({"page_content"})
      * 
      */
