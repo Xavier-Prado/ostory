@@ -40,12 +40,11 @@ class UserController extends AbstractController
      * @Route("/me/edit", name="api_user_edit", methods={"PUT", "PATCH"})
      * 
      */
-    public function edit(UserRepository $userRepository, Request $request, SerializerInterface $serializer, UserPasswordHasherInterface $passwordHasher, Security $security)
+    public function edit(UserRepository $userRepository, Request $request, UserPasswordHasherInterface $passwordHasher, Security $security)
     {
         // get the content of the request
         $json = $request->getContent();
-        // dd($json);
-
+        
         $user = $security->getUser();
 
         if(!$user) {
@@ -53,15 +52,6 @@ class UserController extends AbstractController
         }
 
         $infos = json_decode($json);
-        // $user = $serializer->deserialize($json, User::class, 'json');
-        // dd($infos);
-
-        
-        // /* $connectedUser = $this->security->getUser(); */
-        // if(!$user /* == $connectedUser->getId() */) {
-        //     return $this->json('You cannot delete another user account', Response::HTTP_UNAUTHORIZED);
-
-        // }
 
         // if the user wants to modify, it won't be empty
         if(!empty($infos->nickname)) {
@@ -91,27 +81,22 @@ class UserController extends AbstractController
     /**
      * Delete user
      * 
-     * @Route("/{id}/delete", name="api_user_delete", methods={"POST"})
+     * @Route("/me/delete", name="api_user_delete", methods={"DELETE"})
      *
      */
-    public function delete(UserRepository $userRepository, int $id, Security $security) {
+    public function delete(UserRepository $userRepository, Security $security, Request $request) {
 
-        /* $connectedUser = $this->security->getUser(); */
+        // get the content of the request
+        $json = $request->getContent();
 
-        $user = $userRepository->find($id);
+        $user = $security->getUser();
 
         if(!$user) {
             return $this->json('Not Found', Response::HTTP_NOT_FOUND);
         }
 
-        if(!$user->getId() /* == $connectedUser->getId() */) {
-            return $this->json('You cannot delete another user account', Response::HTTP_UNAUTHORIZED);
-        }
-
         $userRepository->remove($user, true);
 
-        
         return $this->json('', Response::HTTP_NO_CONTENT, [], []);
-
     }
 }
