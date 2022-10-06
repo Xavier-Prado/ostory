@@ -63,11 +63,16 @@ security:
     access_control:
         # - { path: ^/api, roles: ROLE_USER }
         
+        # Allow access to authenticated manager
+        - { path: ^/back/user, roles: ROLE_ADMIN }
+
         # Allow access to authenticated manager and admin
         - { path: ^/back, roles: ROLE_MANAGER}
 
         # Allow access to authenticated users
         - { path: ^/api/(histoire|user), roles: ROLE_USER }
+
+        
 
 
 
