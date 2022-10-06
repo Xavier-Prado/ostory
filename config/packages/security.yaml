@@ -55,6 +55,13 @@ security:
     access_control:
         # - { path: ^/api, roles: ROLE_USER }
         # - { path: ^/back, roles: ROLE_ADMIN }
+
+        # Restreindre la suppression des histoires, des choix, des pages et des users aux administrateurs
+        #- { path: ^/back/(story|choice|page|user)\d+$, roles: ROLE_ADMIN,  methods:[POST]}
+
+
+        # restrict access to authenticated users
+        # - { path: ^/api/(histoire|user), roles: IS_AUTHENTICATED_FULLY }
                 
 when@test:
     security:
