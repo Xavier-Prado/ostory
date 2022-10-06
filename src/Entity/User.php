@@ -15,7 +15,8 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Email déjà utilisé")
+ * @UniqueEntity(fields={"nickname"}, message="Pseudo déjà utilisé")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -44,11 +45,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Regex(
+     *  pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&-])[A-Za-z\d@$!%*#?&-]{8,}$/",
+     *  message="Votre mot de passe doit contenir au moins 8 caractères, dont une lettre, un chiffre et un caractère spécial.")
      */
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, unique=true)
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 3,
