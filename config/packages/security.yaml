@@ -54,14 +54,15 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/api, roles: ROLE_USER }
-        # - { path: ^/back, roles: ROLE_ADMIN }
+        
+        # Allow access to authenticated manager and admin
+        - { path: ^/back, roles: ROLE_MANAGER}
 
-        # Restreindre la suppression des histoires, des choix, des pages et des users aux administrateurs
-        #- { path: ^/back/(story|choice|page|user)\d+$, roles: ROLE_ADMIN,  methods:[POST]}
+        # Allow access to authenticated users
+        - { path: ^/api/(histoire|user), roles: ROLE_USER }
 
 
-        # restrict access to authenticated users
-        # - { path: ^/api/(histoire|user), roles: IS_AUTHENTICATED_FULLY }
+
                 
 when@test:
     security:
