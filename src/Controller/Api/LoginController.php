@@ -3,7 +3,6 @@
 namespace App\Controller\Api;
 
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +12,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Security\Http\Attribute\CurrentUser;
+
 
 
 /**
@@ -60,11 +59,10 @@ class LoginController extends AbstractController
 
 
     /**
-     * @Route("/signin", name="signin")
+     * @Route("/register", name="register")
      */
-    public function signin(Request $request, 
+    public function register(Request $request, 
         UserPasswordHasherInterface $userPasswordHasher, 
-        EntityManagerInterface $entityManager, 
         SerializerInterface $serializer, 
         ValidatorInterface $validator, 
         ManagerRegistry $doctrine)
@@ -72,8 +70,6 @@ class LoginController extends AbstractController
 
         // récupère le contenu JSON dans la requête HTTP en provenance du front
         $json = $request->getContent();
-
-        //dd($json);
 
         // désérialisation
         $user = $serializer->deserialize($json, User::class, 'json');
