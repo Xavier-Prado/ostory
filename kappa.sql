@@ -20,12 +20,12 @@ CREATE TABLE `choice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `choice` (`id`, `pages_id`, `name`, `description`, `page_to_redirect`) VALUES
-(233,	124,	'Rester à la maison',	'Je vais rester à la maison et regarder une bonne série. Peut-être y trouverai-je de l\'inspiration pour une prochaine histoire ? Guillaume a eu la sienne, mais... il en faut une pour Jérôme !',	127),
-(235,	127,	'S’énerver',	'Ce kappa est quand même gonflé ! Votre colère ne cesse d\'augmenter !\r\n\"Dégage de chez moi, sale Yokai !\"',	129),
-(236,	127,	'L\'offrande',	'Malgré votre colère, vous garder votre calme.\r\n\"Bonjour, que fais-tu là mon ami ? Tu as faim on dirait ? Puis-je t\'offrir un concombre ?\"',	128),
-(238,	126,	'Saluer le Kappa',	'La situation peut être critique mais il faut que j\'évite de paniquer.\r\n\"Bonjour\"',	130),
-(239,	124,	'Faire une ballade le long de la rivière',	'Pfff... Y\'en a marre de rester toujours devant l\'ecran et d\'essayer de trouver des idées originales pour les prochaines histoires du projet ! J\'en rêve carrément la nuit. J\'ai besoin de prendre l\'air et de marcher le long de la rivière pour me ressourcer.',	126),
-(240,	126,	'L\'attaque est la meilleure défense',	'Je suis clairement en danger, l\'attaque est la meilleure des défenses, je vais l\'immobiliser en le prenant par surprise ! \"Yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhhhhhh\"',	132);
+(39,	20,	'Rester à la maison',	'Je vais rester à la maison et regarder une bonne série. Peut-être y trouverai-je de l\'inspiration pour une prochaine histoire ? Guillaume a eu la sienne, mais... il en faut une pour Jérôme !',	22),
+(40,	22,	'S’énerver',	'Ce kappa est quand même gonflé ! Votre colère ne cesse d\'augmenter !\r\n\"Dégage de chez moi, sale Yokai !\"',	24),
+(41,	22,	'L\'offrande',	'Malgré votre colère, vous garder votre calme.\r\n\"Bonjour, que fais-tu là mon ami ? Tu as faim on dirait ? Puis-je t\'offrir un concombre ?\"',	23),
+(42,	21,	'Saluer le Kappa',	'La situation peut être critique mais il faut que j\'évite de paniquer.\r\n\"Bonjour\"',	26),
+(43,	21,	'L\'attaque est la meilleure défense',	'Je suis clairement en danger, l\'attaque est la meilleure des défenses, je vais l\'immobiliser en le prenant par surprise ! \"Yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhhhhhh\"',	27),
+(44,	20,	'Faire une ballade le long de la rivière',	'Pfff... Y\'en a marre de rester toujours devant l\'ecran et d\'essayer de trouver des idées originales pour les prochaines histoires du projet ! J\'en rêve carrément la nuit. J\'ai besoin de prendre l\'air et de marcher le long de la rivière pour me ressourcer.',	21);
 
 DROP TABLE IF EXISTS `doctrine_migration_versions`;
 CREATE TABLE `doctrine_migration_versions` (
@@ -36,8 +36,9 @@ CREATE TABLE `doctrine_migration_versions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20220929144140',	'2022-10-06 09:45:23',	166),
-('DoctrineMigrations\\Version20221005133538',	'2022-10-06 09:45:23',	4);
+('DoctrineMigrations\\Version20220929144140',	'2022-10-07 17:11:18',	228),
+('DoctrineMigrations\\Version20221005133538',	'2022-10-07 17:11:18',	9),
+('DoctrineMigrations\\Version20221007080500',	'2022-10-07 17:11:18',	23);
 
 DROP TABLE IF EXISTS `messenger_messages`;
 CREATE TABLE `messenger_messages` (
@@ -70,14 +71,28 @@ CREATE TABLE `page` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `page` (`id`, `story_id`, `title`, `image`, `content`, `start`, `page_end`) VALUES
-(124,	26,	'Enfin le week end',	'https://i.ibb.co/MGNXLzT/2.jpg',	'C\'est enfin le week end ! Cette semaine d\'apothéose fût intense et enrichissante ! Guillaume nous a bien mis la pression vendredi, il la voulait son histoire, et bien... là voilà !\r\nC\'est l\'heure de se reposer. Que faire ce week-end ?',	'true',	0),
-(126,	26,	'Le long de la rivière',	'https://i.ibb.co/xM2h0ch/forest-sky-background.jpg',	'Quel plaisir de profiter de l\'air frais et du clapotis de la rivière ! Vous n\'avez cependant pas vu le panneau signalant la probable présence du kappa.\r\nManque de chance, vous tombez nez-à-nez avec lui. Vous savez également qu\'un Kappa peut être très dangereux. Vous auriez préféré croiser un Shirime !\r\n\r\nQue faites-vous ?',	'false',	0),
-(127,	26,	'L\'heure du goûter',	'https://i.ibb.co/LJqKRb0/kappa.png',	'Vous enchaînez les épisodes mais un bon dev ne peut pas rester trop longtemps le ventre vide. Vous avez faim et besoin d\'un café.\r\nHorreur ! Un kappa a retourné votre cuisine ! Tout est sans dessus dessous ! Et en plus, il mange tranquillement le dernier cookie du paquet que vous aviez prévu de manger !\r\nVous êtes très énervé !',	'false',	0),
-(128,	26,	'Le concombre',	'https://i.ibb.co/LJqKRb0/kappa.png',	'Le Kappa accepte le concombre que vous lui tendez et vous remercie gracieusement. \r\nTout en mangeant le concombre, il sort de votre maison.\r\n\r\nVous pouvez enfin terminer le dernier épisode de votre série avant d\'attaquer cette ultime semaine chez Oclock',	'false',	1),
-(129,	26,	'Votre heure a sonné',	'https://i.ibb.co/LJqKRb0/kappa.png',	'Le kappa n\'apprécie pas du tout votre comportement et s\'élance sur vous !\r\nVous tentez de renverser le plat d\'eau qui se trouve sur sa tête. Vous échouez lamentablement. Le Kappa, affamé vous dévore les entrailles',	'false',	2),
-(130,	26,	'Les salutations',	'https://i.ibb.co/LJqKRb0/kappa.png',	'Le Kappa vous salue en retour et continue son chemin.\r\nVous l\'avez échappé bel ! Vous continuez votre promenade et arrivez en forme lundi matin pour cette dernière semaine de cours chez Oclock',	'false',	1),
-(131,	26,	'Politesse',	'https://i.ibb.co/LJqKRb0/kappa.png',	'Le Kappa vous salue en retour et continue son chemin.\r\nVous l\'avez échappé bel ! Heureusement, vous saviez que le Kappa est un yokai très poli. Vous continuez votre promenade et arrivez en forme lundi matin pour cette dernière semaine de cours chez Oclock',	'false',	1),
-(132,	26,	'L\'attaque est la meilleure des défense',	'https://i.ibb.co/LJqKRb0/kappa.png',	'Perdant votre sang froid, vous vous ruez sur le Kappa dans l\'espoir de lui renvers son plat d\'eau dans le but de l\'immobiliser et de vous enfuir.\r\nMalheureusement, cela ne se passe pas comme prévu. Le Kappa vous envoie dans l\'eau de la rivière entraînant votre mort par noyade.',	'false',	2);
+(20,	5,	'Enfin le week end',	'https://i.ibb.co/MGNXLzT/2.jpg',	'C\'est enfin le week end ! Cette semaine d\'apothéose fût intense et enrichissante ! Guillaume nous a bien mis la pression vendredi, il la voulait son histoire, et bien... là voilà !\r\nC\'est l\'heure de se reposer. Que faire ce week-end ?',	'true',	0),
+(21,	5,	'Le long de la rivière',	'https://i.ibb.co/xM2h0ch/forest-sky-background.jpg',	'Quel plaisir de profiter de l\'air frais et du clapotis de la rivière ! Vous n\'avez cependant pas vu le panneau signalant la probable présence du kappa.\r\nManque de chance, vous tombez nez-à-nez avec lui. Vous savez également qu\'un Kappa peut être très dangereux. Vous auriez préféré croiser un Shirime !\r\n\r\nQue faites-vous ?',	'false',	0),
+(22,	5,	'L\'heure du goûter',	'https://i.ibb.co/LJqKRb0/kappa.png',	'Vous enchaînez les épisodes mais un bon dev ne peut pas rester trop longtemps le ventre vide. Vous avez faim et besoin d\'un café.\r\nHorreur ! Un kappa a retourné votre cuisine ! Tout est sans dessus dessous ! Et en plus, il mange tranquillement le dernier cookie du paquet que vous aviez prévu de manger !\r\nVous êtes très énervé !',	'false',	0),
+(23,	5,	'Le concombre',	'https://i.ibb.co/LJqKRb0/kappa.png',	'Le Kappa accepte le concombre que vous lui tendez et vous remercie gracieusement. \r\nTout en mangeant le concombre, il sort de votre maison.\r\n\r\nVous pouvez enfin terminer le dernier épisode de votre série avant d\'attaquer cette ultime semaine chez Oclock',	'false',	1),
+(24,	5,	'Votre heure a sonné',	'https://i.ibb.co/LJqKRb0/kappa.png',	'Le kappa n\'apprécie pas du tout votre comportement et s\'élance sur vous !\r\nVous tentez de renverser le plat d\'eau qui se trouve sur sa tête. Vous échouez lamentablement. Le Kappa, affamé vous dévore les entrailles',	'false',	2),
+(25,	5,	'Les salutations',	'https://i.ibb.co/LJqKRb0/kappa.png',	'Le Kappa vous salue en retour et continue son chemin.\r\nVous l\'avez échappé bel ! Vous continuez votre promenade et arrivez en forme lundi matin pour cette dernière semaine de cours chez Oclock',	'false',	1),
+(26,	5,	'Politesse',	'https://i.ibb.co/LJqKRb0/kappa.png',	'Le Kappa vous salue en retour et continue son chemin.\r\nVous l\'avez échappé bel ! Heureusement, vous saviez que le Kappa est un yokai très poli. Vous continuez votre promenade et arrivez en forme lundi matin pour cette dernière semaine de cours chez Oclock',	'false',	1),
+(27,	5,	'L\'attaque est la meilleure des défense',	'https://i.ibb.co/LJqKRb0/kappa.png',	'Perdant votre sang froid, vous vous ruez sur le Kappa dans l\'espoir de lui renvers son plat d\'eau dans le but de l\'immobiliser et de vous enfuir.\r\nMalheureusement, cela ne se passe pas comme prévu. Le Kappa vous envoie dans l\'eau de la rivière entraînant votre mort par noyade.',	'false',	2);
+
+DROP TABLE IF EXISTS `reset_password_request`;
+CREATE TABLE `reset_password_request` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `selector` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hashed_token` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `requested_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `expires_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  PRIMARY KEY (`id`),
+  KEY `IDX_7CE748AA76ED395` (`user_id`),
+  CONSTRAINT `FK_7CE748AA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 DROP TABLE IF EXISTS `story`;
 CREATE TABLE `story` (
@@ -90,7 +105,7 @@ CREATE TABLE `story` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `story` (`id`, `title`, `content`, `slug`, `image`) VALUES
-(26,	'Le Kappa',	'Les Kappa sont des humanoïdes aquatiques et reptiliens qui habitent les rivières et les ruisseaux qui traversent le Japon. Maladroits sur terre, ils sont à l\'aise dans l\'eau et prospèrent pendant les mois chauds. Les kappa ont généralement la taille et la forme d\'un enfant humain, mais malgré leur petite taille, ils sont physiquement plus forts qu\'un homme adulte. Leur peau écailleuse varie d\'un vert terreux profond à des rouges vifs et même bleus. Les corps Kappa sont construits pour la natation ; ils ont des mains et des pieds palmés, sans pouce, un bec et une carapace en forme de tortue, et une peau élastique et imperméable qui sent le poisson et qui est censée être amovible. D\'autres traits inhumains incluent trois anus qui leur permettent de faire passer trois fois plus de gaz que les humains, et des avant-bras attachés les uns aux autres à l\'intérieur de leurs coquilles - tirer sur un bras l\'allonge tandis que l\'autre bras se contracte. Mais leur caractéristique la plus distinctive est une dépression en forme de plat qui se trouve au sommet de leur crâne. Ce plat est la source du pouvoir d\'un kappa et doit être maintenu rempli d\'eau à tout moment. Si l\'eau est renversée et que le plat s\'assèche, le kappa sera incapable de bouger. Il peut même mourir.',	'le-kappa',	'https://i.ibb.co/LJqKRb0/kappa.png');
+(5,	'Le Kappa',	'Les Kappa sont des humanoïdes aquatiques et reptiliens qui habitent les rivières et les ruisseaux qui traversent le Japon. Maladroits sur terre, ils sont à l\'aise dans l\'eau et prospèrent pendant les mois chauds. Les kappa ont généralement la taille et la forme d\'un enfant humain, mais malgré leur petite taille, ils sont physiquement plus forts qu\'un homme adulte. Leur peau écailleuse varie d\'un vert terreux profond à des rouges vifs et même bleus. Les corps Kappa sont construits pour la natation ; ils ont des mains et des pieds palmés, sans pouce, un bec et une carapace en forme de tortue, et une peau élastique et imperméable qui sent le poisson et qui est censée être amovible. D\'autres traits inhumains incluent trois anus qui leur permettent de faire passer trois fois plus de gaz que les humains, et des avant-bras attachés les uns aux autres à l\'intérieur de leurs coquilles - tirer sur un bras l\'allonge tandis que l\'autre bras se contracte. Mais leur caractéristique la plus distinctive est une dépression en forme de plat qui se trouve au sommet de leur crâne. Ce plat est la source du pouvoir d\'un kappa et doit être maintenu rempli d\'eau à tout moment. Si l\'eau est renversée et que le plat s\'assèche, le kappa sera incapable de bouger. Il peut même mourir.',	'le-kappa',	'https://i.ibb.co/LJqKRb0/kappa.png');
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -105,9 +120,10 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nickname`) VALUES
-(47,	'user@user.com',	'[\"ROLE_USER\"]',	'$2y$13$qqr7mZlJfTiRbJV3djPwCO2Y.nUET93AJVqdrJsAG0k..dZTGkZwy',	'user'),
-(48,	'manager@manager.com',	'[\"ROLE_MANAGER\"]',	'$2y$13$QAGGpcC70IoLQ9mmR7fB8.YOkLg5EIcXC1IMpkeYXFbfh5Eccvp7C',	'manager'),
-(49,	'admin@admin.com',	'[\"ROLE_ADMIN\"]',	'$2y$13$jazC3eNbpUWrOI/dp5PVzOmakO9ZQrl47eIG7XlP2X7Lj/U8sSDQ.',	'admin');
+(1,	'user@user.com',	'[\"ROLE_USER\"]',	'$2y$13$qqr7mZlJfTiRbJV3djPwCO2Y.nUET93AJVqdrJsAG0k..dZTGkZwy',	'user'),
+(2,	'manager@manager.com',	'[\"ROLE_MANAGER\"]',	'$2y$13$QAGGpcC70IoLQ9mmR7fB8.YOkLg5EIcXC1IMpkeYXFbfh5Eccvp7C',	'manager'),
+(3,	'admin@admin.com',	'[\"ROLE_ADMIN\"]',	'$2y$13$RDUpxYUHRNWBN5lLBCS6AOFK9rixdWmF/RXglnLOv4uRSLaL5fUDe',	'admin'),
+(4,	'admin1@admin.com',	'[\"ROLE_ADMIN\"]',	'$2y$13$aIwNIJfGInPGUVP77H249u8PoxpIOFEM/1fvC5g31LXdiikzT2jA6',	'admin1');
 
 DROP TABLE IF EXISTS `user_story`;
 CREATE TABLE `user_story` (
@@ -123,4 +139,4 @@ CREATE TABLE `user_story` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
--- 2022-10-07 15:04:54
+-- 2022-10-07 15:30:09
