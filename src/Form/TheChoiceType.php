@@ -29,11 +29,11 @@ class TheChoiceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
-        if(!is_null($options['data']->getId())) {
+        if (!is_null($options['data']->getId())) {
             $storyId = $this->choiceRepository->findStoryId($options['data']);
             $pageList = $this->findAllPages($storyId['id']);
         } else {
-            $pageList = $this->findAllPagesNew(); 
+            $pageList = $this->findAllPagesNew();
         }
 
         $builder
@@ -53,16 +53,12 @@ class TheChoiceType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
             ])
-            ->add('page_to_redirect',ChoiceType::class, [
-                    'label' => 'Page de redirection',
-                    'choices' => $pageList,
-                    'multiple' => false,
-                    'expanded' => false
+            ->add('page_to_redirect', ChoiceType::class, [
+                'label' => 'Page de redirection',
+                'choices' => $pageList,
+                'multiple' => false,
+                'expanded' => false
             ]);
-
-
-            
-        
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -75,9 +71,10 @@ class TheChoiceType extends AbstractType
         ]);
     }
 
-    public function findAllPages(string $id) {
+    public function findAllPages(string $id)
+    {
 
-        $pageList= $this->pageRepository->findBy(["story" => $id]);
+        $pageList = $this->pageRepository->findBy(["story" => $id]);
         $pageListToReturn = [];
         foreach ($pageList as $page) {
 
@@ -87,9 +84,10 @@ class TheChoiceType extends AbstractType
         return $pageListToReturn;
     }
 
-    public function findAllPagesNew() {
+    public function findAllPagesNew()
+    {
 
-        $pageList= $this->pageRepository->findAll();
+        $pageList = $this->pageRepository->findAll();
         $pageListToReturn = [];
         foreach ($pageList as $page) {
 
@@ -98,6 +96,4 @@ class TheChoiceType extends AbstractType
 
         return $pageListToReturn;
     }
-
-
 }

@@ -39,14 +39,14 @@ class UserType extends AbstractType
                 'label' => 'Pseudo'
             ])
 
-            ->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
+            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 // we recover user
                 $user = $event->getData();
                 // and the form
                 $form = $event->getForm();
 
                 // we are in edit or add ?
-                if(is_null($user->getId())) {
+                if (is_null($user->getId())) {
                     // ID null -> add user
                     // add the field password config for add
                     $form->add('password', RepeatedType::class, [
@@ -62,7 +62,6 @@ class UserType extends AbstractType
                         ],
                         'second_options' => ['label' => 'Répétez votre mot de passe'],
                     ]);
-
                 } else {
                     // ID not null -> edit user existing
                     // we had field password config for edit
@@ -77,8 +76,7 @@ class UserType extends AbstractType
                         'second_options' => ['label' => 'Répétez votre mot de passe'],
                     ]);
                 }
-            })
-        ;
+            });
 
         // datatransformer to convert string<->array
         // @link https://symfony.com/doc/current/form/data_transformers.html
@@ -92,8 +90,7 @@ class UserType extends AbstractType
                     // transform the string back to an array
                     return explode(', ', $tagsAsString);
                 }
-            ))
-        ;
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver): void
