@@ -27,8 +27,7 @@ class StoryType extends AbstractType
             ->add('image', UrlType::class, [
                 'label' => 'Image',
                 'help' => 'Url d\'une image'
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
