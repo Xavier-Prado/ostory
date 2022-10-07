@@ -67,7 +67,7 @@ class UserType extends AbstractType
                     // ID not null -> edit user existing
                     // we had field password config for edit
                     $form->add('password', RepeatedType::class, [
-                        'constraints' => new Regex("/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/", "Votre mot de passe ne respecte pas les règles de sécurité."),
+                        'constraints' => new Regex("/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&-])[A-Za-z\d@$!%*#?&-]{8,}$/", "Votre mot de passe ne respecte pas les règles de sécurité."),
                         'type' => PasswordType::class,
                         'invalid_message' => 'Les deux mots de passe doivent être identiques !',
                         'first_options'  => [
