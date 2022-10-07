@@ -13,7 +13,7 @@
 
             {% if app.user %}
                 <div class="mb-3">
-                 Vous ête connecté en tant que {{ app.user.userIdentifier }}
+                 Vous êtes connecté en tant que {{ app.user.userIdentifier }}
                 </div>
             {% endif %}
 
@@ -22,7 +22,11 @@
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
             <label for="inputPassword">Mot de passe</label>
             <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
+                <div>
+                    <small>
+                        <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
+                    </small>
+                </div>
             <input type="hidden" name="_csrf_token"
                  value="{{ csrf_token('authenticate') }}">
     

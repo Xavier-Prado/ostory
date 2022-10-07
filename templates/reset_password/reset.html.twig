@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier votre mot de passe{% endblock %}
+
+{% block body %}
+
+<div class="my-5 py-5">
+    <div class="col-lg-6 mx-auto">
+            <h1 class="h3 mb-3 font-weight-normal">Modifier votre mot de passe</h1>
+
+            {{ form_start(resetForm) }}
+                {{ form_row(resetForm.plainPassword) }}
+                <button class="btn btn-primary mt-3">Modifier mot de passe</button>
+            {{ form_end(resetForm) }}
+    </div>           
+</div>
+{% endblock %}
