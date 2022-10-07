@@ -7,7 +7,6 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,99 +22,67 @@ class LoginController extends AbstractController
     /**
      * @Route("/logout", name="logout")
      */
-    public function logout() {
-        
+    public function logout()
+    {
+
     }
 
     /**
      * @Route("/login", name="login")
      */
-    public function login(Request $request, SerializerInterface $serializer): JsonResponse
+    public function login()
     {
-        // récupère le contenu JSON dans la requête HTTP en provenance du front
-        
-        $json = $request->getContent();
-
-        if($json) {
-            // désérialisation
-        $user = $serializer->deserialize($json, User::class, 'json');
-
-        if (null === $user) {
-            return $this->json([
-                'message' () => 'missing credentials',
-            ], Response::HTTP_UNAUTHORIZED);
-        }
-
-        return $this->json([
-            'user'  => $user,       
-            ]);
-        }
-
-        //TODO : retourner la vue du frontoffice (accueil ou page login)
-        return $this->json('Todo');
-        
-
+ 
     }
-
 
     /**
      * @Route("/register", name="register")
      */
-    public function register(Request $request, 
-        UserPasswordHasherInterface $userPasswordHasher, 
-        SerializerInterface $serializer, 
-        ValidatorInterface $validator, 
-        ManagerRegistry $doctrine)
+    public function register(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        SerializerInterface $serializer,
+        ValidatorInterface $validator,
+        ManagerRegistry $doctrine
+        ) 
     {
 
-        // récupère le contenu JSON dans la requête HTTP en provenance du front
+        // Retrieve JSON data in the HTTP request coming from the front
         $json = $request->getContent();
 
-        // désérialisation
+        // Deserialisation
         $user = $serializer->deserialize($json, User::class, 'json');
 
-        // dd($user);
-
-        // valide la conformité de notre entité (contraintes de validation)
-
+        // validates user entity conformity (validation constraints)
         $errors = $validator->validate($user);
-        // dd($errors);
-        // si on a au moins une erreur
-        if (count($errors) > 0) {
 
-            // un tableau pour retourner un json propre 
-            $cleanErrors = [];        
+        // error management
+        if (count($errors) > 0) {
+            $cleanErrors = [];
 
             /** @var ConstraintViolation $error */
-            foreach($errors as $error) {
-                // on récupère le champ qui est en erreur
+            foreach ($errors as $error) {
+                
                 $property = $error->getPropertyPath();
-
-                // on récupère le message d'erreur
                 $message = $error->getMessage();
-
-                // on ajoute le message dans notre tableau à la clé $property
                 $cleanErrors[$property][] = $message;
-
             }
 
-            // on retourne les erreurs avec un status code 422 pour 
-            // indiquer qu'on ne peut pas traiter les données
+            // return errors with a HTTP code 422
             return $this->json($cleanErrors, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-
-        // hash du mot de passe 
+        // password hash
         $user->setPassword($userPasswordHasher->hashPassword($user, $user->getPassword()));
 
-        // role
+        // Assign a default role
         $user->setRoles(['ROLE_USER']);
-        // faire persister & sauvegarder l'entité 
+
+        // persist and save the new user in database
         $manager = $doctrine->getManager();
         $manager->persist($user);
         $manager->flush();
 
-        // retourner le JSON de l'utilisateur qu'on vient d'ajouter (avec son ID)
-        // avec le code 201 CREATED
+        // return HTTP code 201
         return $this->json($user, Response::HTTP_CREATED, [], [
             'groups' => 'users_get_item'
         ]);
