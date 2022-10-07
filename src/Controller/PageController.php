@@ -81,7 +81,7 @@ class PageController extends AbstractController
      */
     public function delete(Request $request, Page $page, PageRepository $pageRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$page->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $page->getId(), $request->request->get('_token'))) {
             $pageRepository->remove($page, true);
         }
 

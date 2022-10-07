@@ -81,7 +81,7 @@ class ChoiceController extends AbstractController
      */
     public function delete(Request $request, Choice $choice, ChoiceRepository $choiceRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$choice->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $choice->getId(), $request->request->get('_token'))) {
             $choiceRepository->remove($choice, true);
         }
 

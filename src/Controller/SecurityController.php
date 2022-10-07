@@ -11,7 +11,10 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
+     * backoffice login page
+     * 
      * @Route("/login", name="app_login")
+     * 
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -29,6 +32,8 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/logout", name="app_logout")
+     * 
+     * backoffice logout method
      */
     public function logout()
     {
