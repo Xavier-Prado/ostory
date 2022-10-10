@@ -29,6 +29,7 @@ class Choice
      *      minMessage = "Le nom de la page doit faire au moins {{ limit }} caractères !",
      *      maxMessage = "Le nom de la page ne doit pas faire plus de {{ limit }} caractères !"
      * )
+     * @Groups({"page_content"})
      */
     private $name;
 
