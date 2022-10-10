@@ -15,6 +15,7 @@
                     <th>Titre</th>
                     <th>Image</th>
                     <th>Contenu</th>
+                    <th>Histoire liée</th>
                     <th>Page de démarrage</th>
                     <th>Type de page</th>
                     <th></th>
@@ -27,6 +28,7 @@
                     <td>{{ page.title }}</td>
                     <td><img src="{{ page.image }}" height="100px" alt="poster de {{ page.title }}"></td>
                     <td>{{ page.content|length > 80 ? page.content|slice(0, 80)|split(' ')|slice(0, -1)|join(' ') ~ '…' : page.content }}</td>
+                    <td>{{ page.story }}</td>
                     <td>{{ page.start ? 'Oui' : 'Non' }}</td>
                     <td>{{ page.pageEnd ? page.pageEnd|join(', ') : '' }}</td>
                     <td>
