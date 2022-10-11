@@ -13,6 +13,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
+                <th>Histoire liée</th>
                 <th>Description</th>
                 <th>Page suivante</th>
                 <th></th>
@@ -23,6 +24,7 @@
             <tr>
                 <td>{{ choice.id }}</td>
                 <td>{{ choice.name }}</td>
+                <td>{{ storyTitle[loop.index-1] }} </td>
                 <td>{{ choice.description }}</td>
                 <td>{{ choice.pageToRedirect }}</td>
                 <td>
