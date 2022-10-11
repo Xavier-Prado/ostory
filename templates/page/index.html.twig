@@ -11,8 +11,9 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Titre</th>
+                    <th>{{ knp_pagination_sortable(pages, 'Id', 'p.id') }}</th>
+                    <th>{% if pages.isSorted('p.Title') %} class="sorted"{% endif %}
+                        {{ knp_pagination_sortable(pages, 'Titre de la page', 'p.title') }}</th>
                     <th>Image</th>
                     <th>Contenu</th>
                     <th>Histoire liée</th>
@@ -45,6 +46,11 @@
             {% endfor %}
             </tbody>
         </table>
+
+        {# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(pages) }}
+</div>
 
     </div>
 </div>
