@@ -35,7 +35,6 @@ class PageType extends AbstractType
                 'choices' => self::START,
                 'multiple' => false,
                 'expanded' => true,
-                'data' => false
             ])
             ->add('page_end',ChoiceType::class, [
                 'label' => 'Type de page',
