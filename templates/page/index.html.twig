@@ -6,6 +6,7 @@
 <div class="my-5 py-5">
     <div class="col-lg-9 mx-auto">
         <h1>Liste des pages</h1>
+
         <a class="btn btn-primary float-end m-2" href="{{ path('app_page_new') }}">Créer une nouvelle page</a>
 
         <table class="table table-hover">
@@ -47,10 +48,12 @@
             </tbody>
         </table>
 
+        <a class="btn btn-primary float-end m-2" href="{{ path('app_page_new') }}">Créer une nouvelle page</a>
+
         {# display navigation #}
-<div class="navigation">
-    {{ knp_pagination_render(pages) }}
-</div>
+        <div class="navigation d-flex justify-content-center">
+            {{ knp_pagination_render(pages) }}
+        </div>
 
     </div>
 </div>
