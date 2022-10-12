@@ -42,6 +42,12 @@
         </tbody>
     </table>
 
+         <a class="btn btn-primary float-end m-2" href="{{ path('app_choice_new') }}">Créer un nouveau choix</a>
+    {# display navigation #}
+        <div class="navigation d-flex justify-content-center">
+            {{ knp_pagination_render(choices) }}
+        </div>
+
     
     </div>
 </div>
