@@ -6,6 +6,8 @@ use App\Entity\Choice;
 use App\Form\TheChoiceType;
 use App\Repository\StoryRepository;
 use App\Repository\ChoiceRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,8 +21,18 @@ class ChoiceController extends AbstractController
     /**
     * @Route("/", name="app_choice_index", methods={"GET"})
     */
-public function index(ChoiceRepository $choiceRepository, StoryRepository $storyRepository): Response
+public function index(ChoiceRepository $choiceRepository, StoryRepository $storyRepository, PaginatorInterface $paginator, Request $request): Response
 {
+    
+    // Pagination with bundle
+    $query = $choiceRepository->findAll();
+
+    $pagination = $paginator->paginate(
+    $query, /* query NOT result */
+    $request->query->getInt('page', 1), /*page number*/
+    10 /*limit per page*/
+    );
+    
     // Retrieve all choices
     $arrayChoice = $choiceRepository->findAll();
     $choices = [];
@@ -37,7 +49,7 @@ public function index(ChoiceRepository $choiceRepository, StoryRepository $story
     }
 
     return $this->render('choice/index.html.twig', [
-        'choices' => $choiceRepository->findAll(),
+        'choices' => $pagination,
         'storyTitle' => $storyTitle,
     ]);
 }
