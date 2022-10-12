@@ -20,11 +20,10 @@ class PageController extends AbstractController
     /**
      * @Route("/", name="app_page_index", methods={"GET"})
      */
-    public function index(PageRepository $pageRepository, EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
+    public function index(PageRepository $pageRepository, PaginatorInterface $paginator, Request $request): Response
     {
-
-        $dql   = "SELECT p FROM App\Entity\Page p";
-        $query = $em->createQuery($dql);
+        // Pagination with bundle
+        $query = $pageRepository->findAll();
 
         $pagination = $paginator->paginate(
         $query, /* query NOT result */

@@ -39,5 +39,11 @@
         </tbody>
     </table>
 
+     <a class="btn btn-primary float-end m-2" href="{{ path('app_story_new') }}">Créer une nouvelle histoire</a>
+    {# display navigation #}
+        <div class="navigation d-flex justify-content-center">
+            {{ knp_pagination_render(stories) }}
+        </div>
+
     
 {% endblock %}

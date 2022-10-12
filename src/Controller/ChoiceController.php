@@ -21,12 +21,11 @@ class ChoiceController extends AbstractController
     /**
     * @Route("/", name="app_choice_index", methods={"GET"})
     */
-public function index(ChoiceRepository $choiceRepository, StoryRepository $storyRepository, EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
+public function index(ChoiceRepository $choiceRepository, StoryRepository $storyRepository, PaginatorInterface $paginator, Request $request): Response
 {
     
-    
-    $dql   = "SELECT c FROM App\Entity\Choice c";
-    $query = $em->createQuery($dql);
+    // Pagination with bundle
+    $query = $choiceRepository->findAll();
 
     $pagination = $paginator->paginate(
     $query, /* query NOT result */
