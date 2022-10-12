@@ -12,8 +12,74 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+            <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+            <!-- Bootstrap icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+            <!-- Bootstrap CSS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+        
+        <!-- Our custom CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+
     </head>
     <body>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="http://localhost:8080/">Ostory Book</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+         <ul class="navbar-nav me-auto">
+              {% if is_granted('ROLE_MANAGER') %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_main_home') }}">Accueil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_story_index') }}">Histoire</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_page_index') }}">Page</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_choice_index') }}">Choix</a>
+              </li>
+              {% endif %}
+              {% if is_granted('ROLE_ADMIN') %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_user_index') }}">Utilisateurs</a>
+              </li>
+              {% endif %}
+              {# Soon...
+              <li class="nav-item">
+                <a class="nav-link" href="#">Personnages</a>
+              </li>
+              #}
+              {% if is_granted('ROLE_MANAGER') %}
+              <li class="nav-item float-end">
+                <a class="nav-link" href="http://localhost:8080/mon-compte">Mon compte</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+
+    
+
         {% block body %}{% endblock %}
     </body>
 </html>

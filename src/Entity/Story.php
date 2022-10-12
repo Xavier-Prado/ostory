@@ -6,6 +6,8 @@ use App\Repository\StoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=StoryRepository::class)
@@ -16,26 +18,47 @@ class Story
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"story_list"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Le titre doit faire au moins {{ limit }} caractères !",
+     *      maxMessage = "Le titre ne doit pas faire plus de {{ limit }} caractères !"
+     * )
+     * @Groups({"story_list"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Le contenu doit faire au moins {{ limit }} caractères !",
+     * )
+     * @Groups({"story_list"})
      */
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"story_list"})
      */
     private $slug;
 
     /**
      * @ORM\Column(type="string", length=2083)
+     * @Assert\NotBlank
+     * @Assert\Url(
+     *    protocols = {"http", "https"}
+     * )
+     * @Groups({"story_list"})
      */
     private $image;
 
@@ -46,8 +69,14 @@ class Story
 
     /**
      * @ORM\OneToMany(targetEntity=Page::class, mappedBy="story")
+     * 
      */
     private $pages;
+
+    /**
+     * @Groups({"story_list"})
+     */
+    private $startPage;
 
     public function __construct()
     {
@@ -65,7 +94,7 @@ class Story
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -77,7 +106,7 @@ class Story
         return $this->content;
     }
 
-    public function setContent(string $content): self
+    public function setContent(?string $content): self
     {
         $this->content = $content;
 
@@ -89,7 +118,7 @@ class Story
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
 
@@ -101,7 +130,7 @@ class Story
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
@@ -166,5 +195,22 @@ class Story
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
+
+    public function getStartPage()
+    {
+        $pages = $this->getPages();
+        foreach($pages as $page) {
+            // if it has start value, it's id will be added to the $storyList array
+            // at the 'start_page' key
+            if($page->isStart()) {
+                return $page->getId();
+            }
+        }
     }
 }

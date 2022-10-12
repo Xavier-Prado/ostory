@@ -11,25 +11,72 @@ security:
                 class: App\Entity\User
                 property: email
     firewalls:
+        login:
+            pattern: ^/api/login
+            stateless: true
+
+            json_login:
+                # login is a route we will create below
+                check_path: login
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+                username_path: email
+                password_path: password
+            
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                target: login
+                
+        api:
+            pattern:   ^/api
+            stateless: true
+            jwt: ~
+
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
             provider: app_user_provider
+            custom_authenticator: App\Security\AppCustomAuthentificatorAuthenticator
+            
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
+            logout:
+                path: app_logout
+                target: /login
 
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+    # activate different ways to authenticate
+    # https://symfony.com/doc/current/security.html#the-firewall
 
+    # https://symfony.com/doc/current/security/impersonating_user.html
+    # switch_user: true
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_MANAGER # l'admin hérite des droits du manager et donc de l'user
+        ROLE_MANAGER: ROLE_USER # le manager hérite des droits de l'user
+        
+        
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        # - { path: ^/api, roles: ROLE_USER }
+        
+        # Allow access to authenticated manager
+        - { path: ^/back/user, roles: ROLE_ADMIN }
 
+        # Allow access to authenticated manager and admin
+        - { path: ^/back, roles: ROLE_MANAGER}
+
+        # Allow access to authenticated users
+        - { path: ^/api/(histoire|user), roles: ROLE_USER }
+
+        
+
+
+
+                
 when@test:
     security:
         password_hashers:

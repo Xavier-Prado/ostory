@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des histoires{% endblock %}
+
+{% block body %}
+
+<div class="my-5 py-5">
+    <div class="col-lg-9 mx-auto">
+    <h1>Liste des histoires</h1>
+    <a class="btn btn-primary float-end m-2" href="{{ path('app_story_new') }}">Créer une nouvelle histoire</a>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Image</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for story in stories %}
+            <tr>
+                <td>{{ story.title }}</td>
+                <td>{{ story.content }}</td>
+                <td><img src="{{ story.image }}" height="100px" alt="poster de {{ story.title }}"></td>
+                <td>
+                <div class="btn-group-vertical">
+                    <a class="btn btn-info m-1" href="{{ path('app_story_show', {'id': story.id}) }}">Voir</a>
+                    <a class="btn btn-warning m-1" href="{{ path('app_story_edit', {'id': story.id}) }}">Modifier</a>
+                </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Pas d'histoires trouvées</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

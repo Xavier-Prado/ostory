@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<div class="welcome">
+      {% if is_granted('ROLE_ADMIN') %}
+      <h1 class="col-lg-3 mx-auto mt-5 text-center">Bienvenue {{ app.user.nickname }}</h1>
+      {% else %}
+      <h1 class="col-lg-3 mx-auto mt-5 text-center">Bienvenue {{ app.user.nickname }}</h1>
+      {% endif %}
+      <h4 class="col-lg-4 mx-auto mb-5 pb-3 pt-3 border-bottom border-top text-center">Que voulez-vous faire aujourd'hui ?</h1>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-2 container-fluid justify-content-around">
+{% if is_granted('ROLE_ADMIN') %}
+  <div class="col">
+    <div class="card h-100 text-center">
+      <img src="https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="200px" widght="150px" class="rounded mx-auto d-block img-fluid" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Utilisateurs</h5>
+        <p class="card-text">Accéder à la liste des utilisateurs.</p>
+        <a href="{{ path('app_user_index') }}" class="btn btn-primary">Go !</a>
+      </div>
+    </div>
+  </div>
+{% endif %}
+  <div class="col">
+    <div class="card h-100 text-center">
+      <img src="https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="200px" widght="150px" class="rounded mx-auto d-block img-fluid" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Histoires</h5>
+        <p class="card-text">Accéder à la liste des histoires.</p>
+        <a href="{{ path('app_story_index') }}" class="btn btn-primary">Go !</a>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100 text-center">
+      <img src="https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="200px" widght="150px" class="rounded mx-auto d-block img-fluid" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Pages</h5>
+        <p class="card-text">Accéder à la liste des pages.</p>
+        <a href="{{ path('app_page_index') }}" class="btn btn-primary">Go !</a>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100 text-center">
+      <img src="https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="200px" widght="150px" class="rounded mx-auto d-block img-fluid" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Choix</h5>
+        <p class="card-text">Accéder à la liste des choix.</p>
+        <a href="{{ path('app_choice_index') }}" class="btn btn-primary">Go !</a>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100 text-center">
+      <img src="https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="200px" widght="150px" class="rounded mx-auto d-block img-fluid" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Personnages</h5>
+        <p class="card-text">Accéder à la liste des personnages.</p>
+        <a href="#" class="btn btn-primary disabled">Prochainement</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une nouvelle page{% endblock %}
+
+{% block body %}
+<div class="my-5 py-5">
+    <div class="col-lg-9 mx-auto">
+        <a class="btn btn-info m-1 float-end" href="{{ path('app_page_index') }}">Revenir à la liste</a>
+        
+        <h1>Créer une nouvelle page</h1>
+
+        {{ include('page/_form.html.twig') }}
+
+    
+    </div>
+</div>
+{% endblock %}

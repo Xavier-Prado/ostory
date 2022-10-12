@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des choix{% endblock %}
+
+{% block body %}
+<div class="my-5 py-5">
+    <div class="col-lg-9 mx-auto">
+      <h1>Liste des choix</h1>
+      <a class="btn btn-primary float-end m-2" href="{{ path('app_choice_new') }}">Créer un nouveau choix</a>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Histoire liée</th>
+                <th>Description</th>
+                <th>Page suivante</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for choice in choices %}
+            <tr>
+                <td>{{ choice.id }}</td>
+                <td>{{ choice.name }}</td>
+                <td>{{ storyTitle[loop.index-1] }} </td>
+                <td>{{ choice.description }}</td>
+                <td>{{ choice.pageToRedirect }}</td>
+                <td>
+                <div class="btn-group-vertical">
+                    <a class="btn btn-info m-1" href="{{ path('app_choice_show', {'id': choice.id}) }}">Voir</a>
+                    <a class="btn btn-warning m-1" href="{{ path('app_choice_edit', {'id': choice.id}) }}">Modifier</a>
+                </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Pas de choix trouvés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Email de récupération envoyé{% endblock %}
+
+{% block body %}
+
+<div class="my-5 py-5">
+    <div class="col-lg-6 mx-auto">
+        <p>
+            Si un compte correspondant à votre adresse e-mail existe, un e-mail vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.
+            Ce lien expire dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+        </p>
+        <p>Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier spam ou <a href="{{ path('app_forgot_password_request') }}">ré-essayez</a>.</p>
+    </div>           
+</div>
+{% endblock %}
