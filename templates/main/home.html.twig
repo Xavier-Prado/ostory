@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="welcome bg-dark text-light">
+<div class="welcome">
       {% if is_granted('ROLE_ADMIN') %}
       <h1 class="col-lg-3 mx-auto mt-5 text-center">Bienvenue {{ app.user.nickname }}</h1>
       {% else %}
