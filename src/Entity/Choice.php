@@ -17,6 +17,8 @@ class Choice
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"page_content"})
+     * 
      */
     private $id;
 
