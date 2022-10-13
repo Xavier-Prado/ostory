@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @Route("/api/user")
@@ -44,7 +45,9 @@ class UserController extends AbstractController
     public function edit(UserRepository $userRepository, 
                         Request $request, 
                         UserPasswordHasherInterface $passwordHasher, 
-                        Security $security)
+                        Security $security,
+                        ValidatorInterface $validator
+                        )
     {
         // get the content of the request
         $json = $request->getContent();
@@ -75,6 +78,26 @@ class UserController extends AbstractController
             $user->setPassword($password);
         } else {
             $user->getPassword();
+        }
+
+
+        // validates user entity conformity (validation constraints)
+        $errors = $validator->validate($user);
+
+        // error management
+        if (count($errors) > 0) {
+            $cleanErrors = [];
+
+            /** @var ConstraintViolation $error */
+            foreach ($errors as $error) {
+                
+                $property = $error->getPropertyPath();
+                $message = $error->getMessage();
+                $cleanErrors[$property][] = $message;
+            }
+
+            // return errors with a HTTP code 422
+            return $this->json($cleanErrors, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         $userRepository->add($user, true);

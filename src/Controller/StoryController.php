@@ -100,4 +100,7 @@ class StoryController extends AbstractController
 
         return $this->redirectToRoute('app_story_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    
 }
