@@ -101,23 +101,6 @@ class StoryController extends AbstractController
         return $this->redirectToRoute('app_story_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    /**
-     * @Route("/search", name="search")
-     */
-    public function search(Request $request, PaginatorInterface $paginator, StoryRepository $storyRepository) {
-
-        // Pagination with bundle
-        $query = $storyRepository->findAll();
-        $pagination = $paginator->paginate(
-        $query, /* query NOT result */
-        $request->query->getInt('page', 1), /*page number*/
-        10 /*limit per page*/
-        );
-        
-        return $this->render('story/index.html.twig', [
-            'stories' => $pagination,
-        ]);
-    }
 
     
 }
