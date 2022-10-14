@@ -48,13 +48,13 @@ class TheChoiceType extends AbstractType
             ])
             ->add('pages', EntityType::class, [
                 'class' => Page::class,
-                'label' => 'Page liée au choix',
+                'label' => 'Titre de la page qui mène à ce choix',
                 'choice_label' => 'title',
                 'multiple' => false,
                 'expanded' => false,
             ])
             ->add('page_to_redirect', ChoiceType::class, [
-                'label' => 'Page de redirection',
+                'label' => 'Titre de la page de redirection',
                 'choices' => $pageList,
                 'multiple' => false,
                 'expanded' => false
