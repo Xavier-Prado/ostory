@@ -17,7 +17,15 @@
             </tr>
             <tr>
                 <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    {% if ((user.roles ? user.roles|json_encode : '') == '["ROLE_USER"]') %}
+                        <td>Utilisateur</td>
+                    {% elseif ((user.roles ? user.roles|json_encode : '') == '["ROLE_MANAGER"]') %}
+                        <td>Modérateur</td>
+                    {% elseif ((user.roles ? user.roles|json_encode : '') == '["ROLE_ADMIN"]') %}
+                        <td>Administrateur</td>
+                    {% else %}
+                        <td> </td>
+                    {% endif %}
             </tr>
             <tr>
                 <th>Pseudo</th>
