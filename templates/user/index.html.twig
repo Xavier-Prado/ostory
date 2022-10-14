@@ -22,7 +22,17 @@
         {% for user in users %}
             <tr>
                 <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                {% if (user.roles) %}
+                    {% if ((user.roles ? user.roles|json_encode : '') == '["ROLE_USER"]') %}
+                        <td>Utilisateur</td>
+                    {% elseif ((user.roles ? user.roles|json_encode : '') == '["ROLE_MANAGER"]') %}
+                        <td>Modérateur</td>
+                    {% elseif ((user.roles ? user.roles|json_encode : '') == '["ROLE_ADMIN"]') %}
+                        <td>Administrateur</td>
+                    {% else %}
+                        <td> </td>
+                    {% endif %}
+                {% endif %}
                 <td>{{ user.nickname }}</td>
                 <td>
                 <div class="btn-group-vertical">
