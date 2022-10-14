@@ -70,8 +70,16 @@ class LoginController extends AbstractController
             return $this->json($cleanErrors, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         // password hash
+        
+        if (empty($user->getPassword())) {
+            return $this->json(["Vous devez renseigner un mot de passe"], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+        $regex = "/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&-])[A-Za-z\d@$!%*#?&-]{8,}$/";
+        
+        if(!preg_match($regex, $user->getPassword())) {
+            return $this->json(['mot de passe' => "il doit contenir au moins 8 caractères, dont une lettre, un chiffre et un caractère spécial."], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
         $user->setPassword($userPasswordHasher->hashPassword($user, $user->getPassword()));
-
         // Assign a default role
         $user->setRoles(['ROLE_USER']);
 
