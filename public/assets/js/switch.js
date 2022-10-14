@@ -2,7 +2,7 @@
  *  Light Switch @version v0.1.4
  */
 
-(function () {
+ (function () {
   let lightSwitch = document.getElementById('lightSwitch');
   if (!lightSwitch) {
     return;
@@ -20,10 +20,16 @@
 
     document.body.classList.add('bg-dark');
 
-    if (document.body.classList.contains('text-dark')) {
-      document.body.classList.replace('text-dark', 'text-light');
-    } else {
-      document.body.classList.add('text-light');
+    if (document.body.classList.contains('text-dark'),
+        document.querySelector('h1').classList.contains('text-dark'))
+        {
+        document.body.classList.replace('text-dark', 'text-light'),
+        document.querySelector('h1').classList.replace('text-dark', 'text-light');
+        } 
+    else 
+    {
+      document.body.classList.add('text-light'),
+      document.querySelector('h1').classList.add('text-light');
     }
 
     // Tables
@@ -51,10 +57,16 @@
 
     document.body.classList.add('bg-light');
 
-    if (document.body.classList.contains('text-light')) {
-      document.body.classList.replace('text-light', 'text-dark');
-    } else {
-      document.body.classList.add('text-dark');
+    if (document.body.classList.contains('text-light'),
+        document.querySelector('h1').classList.contains('text-light')) 
+    {
+        document.body.classList.replace('text-light', 'text-dark'),
+        document.querySelector('h1').classList.replace('text-light', 'text-dark');
+    } 
+      else 
+    {
+        document.body.classList.add('text-dark'),
+        document.querySelector('h1').classList.add('text-dark');
     }
 
     // Tables
