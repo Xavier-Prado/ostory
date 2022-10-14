@@ -32,23 +32,23 @@
 
 ## Back-office
 
-| URL                   | HTTP Method | Controller            | Method  | Title                                        | Content     | Comment |
-| --------------------- | ----------- | --------------------- | ------- | -------------------------------------------- | ----------- | ------- |
-| `back/`               | `GET`       | `HomeController` | `home`  | Accueil                                      | story list  | -       |
-| `back/user`           | `GET`       | `UserController` | `index` | Liste des utilisateurs                       | user list   | -       |
-| `back/user/new`       | `POST`       | `UserController` | `add`   | Ajouter un utilisateur                       | add a user  | -       |
-| `back/user/[id]`      | `GET`       | `UserController` | `show`  | [nom de l'utilisateur]                       | user infos   | -       |
-| `back/user/[id]/edit` | `PUT, PATCH`       | `UserController` | `edit`  | Editer un utilisateur [nom de l'utilisateur] | edit a user | -       |
-| `back/story`           | `GET`       | `StoryController` | `index` | Liste des histoires                       | story list   | -       |
-| `back/story/new`       | `POST`       | `StoryController` | `new`   | Ajouter une histoire                       | add a story  | -       |
-| `back/story/[id]`      | `GET`       | `StoryController` | `show`  | [nom de l'histoire]                       | story infos   | -       |
-| `back/story/[id]/edit` | `PUT, PATCH`       | `StoryController` | `edit`  | Editer une histoire [nom de l'utilisateur] | edit a story | -       |
-| `back/page`           | `GET`       | `PageController` | `index` | Liste des pages                       | page list   | -       |
-| `back/page/new`       | `POST`       | `PageController` | `new`   | Ajouter une page                      | add a page  | -       |
-| `back/page/[id]`      | `GET`       | `PageController` | `show`  | [nom de la page]                       | page infos   | -       |
-| `back/page/[id]/edit` | `PUT, PATCH`       | `PageController` | `edit`  | Editer une page [nom de la page] | edit a page | -       |
-| `back/choice`           | `GET`       | `ChoiceController` | `index` | Liste des choix                      | choice list   | -       |
-| `back/choice/new`       | `POST`       | `ChoiceController` | `new`   | Ajouter un choix                       | add a choice  | -       |
-| `back/choice/[id]`      | `GET`       | `ChoiceController` | `show`  | [nom du choix]                       | choice  infos   | -       |
-| `back/choice/[id]/edit` | `PUT, PATCH`       | `ChoiceController` | `edit`  | Editer un choix [nom du choix] | edit a choice | -       |
+| URL                     | HTTP Method  | Controller         | Method  | Title                                        | Content       | Comment |
+| ----------------------- | ------------ | ------------------ | ------- | -------------------------------------------- | ------------- | ------- |
+| `back/`                 | `GET`        | `HomeController`   | `home`  | Accueil                                      | story list    | -       |
+| `back/user`             | `GET`        | `UserController`   | `index` | Liste des utilisateurs                       | user list     | -       |
+| `back/user/new`         | `POST`       | `UserController`   | `add`   | Ajouter un utilisateur                       | add a user    | -       |
+| `back/user/[id]`        | `GET`        | `UserController`   | `show`  | [nom de l'utilisateur]                       | user infos    | -       |
+| `back/user/[id]/edit`   | `PUT, PATCH` | `UserController`   | `edit`  | Editer un utilisateur [nom de l'utilisateur] | edit a user   | -       |
+| `back/story`            | `GET`        | `StoryController`  | `index` | Liste des histoires                          | story list    | -       |
+| `back/story/new`        | `POST`       | `StoryController`  | `new`   | Ajouter une histoire                         | add a story   | -       |
+| `back/story/[id]`       | `GET`        | `StoryController`  | `show`  | [nom de l'histoire]                          | story infos   | -       |
+| `back/story/[id]/edit`  | `PUT, PATCH` | `StoryController`  | `edit`  | Editer une histoire [nom de l'utilisateur]   | edit a story  | -       |
+| `back/page`             | `GET`        | `PageController`   | `index` | Liste des pages                              | page list     | -       |
+| `back/page/new`         | `POST`       | `PageController`   | `new`   | Ajouter une page                             | add a page    | -       |
+| `back/page/[id]`        | `GET`        | `PageController`   | `show`  | [nom de la page]                             | page infos    | -       |
+| `back/page/[id]/edit`   | `PUT, PATCH` | `PageController`   | `edit`  | Editer une page [nom de la page]             | edit a page   | -       |
+| `back/choice`           | `GET`        | `ChoiceController` | `index` | Liste des choix                              | choice list   | -       |
+| `back/choice/new`       | `POST`       | `ChoiceController` | `new`   | Ajouter un choix                             | add a choice  | -       |
+| `back/choice/[id]`      | `GET`        | `ChoiceController` | `show`  | [nom du choix]                               | choice  infos | -       |
+| `back/choice/[id]/edit` | `PUT, PATCH` | `ChoiceController` | `edit`  | Editer un choix [nom du choix]               | edit a choice | -       |
 
