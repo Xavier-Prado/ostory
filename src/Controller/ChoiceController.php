@@ -32,12 +32,10 @@ public function index(ChoiceRepository $choiceRepository, StoryRepository $story
     $request->query->getInt('page', 1), /*page number*/
     10 /*limit per page*/
     );
-    
-    // Retrieve all choices
-    $arrayChoice = $choiceRepository->findAll();
+
     $choices = [];
 
-    foreach ($arrayChoice as $choice) {
+    foreach ($pagination->getItems() as $choice) {
         // for each choice get the story id
         $choices[] = $choiceRepository->findStoryId($choice->getId());
     }
@@ -49,6 +47,7 @@ public function index(ChoiceRepository $choiceRepository, StoryRepository $story
     }
 
     return $this->render('choice/index.html.twig', [
+        // 'choices' => $query,
         'choices' => $pagination,
         'storyTitle' => $storyTitle,
     ]);
