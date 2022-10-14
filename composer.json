@@ -50,7 +50,8 @@
         "symfony/web-link": "5.4.*",
         "symfony/yaml": "5.4.*",
         "symfonycasts/reset-password-bundle": "^1.16",
-        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/extra-bundle": "^3.4",
+        "twig/string-extra": "^3.4",
         "twig/twig": "^2.12|^3.0"
     },
     "config": {

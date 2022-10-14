@@ -22,7 +22,7 @@
         {% for story in stories %}
             <tr>
                 <td>{{ story.title }}</td>
-                <td>{{ story.content }}</td>
+                <td>{{ story.content|u.truncate(215, '...') }}</td>
                 <td><img src="{{ story.image }}" height="100px" alt="poster de {{ story.title }}"></td>
                 <td>
                 <div class="btn-group-vertical">
