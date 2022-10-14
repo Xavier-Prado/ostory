@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="icon" href="{{ asset('assets/favicon.ico') }}">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -13,28 +13,29 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
 
-            <!-- Bootstrap CSS -->
+        <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-            <!-- Bootstrap icons -->
+        
+        <!-- Bootstrap icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-            <!-- Bootstrap CSS -->
+        
+        <!-- Bootstrap CSS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
         
         <!-- Our custom CSS -->
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
-
     </head>
-    <body>
-  
+
+  <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080/">Ostory Book</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
         </button>
       <div class="collapse navbar-collapse" id="navbarColor01">
-         <ul class="navbar-nav me-auto">
+          <ul class="navbar-nav me-auto">
               {% if is_granted('ROLE_MANAGER') %}
               <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_main_home') }}">Accueil</a>
@@ -60,9 +61,9 @@
               </li>
               #}
               {% if is_granted('ROLE_MANAGER') %}
-              <li class="nav-item float-end">
+              {# <li class="nav-item float-end">
                 <a class="nav-link" href="http://localhost:8080/mon-compte">Mon compte</a>
-              </li>
+              </li> #}
               <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
               </li>
@@ -71,15 +72,32 @@
                 <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
               </li>
               {% endif %}
+
             </ul>
           </div>
         </div>
       </nav>
 
+        <div class="form-check form-switch float-end ms-auto mt-3 me-3">
+          <label class="form-check-label " for="lightSwitch">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              fill="currentColor"
+              class="bi bi-brightness-high"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"
+              />
+            </svg>
+          </label>
+          <input class="form-check-input" type="checkbox" id="lightSwitch" />
+        </div>
 
+{% block body %}{% endblock %}  
+<script src="{{ asset('assets/js/switch.js') }}"/>
 
-    
-
-        {% block body %}{% endblock %}
-    </body>
+  </body>
 </html>

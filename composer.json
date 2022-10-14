@@ -12,6 +12,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.13",
         "fakerphp/faker": "^1.20",
+        "knplabs/knp-paginator-bundle": "^5.9",
         "lexik/jwt-authentication-bundle": "^2.16",
         "nelmio/cors-bundle": "^2.2",
         "phpdocumentor/reflection-docblock": "^5.3",
@@ -49,7 +50,8 @@
         "symfony/web-link": "5.4.*",
         "symfony/yaml": "5.4.*",
         "symfonycasts/reset-password-bundle": "^1.16",
-        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/extra-bundle": "^3.4",
+        "twig/string-extra": "^3.4",
         "twig/twig": "^2.12|^3.0"
     },
     "config": {

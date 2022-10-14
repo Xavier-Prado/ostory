@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Story;
 use App\Form\StoryType;
 use App\Repository\StoryRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,10 +21,18 @@ class StoryController extends AbstractController
     /**
      * @Route("/", name="app_story_index", methods={"GET"})
      */
-    public function index(StoryRepository $storyRepository): Response
+    public function index(StoryRepository $storyRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        // Pagination with bundle
+        $query = $storyRepository->findAll();
+        $pagination = $paginator->paginate(
+        $query, /* query NOT result */
+        $request->query->getInt('page', 1), /*page number*/
+        10 /*limit per page*/
+        );
+
         return $this->render('story/index.html.twig', [
-            'stories' => $storyRepository->findAll(),
+            'stories' => $pagination,
         ]);
     }
 
@@ -90,4 +100,7 @@ class StoryController extends AbstractController
 
         return $this->redirectToRoute('app_story_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    
 }

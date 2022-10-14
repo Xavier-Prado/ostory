@@ -22,7 +22,17 @@
         {% for user in users %}
             <tr>
                 <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                {% if (user.roles) %}
+                    {% if ((user.roles ? user.roles|json_encode : '') == '["ROLE_USER"]') %}
+                        <td>Utilisateur</td>
+                    {% elseif ((user.roles ? user.roles|json_encode : '') == '["ROLE_MANAGER"]') %}
+                        <td>Modérateur</td>
+                    {% elseif ((user.roles ? user.roles|json_encode : '') == '["ROLE_ADMIN"]') %}
+                        <td>Administrateur</td>
+                    {% else %}
+                        <td> </td>
+                    {% endif %}
+                {% endif %}
                 <td>{{ user.nickname }}</td>
                 <td>
                 <div class="btn-group-vertical">
@@ -38,6 +48,12 @@
         {% endfor %}
         </tbody>
     </table>
+
+     <a class="btn btn-primary float-end m-2" href="{{ path('app_user_new') }}">Créer un nouvel utilisateur</a>
+    {# display navigation #}
+        <div class="navigation d-flex justify-content-center">
+            {{ knp_pagination_render(users) }}
+        </div>
 
     </div>
 </div>
