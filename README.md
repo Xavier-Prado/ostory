@@ -30,7 +30,7 @@ you should see
     bin/console doctrine:fixtures:load
 ```
 
-6- Add keypair security to generate token 
+6- Add keypair security to generate token
 
 ```bash
     bin/console lexik:jwt:generate-keypair

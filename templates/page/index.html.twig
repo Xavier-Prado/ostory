@@ -31,7 +31,15 @@
                     <td>{{ page.content|length > 80 ? page.content|slice(0, 80)|split(' ')|slice(0, -1)|join(' ') ~ '…' : page.content }}</td>
                     <td>{{ page.story }}</td>
                     <td>{{ page.start ? 'Oui' : 'Non' }}</td>
-                    <td>{{ page.pageEnd ? page.pageEnd|join(', ') : '' }}</td>
+                        {% if ((page.pageEnd ? page.pageEnd|join(', ') : '') == false) %}
+                            <td>Aller vers une autre page</td>
+                        {% elseif ((page.pageEnd ? page.pageEnd|join(', ') : '') == 1) %}
+                            <td>Victoire</td>
+                        {% elseif ((page.pageEnd ? page.pageEnd|join(', ') : '') == 2) %}
+                            <td>Défaite</td>
+                        {% else %}
+                            <td> test</td>
+                        {% endif %}
                     <td>
                     <div class="btn-group-vertical">
                         <a class="btn btn-info m-1" href="{{ path('app_page_show', {'id': page.id}) }}">Voir</a>

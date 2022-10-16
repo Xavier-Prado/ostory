@@ -32,7 +32,15 @@
             </tr>
             <tr>
                 <th>Type de page</th>
-                <td>{{ page.pageEnd ? page.pageEnd|join(', ') : '' }}</td>
+                    {% if ((page.pageEnd ? page.pageEnd|join(', ') : '') == false) %}
+                        <td>Aller vers une autre page</td>
+                    {% elseif ((page.pageEnd ? page.pageEnd|join(', ') : '') == 1) %}
+                        <td>Victoire</td>
+                    {% elseif ((page.pageEnd ? page.pageEnd|join(', ') : '') == 2) %}
+                        <td>Défaite</td>
+                    {% else %}
+                        <td> test</td>
+                    {% endif %}
             </tr>
         </tbody>
     </table>
