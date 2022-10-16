@@ -150,7 +150,8 @@ INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nickname`) VALUES
 (4,	'thomC@gmail.com',	'[\"ROLE_ADMIN\"]',	'$2y$13$Ovoc9rvEA8w0o/N/vSp6Kuys19JXBzzFMvbL9btRHKK0E9NwSo3t.',	'cli-king'),
 (5,	'fabinou@yahoo.com',	'[\"ROLE_USER\"]',	'$2y$13$n0F.wjSkEfO1flLwnUYTXeRa3B.oBWZs7w1yG2RL7CHq.5mThuEzq',	'fabrizio'),
 (6,	'elmaestro@yahoo.com',	'[\"ROLE_USER\"]',	'$2y$13$rJeiy/malX2B3g1vTqfdNe.QqUXuC9f2hmJpteRXr8COOb96SFLmm',	'maitrecanard'),
-(7,	'guigui@gmail.com',	'[\"ROLE_ADMIN\"]',	'$2y$13$ieHn2prNbMUxU3voyz8Ro.Zshh6SFcESjG7CZHxb/TIOTIwAeMReG',	'guiguiTheBoss');
+(7,	'guigui@gmail.com',	'[\"ROLE_ADMIN\"]',	'$2y$13$ieHn2prNbMUxU3voyz8Ro.Zshh6SFcESjG7CZHxb/TIOTIwAeMReG',	'guiguiTheBoss'),
+(8,	'xav@gmail.com',	'[\"ROLE_ADMIN\"]',	'$2y$13$qYkMXE1Q4uV4PIXGuyinq.11a1lnjqTu90nGAmblKaGbObivpDdPW',	'xav');
 
 DROP TABLE IF EXISTS `user_story`;
 CREATE TABLE `user_story` (
@@ -166,4 +167,4 @@ CREATE TABLE `user_story` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
--- 2022-10-16 12:01:24
+-- 2022-10-16 14:51:24
