@@ -14,18 +14,6 @@
 </div>
 
 <div class="row row-cols-1 row-cols-md-1 row-cols-lg-5 g-1 container-fluid justify-content-between">
-{% if is_granted('ROLE_ADMIN') %}
-  <div class="col">
-    <div class="card h-100 text-center bg-light">
-      <img src="https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="200px" widght="150px" class="rounded mx-auto d-block img-fluid" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Utilisateurs</h5>
-        <p class="card-text">Accéder à la liste des utilisateurs.</p>
-        <a href="{{ path('app_user_index') }}" class="btn btn-primary">Go !</a>
-      </div>
-    </div>
-  </div>
-{% endif %}
   <div class="col">
     <div class="card h-100 text-center bg-light">
       <img src="https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="200px" widght="150px" class="rounded mx-auto d-block img-fluid" alt="...">
@@ -56,6 +44,18 @@
       </div>
     </div>
   </div>
+  {% if is_granted('ROLE_ADMIN') %}
+  <div class="col">
+    <div class="card h-100 text-center bg-light">
+      <img src="https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="200px" widght="150px" class="rounded mx-auto d-block img-fluid" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Utilisateurs</h5>
+        <p class="card-text">Accéder à la liste des utilisateurs.</p>
+        <a href="{{ path('app_user_index') }}" class="btn btn-primary">Go !</a>
+      </div>
+    </div>
+  </div>
+{% endif %}
   <div class="col">
     <div class="card h-100 text-center bg-light">
       <img src="https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="200px" widght="150px" class="rounded mx-auto d-block img-fluid" alt="...">

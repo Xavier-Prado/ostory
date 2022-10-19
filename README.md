@@ -9,10 +9,14 @@ To run the project you need to (git clone obviously)
 ```
 
 2- create .env.local (this file won't be commited)
-    and add `DATABASE_URL="mysql://username:password@127.0.0.1:3306/BDDname?serverVersion=mariadb-10.3.25"`
+    and add
+
+```bash
+    DATABASE_URL="mysql://username:password@127.0.0.1:3306/BDDname?serverVersion=mariadb-10.3.25"
+```
 
 3- When this is done, run the following command to create your DB
-you should see 
+you should see
 
 ```bash
     bin/console doctrine:database:create
@@ -30,13 +34,13 @@ you should see
     bin/console doctrine:fixtures:load
 ```
 
-6- Add keypair security to generate token 
+6- Add keypair security to generate token
 
 ```bash
     bin/console lexik:jwt:generate-keypair
 ```
 
-7- To run the php server 
+7- To run the php server
 
 ```bash
     php -S 0.0.0.0:8000 -t public
