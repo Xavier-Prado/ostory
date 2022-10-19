@@ -39,26 +39,34 @@ class ChoiceRepository extends ServiceEntityRepository
         }
     }
 
-    public function findStoryId($id)
+    public function findStoryTitle()
     {
-        // SELECT `story`.`id` FROM `story` 
-        // INNER JOIN `page` ON `page`.`story_id` = `story`.`id`
-        // INNER JOIN `choice` ON `choice`.`pages_id` = `page`.`id` 
-        // WHERE `choice`.`id` = 95
+        // SELECT `choice`.*, `story`.`title` FROM `choice`
+        // LEFT JOIN `page`
+        // ON `page`.`id` = `choice`.`pages_id`
+        // LEFT JOIN `story`
+        // ON `story`.`id` = `page`.`story_id`
 
     $entityManager = $this->getEntityManager();
 
     $qb = $entityManager->createQueryBuilder();
 
-    $qb->select('s.id')
-       ->from('App\Entity\Story','s')
-       ->join('App\Entity\Page', 'p', 'WITH', 'p.story = s.id')
-       ->join('App\Entity\Choice', 'c', 'WITH', 'c.pages = p.id')
-       ->where('c.id = :id')
-       ->setParameter(':id', $id);
+    $qb->select('c, s.title, p.id')
+       ->from('App\Entity\Choice','c')
+       ->join('App\Entity\Page', 'p', 'WITH', 'p.id = c.pages')
+       ->join('App\Entity\Story', 's', 'WITH', 's.id = p.story');
+    //    ->where('c.id = :id')
+    //    ->setParameter(':id', $id);
+
+    //    $qb->select('s.title')
+    //    ->from('App\Entity\Story','s')
+    //    ->join('App\Entity\Page', 'p', 'WITH', 'p.story = s.id')
+    //    ->join('App\Entity\Choice', 'c', 'WITH', 'c.pages = p.id')
+    //    ->where('c.id = :id')
+    //    ->setParameter(':id', $id);
 
     $query = $qb->getQuery();
-    $result = $query->getSingleResult();
+    $result = $query->getArrayResult();
     
 
 

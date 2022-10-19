@@ -25,7 +25,7 @@ public function index(ChoiceRepository $choiceRepository, StoryRepository $story
 {
     
     // Pagination with bundle
-    $query = $choiceRepository->findAll();
+    $query = $choiceRepository->findStoryTitle();
 
     $pagination = $paginator->paginate(
     $query, /* query NOT result */
@@ -33,23 +33,9 @@ public function index(ChoiceRepository $choiceRepository, StoryRepository $story
     10 /*limit per page*/
     );
 
-    $choices = [];
-
-    foreach ($pagination->getItems() as $choice) {
-        // for each choice get the story id
-        $choices[] = $choiceRepository->findStoryId($choice->getId());
-    }
-    $storyTitle = [];
-
-    foreach ($choices as $id) {
-        // for each entry in choices array get the story title
-        $storyTitle[] = $storyRepository->find($id)->getTitle();
-    }
-
     return $this->render('choice/index.html.twig', [
         // 'choices' => $query,
         'choices' => $pagination,
-        'storyTitle' => $storyTitle,
     ]);
 }
 
