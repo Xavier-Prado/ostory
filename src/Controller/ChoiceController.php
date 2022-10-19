@@ -21,11 +21,11 @@ class ChoiceController extends AbstractController
     /**
     * @Route("/", name="app_choice_index", methods={"GET"})
     */
-public function index(ChoiceRepository $choiceRepository, StoryRepository $storyRepository, PaginatorInterface $paginator, Request $request): Response
+public function index(ChoiceRepository $choiceRepository, PaginatorInterface $paginator, Request $request): Response
 {
     
     // Pagination with bundle
-    $query = $choiceRepository->findStoryTitle();
+    $query = $choiceRepository->findAllChoicesInformation();
 
     $pagination = $paginator->paginate(
     $query, /* query NOT result */
@@ -63,18 +63,12 @@ public function index(ChoiceRepository $choiceRepository, StoryRepository $story
     /**
      * @Route("/{id}", name="app_choice_show", methods={"GET"})
      */
-    public function show(ChoiceRepository $choiceRepository, int $id, StoryRepository $storyRepository): Response
+    public function show(ChoiceRepository $choiceRepository, int $id): Response
     {
-
-        $storyId = $choiceRepository->findStoryId($id);
-
-        $storyTitle = $storyRepository->find($storyId)->getTitle();
-
-        $choice = $choiceRepository->find($id);
+        $choice = $choiceRepository->findChoiceInformation($id);
         
         return $this->render('choice/show.html.twig', [
             'choice' => $choice,
-            'storyTitle' => $storyTitle,
         ]);
     }
 

@@ -39,7 +39,7 @@ class ChoiceRepository extends ServiceEntityRepository
         }
     }
 
-    public function findStoryTitle()
+    public function findAllChoicesInformation()
     {
         // SELECT `choice`.*, `story`.`title` FROM `choice`
         // LEFT JOIN `page`
@@ -55,8 +55,6 @@ class ChoiceRepository extends ServiceEntityRepository
        ->from('App\Entity\Choice','c')
        ->join('App\Entity\Page', 'p', 'WITH', 'p.id = c.pages')
        ->join('App\Entity\Story', 's', 'WITH', 's.id = p.story');
-    //    ->where('c.id = :id')
-    //    ->setParameter(':id', $id);
 
     //    $qb->select('s.title')
     //    ->from('App\Entity\Story','s')
@@ -73,28 +71,25 @@ class ChoiceRepository extends ServiceEntityRepository
     return $result;
     }
 
-//    /**
-//     * @return Choice[] Returns an array of Choice objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findChoiceInformation($id)
+    {
 
-//    public function findOneBySomeField($value): ?Choice
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    $entityManager = $this->getEntityManager();
+
+    $qb = $entityManager->createQueryBuilder();
+
+    $qb->select('s.title, c.id, c.name, c.description, c.page_to_redirect')
+    ->from('App\Entity\Story','s')
+    ->join('App\Entity\Page', 'p', 'WITH', 'p.story = s.id')
+    ->join('App\Entity\Choice', 'c', 'WITH', 'c.pages = p.id')
+    ->where('c.id = :id')
+    ->setParameter(':id', $id);
+
+    $query = $qb->getQuery();
+    $result = $query->getResult();
+    
+
+
+    return $result;
+    }
 }

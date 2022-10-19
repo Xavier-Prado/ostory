@@ -13,29 +13,29 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ choice.id }}</td>
+                <td>{{ choice[0].id }}</td>
             </tr>
             <tr>
                 <th>Histoire</th>
-                <td>{{ storyTitle }}</td>
+                <td>{{ choice[0].title }}</td>
             </tr>
             <tr>
                 <th>Nom</th>
-                <td>{{ choice.name }}</td>
+                <td>{{ choice[0].name }}</td>
             </tr>
             <tr>
                 <th>Description</th>
-                <td>{{ choice.description }}</td>
+                <td>{{ choice[0].description }}</td>
             </tr>
             <tr>
                 <th>Numéro de la page suivante</th>
-                <td>{{ choice.pageToRedirect }}</td>
+                <td>{{ choice[0].page_to_redirect }}</td>
             </tr>
         </tbody>
     </table>
 
 
-    <a class="btn btn-primary col-2 m-1"  href="{{ path('app_choice_edit', {'id': choice.id}) }}">Modifier</a>
+    <a class="btn btn-primary col-2 m-1"  href="{{ path('app_choice_edit', {'id': choice[0].id}) }}">Modifier</a>
 
     {{ include('choice/_delete_form.html.twig') }}
 
