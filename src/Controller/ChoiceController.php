@@ -4,9 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Choice;
 use App\Form\TheChoiceType;
-use App\Repository\StoryRepository;
 use App\Repository\ChoiceRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

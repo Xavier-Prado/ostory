@@ -39,6 +39,11 @@ class ChoiceRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Retrieve all informations needed on choices list page
+     *
+     * @return array
+     */
     public function findAllChoicesInformation()
     {
         // SELECT `choice`.*, `story`.`title` FROM `choice`
@@ -56,20 +61,18 @@ class ChoiceRepository extends ServiceEntityRepository
        ->join('App\Entity\Page', 'p', 'WITH', 'p.id = c.pages')
        ->join('App\Entity\Story', 's', 'WITH', 's.id = p.story');
 
-    //    $qb->select('s.title')
-    //    ->from('App\Entity\Story','s')
-    //    ->join('App\Entity\Page', 'p', 'WITH', 'p.story = s.id')
-    //    ->join('App\Entity\Choice', 'c', 'WITH', 'c.pages = p.id')
-    //    ->where('c.id = :id')
-    //    ->setParameter(':id', $id);
-
     $query = $qb->getQuery();
     $result = $query->getResult(); 
-
 
     return $result;
     }
 
+    /**
+     * Retrieve all information needed about one given choice
+     *
+     * @param [int] $id
+     * @return array
+     */
     public function findChoiceInformation($id)
     {
 
@@ -86,9 +89,6 @@ class ChoiceRepository extends ServiceEntityRepository
 
     $query = $qb->getQuery();
     $result = $query->getSingleResult();
-    
-    
-
 
     return $result;
     }

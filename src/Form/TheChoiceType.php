@@ -2,14 +2,11 @@
 
 namespace App\Form;
 
-use App\Entity\Page;
 use App\Entity\Choice;
 use App\Repository\ChoiceRepository;
 use App\Repository\PageRepository;
-use ArrayObject;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -71,11 +68,9 @@ class TheChoiceType extends AbstractType
 
     public function findAllPages(string $id)
     {
-
         $pageList = $this->pageRepository->findBy(["story" => $id]);
         $pageListToReturn = [];
         foreach ($pageList as $page) {
-
             $pageListToReturn[$page->getTitle()] = $page->getId();
         }
 
@@ -84,11 +79,9 @@ class TheChoiceType extends AbstractType
 
     public function findAllPagesNew()
     {
-
         $pageList = $this->pageRepository->findAll();
         $pageListToReturn = [];
         foreach ($pageList as $page) {
-
             $pageListToReturn[$page->getTitle()] = $page->getId();
         }
 
