@@ -21,16 +21,17 @@
         </thead>
         <tbody>
         {% for choice in choices %}
+        {% dump choice %}
             <tr>
-                <td>{{ choice[0].id }}</td>
-                <td>{{ choice[0].name }}</td>
+                <td>{{ choice.id }}</td>
+                <td>{{ choice.name }}</td>
                 <td>{{ choice.title }} </td>
-                <td>{{ choice[0].description }}</td>
-                <td>{{ choice[0].page_to_redirect }}</td>
+                <td>{{ choice.description }}</td>
+                <td>{{ choice.page_to_redirect }}</td>
                 <td>
                 <div class="btn-group-vertical">
-                    <a class="btn btn-info m-1" href="{{ path('app_choice_show', {'id': choice[0].id}) }}">Voir</a>
-                    <a class="btn btn-warning m-1" href="{{ path('app_choice_edit', {'id': choice[0].id}) }}">Modifier</a>
+                    <a class="btn btn-info m-1" href="{{ path('app_choice_show', {'id': choice.id}) }}">Voir</a>
+                    <a class="btn btn-warning m-1" href="{{ path('app_choice_edit', {'id': choice.id}) }}">Modifier</a>
                 </div>
                 </td>
             </tr>

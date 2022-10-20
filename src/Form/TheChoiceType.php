@@ -19,19 +19,18 @@ class TheChoiceType extends AbstractType
 {
     private $pageRepository;
     private $choiceRepository;
-    private $choice;
 
     public function __construct(PageRepository $pageRepository, ChoiceRepository $choiceRepository)
     {
         $this->choiceRepository = $choiceRepository;
         $this->pageRepository = $pageRepository;
     }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
         if (!is_null($options['data']->getId())) {
-            $storyId = $this->choiceRepository->findStoryId($options['data']);
-            $pageList = $this->findAllPages($storyId['id']);
+            $storyId = $this->choiceRepository->findChoiceInformation($options['data']);
+            $pageList = $this->findAllPages($storyId['story_id']);
         } else {
             $pageList = $this->findAllPagesNew();
         }
@@ -46,10 +45,9 @@ class TheChoiceType extends AbstractType
                     'rows' => 3
                 ]
             ])
-            ->add('pages', EntityType::class, [
-                'class' => Page::class,
+            ->add('pages', ChoiceType::class, [
                 'label' => 'Titre de la page qui mène à ce choix',
-                'choice_label' => 'title',
+                'choices' => $pageList,
                 'multiple' => false,
                 'expanded' => false,
             ])

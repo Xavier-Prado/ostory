@@ -51,7 +51,7 @@ class ChoiceRepository extends ServiceEntityRepository
 
     $qb = $entityManager->createQueryBuilder();
 
-    $qb->select('c, s.title, p.id')
+    $qb->select('s.title, s.id AS story_id, c.id, c.name, c.description, c.page_to_redirect, p.id as page_id')
        ->from('App\Entity\Choice','c')
        ->join('App\Entity\Page', 'p', 'WITH', 'p.id = c.pages')
        ->join('App\Entity\Story', 's', 'WITH', 's.id = p.story');
@@ -64,8 +64,7 @@ class ChoiceRepository extends ServiceEntityRepository
     //    ->setParameter(':id', $id);
 
     $query = $qb->getQuery();
-    $result = $query->getArrayResult();
-    
+    $result = $query->getResult(); 
 
 
     return $result;
@@ -78,7 +77,7 @@ class ChoiceRepository extends ServiceEntityRepository
 
     $qb = $entityManager->createQueryBuilder();
 
-    $qb->select('s.title, c.id, c.name, c.description, c.page_to_redirect')
+    $qb->select('s.title, s.id AS story_id, c.id, c.name, c.description, c.page_to_redirect')
     ->from('App\Entity\Story','s')
     ->join('App\Entity\Page', 'p', 'WITH', 'p.story = s.id')
     ->join('App\Entity\Choice', 'c', 'WITH', 'c.pages = p.id')
@@ -86,7 +85,8 @@ class ChoiceRepository extends ServiceEntityRepository
     ->setParameter(':id', $id);
 
     $query = $qb->getQuery();
-    $result = $query->getResult();
+    $result = $query->getSingleResult();
+    
     
 
 
