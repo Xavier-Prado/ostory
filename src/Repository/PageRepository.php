@@ -39,28 +39,26 @@ class PageRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Page[] Returns an array of Page objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * Return all pages related to a story
+     *
+     * @param integer $id
+     * @return array
+     */
+    public function findAllPages(int $id)
+    {
+        $entityManager = $this->getEntityManager();
 
-//    public function findOneBySomeField($value): ?Page
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $qb = $entityManager->createQueryBuilder();
+
+        $qb->select('p')
+        ->from('App\Entity\Page','p')
+        ->where('p.story = :id')
+        ->setParameter(':id', $id);
+
+        $query = $qb->getQuery();
+        $result = $query->getResult();
+
+        return $result;
+    }
 }
