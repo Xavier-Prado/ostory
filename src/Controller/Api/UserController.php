@@ -76,7 +76,7 @@ class UserController extends AbstractController
         if (!empty($infos->password)) {
             $regex = "/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&-])[A-Za-z\d@$!%*#?&-]{8,}$/";
             if(!preg_match($regex, $infos->password)) {
-            return $this->json(["Votre mot de passe doit contenir au moins 8 caractères, dont une lettre, un chiffre et un caractère spécial."], Response::HTTP_UNPROCESSABLE_ENTITY);
+            return $this->json(['mot de passe' =>"Votre mot de passe doit contenir au moins 8 caractères, dont une lettre, un chiffre et un caractère spécial."], Response::HTTP_UNPROCESSABLE_ENTITY);
             }
             $password = $passwordHasher->hashPassword($user, $infos->password);
             $user->setPassword($password);

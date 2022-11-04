@@ -4,11 +4,13 @@ namespace App\Form;
 
 use App\Entity\Story;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints\File;
 
 class StoryType extends AbstractType
 {
@@ -24,9 +26,18 @@ class StoryType extends AbstractType
                     'rows' => 6
                 ]
             ])
-            ->add('image', UrlType::class, [
+            ->add('image', FileType::class, [
                 'label' => 'Image',
-                'help' => 'Url d\'une image'
+                'required' => true,
+                'mapped' => false,
+                'constraints' => [
+                    new File([],200000,null,[
+                        'image/jpeg',
+                        'image/gif',
+                        'image/bmp',
+                        'image/png',
+                    ],null, null, 'Image de 200 ko max', 'Format acceptés jpeg/png/bmp/gif uniquement')
+                ],
             ]);
     }
 

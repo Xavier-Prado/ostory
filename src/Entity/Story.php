@@ -54,10 +54,6 @@ class Story
 
     /**
      * @ORM\Column(type="string", length=2083)
-     * @Assert\NotBlank
-     * @Assert\Url(
-     *    protocols = {"http", "https"}
-     * )
      * @Groups({"story_list"})
      */
     private $image;
