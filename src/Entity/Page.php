@@ -39,10 +39,6 @@ class Page
 
     /**
      * @ORM\Column(type="string", length=2083)
-     * @Assert\NotBlank
-     * @Assert\Url(
-     *    protocols = {"http", "https"}
-     * )
      * @Groups({"page_content"})
      * 
      */

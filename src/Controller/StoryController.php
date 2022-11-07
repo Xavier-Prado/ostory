@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Story;
 use App\Form\StoryType;
 use App\Repository\StoryRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\UploadFileService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 /**
  * @Route("back/story")
@@ -25,6 +24,7 @@ class StoryController extends AbstractController
      */
     public function index(StoryRepository $storyRepository, PaginatorInterface $paginator, Request $request): Response
     {
+
         // Pagination with bundle
         $query = $storyRepository->findAll();
         $pagination = $paginator->paginate(
@@ -41,7 +41,12 @@ class StoryController extends AbstractController
     /**
      * @Route("/new", name="app_story_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, StoryRepository $storyRepository, SluggerInterface $slugger): Response
+    public function new(
+        Request $request, 
+        StoryRepository $storyRepository, 
+        SluggerInterface $slugger, 
+        UploadFileService $uploadFileService
+        ): Response
     {
         $story = new Story();
         $form = $this->createForm(StoryType::class, $story);
@@ -54,27 +59,8 @@ class StoryController extends AbstractController
             /** @var UploadFile $pictureFile */
             $pictureFile = $form->get('image')->getData();
 
-            // Get filename 
-            $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = $uploadFileService->uploadFile($pictureFile, 'story');
 
-            // transform filename to avoid errors
-            $safeFileName = $slugger->slug($originalFilename);
-
-            // create the new filename with slugified filename, a unique id (to avoid same filename), and extension based on original uploaded file 
-            $newFilename = $safeFileName.'-'.uniqid().'.'.$pictureFile->guessExtension();
-
-            try {
-                $pictureFile->move(
-                    $this->getParameter('image_directory'),
-                    $newFilename
-                );
-            } catch (FileException $e) {
-                throw $this->json('erreur lors de l\'upload de l\'image', Response::HTTP_UNSUPPORTED_MEDIA_TYPE);
-            }
-
-
-            // $filesystem->remove($this->getParameter('image_directory').'/'.$story->getImage());
-            
             $story->setImage($newFilename);
             $storyRepository->add($story, true);
 
@@ -100,7 +86,14 @@ class StoryController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_story_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Story $story, StoryRepository $storyRepository, SluggerInterface $slugger, Filesystem $filesystem): Response
+    public function edit(
+        Request $request, 
+        Story $story, 
+        StoryRepository $storyRepository, 
+        SluggerInterface $slugger, 
+        Filesystem $filesystem, 
+        UploadFileService $uploadFileService
+        ): Response
     {
         $form = $this->createForm(StoryType::class, $story);
         $form->handleRequest($request);
@@ -112,26 +105,10 @@ class StoryController extends AbstractController
             /** @var UploadFile $pictureFile */
             $pictureFile = $form->get('image')->getData();
 
-            // Get filename 
-            $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
-
-            // transform filename to avoid errors
-            $safeFileName = $slugger->slug($originalFilename);
-
-            // create the new filename with slugified filename, a unique id (to avoid same filename), and extension based on original uploaded file 
-            $newFilename = $safeFileName.'-'.uniqid().'.'.$pictureFile->guessExtension();
-
-            try {
-                $pictureFile->move(
-                    $this->getParameter('image_directory'),
-                    $newFilename
-                );
-            } catch (FileException $e) {
-                throw $this->json('erreur lors de l\'upload de l\'image', Response::HTTP_UNSUPPORTED_MEDIA_TYPE);
-            }
-
+            $newFilename = $uploadFileService->uploadFile($pictureFile, 'story');
+           
             // remove the old story image before adding the new
-            $filesystem->remove($this->getParameter('image_directory').'/'.$story->getImage());
+            $filesystem->remove($this->getParameter('story_image_directory').'/'.$story->getImage());
             
             $story->setImage($newFilename);
             $storyRepository->add($story, true);

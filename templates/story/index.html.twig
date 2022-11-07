@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ story.title }}</td>
                 <td>{{ story.content|u.truncate(215, '...') }}</td>
-                <td><img src="{{ asset('uploads/image/') ~ story.image }}" height="100px" alt="poster de {{ story.title }}"></td>
+                <td><img src="{{ asset('uploads/image/story/') ~ story.image }}" height="100px" alt="poster de {{ story.title }}"></td>
                 <td>
                 <div class="btn-group-vertical">
                     <a class="btn btn-info m-1" href="{{ path('app_story_show', {'id': story.id}) }}">Voir</a>

@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td><img src="{{ story.image }}" height="100px" alt="poster de {{ story.title }}"></td>
+                <td><img src="{{ asset('uploads/image/story/') ~ story.image }}" height="100px" alt="poster de {{ story.title }}"></td>
             </tr>
         </tbody>
     </table>

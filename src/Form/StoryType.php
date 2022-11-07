@@ -4,13 +4,13 @@ namespace App\Form;
 
 use App\Entity\Story;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Validator\Constraints\File;
 
 class StoryType extends AbstractType
 {
@@ -31,6 +31,7 @@ class StoryType extends AbstractType
                 'required' => true,
                 'mapped' => false,
                 'constraints' => [
+                    new NotBlank(),
                     new File([],200000,null,[
                         'image/jpeg',
                         'image/gif',

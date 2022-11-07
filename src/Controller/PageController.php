@@ -5,12 +5,13 @@ namespace App\Controller;
 use App\Entity\Page;
 use App\Form\PageType;
 use App\Repository\PageRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\UploadFileService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * @Route("/back/page")
@@ -41,13 +42,22 @@ class PageController extends AbstractController
     /**
      * @Route("/new", name="app_page_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, PageRepository $pageRepository): Response
+    public function new(Request $request, PageRepository $pageRepository, UploadFileService $uploadFileService): Response
     {
         $page = new Page();
         $form = $this->createForm(PageType::class, $page);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+                        // Get data from uploaded picture
+            /** @var UploadFile $pictureFile */
+            $pictureFile = $form->get('image')->getData();
+
+            $newFilename = $uploadFileService->uploadFile($pictureFile, 'page');
+
+            $page->setImage($newFilename);
+
             $pageRepository->add($page, true);
 
             return $this->redirectToRoute('app_page_index', [], Response::HTTP_SEE_OTHER);
@@ -72,12 +82,30 @@ class PageController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_page_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Page $page, PageRepository $pageRepository): Response
+    public function edit(
+        Request $request,
+        Page $page, 
+        PageRepository $pageRepository, 
+        UploadFileService $uploadFileService, 
+        Filesystem $filesystem
+        ): Response
     {
         $form = $this->createForm(PageType::class, $page);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Get data from uploaded picture
+            /** @var UploadFile $pictureFile */
+            $pictureFile = $form->get('image')->getData();
+            
+            $newFilename = $uploadFileService->uploadFile($pictureFile, 'page');
+           
+            // remove the old story image before adding the new
+            
+            $filesystem->remove($this->getParameter('page_image_directory').'/'.$page->getImage());
+            $page->setImage($newFilename);
+
             $pageRepository->add($page, true);
 
             return $this->redirectToRoute('app_page_index', [], Response::HTTP_SEE_OTHER);
