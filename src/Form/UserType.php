@@ -8,9 +8,11 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -37,6 +39,19 @@ class UserType extends AbstractType
             ])
             ->add('nickname', TextType::class, [
                 'label' => 'Pseudo'
+            ])
+            ->add('image', FileType::class, [
+                'label' => 'Image',
+                'required' => true,
+                'mapped' => false,
+                'constraints' => [
+                    new File([],200000,null,[
+                        'image/jpeg',
+                        'image/gif',
+                        'image/bmp',
+                        'image/png',
+                    ],null, null, 'Image de 200ko', 'Format acceptés jpeg/png/bmp/gif uniquement')
+                ],
             ])
 
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {

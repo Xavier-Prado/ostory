@@ -68,6 +68,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $userStories;
 
+    /**
+     * @ORM\Column(type="string", length=2083, nullable=true)
+     */
+    private $profilePicture;
+
     public function __construct()
     {
         $this->userStories = new ArrayCollection();
@@ -198,6 +203,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $userStory->setUsers(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProfilePicture(): ?string
+    {
+        return $this->profilePicture;
+    }
+
+    public function setProfilePicture(?string $profilePicture): self
+    {
+        $this->profilePicture = $profilePicture;
 
         return $this;
     }

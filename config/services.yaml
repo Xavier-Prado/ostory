@@ -6,6 +6,7 @@
 parameters:
     story_image_directory: '%kernel.project_dir%/public/uploads/image/story'
     page_image_directory: '%kernel.project_dir%/public/uploads/image/page'
+    user_image_directory: '%kernel.project_dir%/public/uploads/image/user'
 
 services:
     # default configuration for services in *this* file

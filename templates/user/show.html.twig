@@ -31,6 +31,13 @@
                 <th>Pseudo</th>
                 <td>{{ user.nickname }}</td>
             </tr>
+            <tr>
+                <th>Image de profile</th>
+                <td><img src="{{ asset('uploads/image/user/') ~ user.profilePicture }}" height="100px" alt="poster de {{ user.nickname }}"></td>
+            </tr>
+
+
+
         </tbody>
     </table>
 

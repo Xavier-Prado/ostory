@@ -61,9 +61,6 @@
               </li>
               #}
               {% if is_granted('ROLE_MANAGER') %}
-              <li class="nav-item float-end">
-                <a class="nav-link" href="http://localhost:8080/mon-compte">Mon compte</a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
               </li>
