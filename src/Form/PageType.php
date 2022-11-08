@@ -29,12 +29,12 @@ class PageType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank(),
-                    new File([],200000,null,[
+                    new File([],2000000,null,[
                         'image/jpeg',
                         'image/gif',
                         'image/bmp',
                         'image/png',
-                    ],null, null, 'Image de 200 ko max', 'Format acceptés jpeg/png/bmp/gif uniquement')
+                    ],null, null, 'Image de 2Mo', 'Format acceptés jpeg/png/bmp/gif uniquement')
                 ],
             ])
             ->add('content', TextareaType::class, [
