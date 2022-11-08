@@ -70,6 +70,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=2083, nullable=true)
+     * @Groups({"app_user"})
+     * 
      */
     private $profilePicture;
 
