@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CharactersController extends AbstractController
 {
     /**
-     * @Route("/api/characters", name="api_characters")
+     * @Route("/api/personnages", name="api_personnages")
      */
     public function list(CharactersRepository $charactersRepository): JsonResponse
     {

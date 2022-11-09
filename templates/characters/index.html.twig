@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des personnages{% endblock %}
+
+{% block body %}
+<div class="my-5 py-5">
+    <div class="col-lg-9 mx-auto overflow-auto">
+    <h1>Liste des personnages</h1>
+
+    <a class="btn btn-primary float-end m-2" href="{{ path('app_characters_new') }}">Créer un nouveau personnage</a>
+
+    {# display navigation #}
+    <div class="navigation d-flex justify-content-center">
+        {{ knp_pagination_render(characters) }}
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Image</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for character in characters %}
+            <tr>
+                <td>{{ character.id }}</td>
+                <td>{{ character.name }}</td>
+                <td><img src="{{ asset('assets/images/personnages/') ~ character.image }}" height="100px" alt="poster de {{ character.name }}"></td>
+                <td>
+                    <a class="btn btn-info m-1" href="{{ path('app_characters_show', {'id': character.id}) }}">Voir</a>
+                    <a class="btn btn-warning m-1" href="{{ path('app_characters_edit', {'id': character.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Pas de personnage trouvés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <a class="btn btn-primary float-end m-2" href="{{ path('app_characters_new') }}">Créer un nouveau personnage</a>
+
+        {# display navigation #}
+        <div class="navigation d-flex justify-content-center">
+            {{ knp_pagination_render(characters) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
