@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Characters{% endblock %}
+
+{% block body %}
+<div class="my-5 py-5">
+<div class="col-lg-6 mx-auto">
+    <a class="btn btn-info m-1 float-end" href="{{ path('app_characters_index') }}">Revenir à la liste</a>
+    <h1>Characters</h1>
+
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ character.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ character.name }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ asset('assets/images/personnages/') ~ character.image }}" height="100px" alt="poster de {{ character.name }}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <a class="btn btn-primary col-2 m-1" href="{{ path('app_characters_edit', {'id': character.id}) }}">Modifier</a>
+
+    {{ include('characters/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}

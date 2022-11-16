@@ -31,7 +31,9 @@ class StoryType extends AbstractType
                 'required' => true,
                 'mapped' => false,
                 'constraints' => [
-                    new NotBlank(),
+                    new NotBlank([
+                        'message' => 'Merci d\'enregistrer une image'
+                    ]),
                     new File([],200000,null,[
                         'image/jpeg',
                         'image/gif',

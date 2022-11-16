@@ -51,8 +51,15 @@ class LoginController extends AbstractController
         // Deserialisation
         $user = $serializer->deserialize($json, User::class, 'json');
 
+        // Assign a default role
+        $user->setRoles(['ROLE_USER']);
+
+        $user->setProfilePicture('profile-picture-base.png');
+
         // validates user entity conformity (validation constraints)
         $errors = $validator->validate($user);
+
+
 
         // error management
         if (count($errors) > 0) {
@@ -80,8 +87,6 @@ class LoginController extends AbstractController
             return $this->json(['mot de passe' => "il doit contenir au moins 8 caractères, dont une lettre, un chiffre et un caractère spécial."], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         $user->setPassword($userPasswordHasher->hashPassword($user, $user->getPassword()));
-        // Assign a default role
-        $user->setRoles(['ROLE_USER']);
 
         // persist and save the new user in database
         $manager = $doctrine->getManager();

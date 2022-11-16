@@ -73,7 +73,7 @@ security:
         - { path: ^/back, roles: ROLE_MANAGER}
 
         # Allow access to authenticated users
-        - { path: ^/api/(histoire|user), roles: ROLE_USER }
+        - { path: ^/api/(histoire|user|personnages), roles: ROLE_USER }
 
         
 

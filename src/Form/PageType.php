@@ -28,7 +28,9 @@ class PageType extends AbstractType
                 'required' => true,
                 'mapped' => false,
                 'constraints' => [
-                    new NotBlank(),
+                    new NotBlank([
+                        'message' => 'Merci d\'enregistrer une image'
+                    ]),
                     new File([],2000000,null,[
                         'image/jpeg',
                         'image/gif',

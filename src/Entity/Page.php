@@ -26,7 +26,8 @@ class Page
 
     /**
      * @ORM\Column(type="string", length=128)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *  message = "Vous devez renseigner un titre pour cette page")
      * @Assert\Length(
      *      min = 2,
      *      max = 128,
@@ -46,7 +47,8 @@ class Page
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *  message = "Vous devez renseigner un contenu")
      * @Assert\Length(
      *      min = 10,
      *      minMessage = "Le contenu doit faire au moins {{ limit }} caractères !",
@@ -58,7 +60,8 @@ class Page
 
     /**
      * @ORM\Column(type="json", nullable=true)
-     * @Assert\NotNull
+     * @Assert\NotBlank(
+     *  message = "Vous devez définir si c'est une page de démarrage ou non")
      * @Assert\Choice(choices=PageType::START)
      * 
      */
@@ -66,7 +69,8 @@ class Page
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\NotNull
+     * @Assert\NotBlank(
+     *  message = "Vous devez définir le type de fin à laquelle conduit la page")
      * @Groups({"page_content"})
      * 
      */

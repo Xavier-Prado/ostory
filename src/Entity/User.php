@@ -30,7 +30,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *  message = "Vous devez renseigner une adresse email")
      * @Assert\Email
      * @Groups({"app_user"})
      */
@@ -38,6 +39,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="json")
+     * @Assert\NotBlank(
+     *  message = "Vous devez définir un rôle pour l'utilisateur")
      * @Groups({"app_user"})
      */
     private $roles = [];
@@ -51,7 +54,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=50, unique=true)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *  message = "Vous devez renseigner un nom d'utilisateur")
      * @Assert\Length(
      *      min = 3,
      *      max = 50,
@@ -70,6 +74,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=2083, nullable=true)
+     * @Groups({"app_user"})
+     * 
      */
     private $profilePicture;
 

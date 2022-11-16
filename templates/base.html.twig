@@ -55,11 +55,11 @@
                 <a class="nav-link" href="{{ path('app_user_index') }}">Utilisateurs</a>
               </li>
               {% endif %}
-              {# Soon...
+              {% if is_granted('ROLE_MANAGER') %}
               <li class="nav-item">
-                <a class="nav-link" href="#">Personnages</a>
+                <a class="nav-link" href="{{ path('app_characters_index') }}">Personnages</a>
               </li>
-              #}
+              {% endif %}
               {% if is_granted('ROLE_MANAGER') %}
               <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>

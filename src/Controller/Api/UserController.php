@@ -52,31 +52,38 @@ class UserController extends AbstractController
         // get the content of the request
         $json = $request->getContent();
 
+        
         $user = $security->getUser();
-
+        
         if (!$user) {
             return $this->json('Not Found', Response::HTTP_NOT_FOUND);
         }
-
+        
         $infos = json_decode($json);
-
+        
         // if the user wants to modify, it won't be empty
         if (!empty($infos->nickname)) {
             $user->setNickname($infos->nickname);
         } else {
             $user->getNickname();
         }
-
+        
         if (!empty($infos->email)) {
             $user->setEmail($infos->email);
         } else {
             $user->getEmail();
         }
-
+        
+        if (!empty($infos->profilePicture)) {
+            $user->setProfilePicture($infos->profilePicture);
+        } else {
+            $user->getProfilePicture();
+        }
+        
         if (!empty($infos->password)) {
             $regex = "/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&-])[A-Za-z\d@$!%*#?&-]{8,}$/";
             if(!preg_match($regex, $infos->password)) {
-            return $this->json(['mot de passe' =>"Votre mot de passe doit contenir au moins 8 caractères, dont une lettre, un chiffre et un caractère spécial."], Response::HTTP_UNPROCESSABLE_ENTITY);
+                return $this->json(['mot de passe' =>"Votre mot de passe doit contenir au moins 8 caractères, dont une lettre, un chiffre et un caractère spécial."], Response::HTTP_UNPROCESSABLE_ENTITY);
             }
             $password = $passwordHasher->hashPassword($user, $infos->password);
             $user->setPassword($password);
