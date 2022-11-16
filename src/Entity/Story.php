@@ -24,7 +24,8 @@ class Story
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *  message = "Vous devez renseigner un titre pour l'histoire")
      * @Assert\Length(
      *      min = 2,
      *      max = 255,
@@ -37,7 +38,8 @@ class Story
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *  message = "Vous devez renseigner une description de l'histoire")
      * @Assert\Length(
      *      min = 10,
      *      minMessage = "Le contenu doit faire au moins {{ limit }} caractères !",

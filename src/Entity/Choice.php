@@ -24,7 +24,8 @@ class Choice
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *  message = "Vous devez renseigner un nom pour ce choix")
      * @Assert\Length(
      *      min = 2,
      *      max = 50,
@@ -37,7 +38,8 @@ class Choice
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *  message = "Vous devez renseigner une description")
      * @Assert\Length(
      *      min = 10,
      *      minMessage = "La description doit faire au moins {{ limit }} caractères !",

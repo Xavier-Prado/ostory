@@ -17,7 +17,8 @@ class ChangePasswordFormType extends AbstractType
         $builder
             ->add('plainPassword', RepeatedType::class, [
                 'constraints' => [
-                    new NotBlank(),
+                    new NotBlank(
+                ['message' => 'Vous devez renseigner un mot de passe'] ),
                     new Regex("/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/", "Votre mot de passe ne respecte pas les règles de sécurité.")
                 ],
                 'type' => PasswordType::class,
