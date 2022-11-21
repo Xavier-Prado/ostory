@@ -51,7 +51,7 @@ class PageType extends AbstractType
                 'multiple' => false,
                 'expanded' => true,
             ])
-            ->add('page_end',ChoiceType::class, [
+            ->add('pageEnd',ChoiceType::class, [
                 'label' => 'Type de page',
                 'choices' => [
                     'Victoire' => 1,

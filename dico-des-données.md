@@ -40,7 +40,7 @@
 | image      | VARCHAR(2083) | NOT NULL                                        | L'url de l'image de la page                                                       |
 | content    | LONGTEXT      | NOT NULL                                        | Le contenu de la page                                                             |
 | start      | INT           | NOT NULL                                        | Page de début de l'histoire                                                       |
-| page_end   | ENUM          | NOT NULL                                        | Type de fin de l'histoire  [0 : histoire continue, 1: fin victoire, 2: fin perte] |
+| pageEnd   | ENUM          | NOT NULL                                        | Type de fin de l'histoire  [0 : histoire continue, 1: fin victoire, 2: fin perte] |
 | created_at | TIMESTAMP     | NOT NULL, DEFAULT CURRENT_TIMESTAMP             | La date de création de la page                                                    |
 | updated_at | TIMESTAMP     | NULL                                            | La date de la dernière mise à jour de la page                                     |
 | story      | ENTITY        | NOT NULL                                        | L'histoire liée à la page                                                         |

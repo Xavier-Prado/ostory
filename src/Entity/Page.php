@@ -73,7 +73,7 @@ class Page
      * @Groups({"page_content"})
      * 
      */
-    private $page_end;
+    private $pageEnd;
 
     /**
      * @ORM\ManyToOne(targetEntity=Story::class, inversedBy="pages")
@@ -148,12 +148,12 @@ class Page
 
     public function getPageEnd(): ?int
     {
-        return $this->page_end;
+        return $this->pageEnd;
     }
 
-    public function setPageEnd(?int $page_end): self
+    public function setPageEnd(?int $pageEnd): self
     {
-        $this->page_end = $page_end;
+        $this->pageEnd = $pageEnd;
 
         return $this;
     }
