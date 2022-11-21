@@ -60,8 +60,7 @@ class Page
 
     /**
      * @ORM\Column(type="json", nullable=true)
-     * @Assert\NotBlank(
-     *  message = "Vous devez définir si c'est une page de démarrage ou non")
+     * @Assert\NotNull
      * @Assert\Choice(choices=PageType::START)
      * 
      */
