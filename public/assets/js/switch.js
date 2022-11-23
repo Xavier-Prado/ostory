@@ -10,7 +10,7 @@
 
   /**
    * @function darkmode
-   * @summary: changes the theme to 'dark mode' and save settings to local stroage.
+   * @summary: changes the theme to 'dark mode' and save settings to local storage.
    * Basically, replaces/toggles every CSS class that has '-light' class with '-dark'
    */
   function darkMode() {
@@ -39,8 +39,6 @@
           document.querySelector('h1').classList.add('text-light'),
           document.querySelector('h4').classList.add('text-light');
         }
-
-
 
     // set light switch input to true
     if (!lightSwitch.checked) {

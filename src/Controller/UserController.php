@@ -24,14 +24,13 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository, PaginatorInterface $paginator, Request $request): Response
     {
-
-            // Pagination with bundle
+        // Pagination with bundle
         $query = $userRepository->findAll();
 
         $pagination = $paginator->paginate(
-        $query, /* query NOT result */
-        $request->query->getInt('page', 1), /*page number*/
-        10 /*limit per page*/
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
         );
         return $this->render('user/index.html.twig', [
             'users' => $pagination,
@@ -68,9 +67,6 @@ class UserController extends AbstractController
                 $user->setProfilePicture('profile-picture-base.png');
             }
                 
-
-
-
             $userRepository->add($user, true);
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
@@ -125,7 +121,6 @@ class UserController extends AbstractController
                 $user->setPassword($previousPassword);
             }
 
-            
             // Get data from uploaded picture
             /** @var UploadFile $pictureFile */
             $pictureFile = $form->get('image')->getData();

@@ -13,20 +13,22 @@ use App\Repository\ChoiceRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
-    private $passwordHasher;
     private $slugger;
     private $pageRepository;
     private $choiceRepository;
     private $storyRepository;
 
-    public function __construct(UserPasswordHasherInterface $passwordHasher, SluggerInterface $sluggerInterface, PageRepository $pageRepository, ChoiceRepository $choiceRepository, StoryRepository $storyRepository)
+    public function __construct(
+        SluggerInterface $sluggerInterface,
+        PageRepository $pageRepository,
+        ChoiceRepository $choiceRepository,
+        StoryRepository $storyRepository
+        )
     {
         $this->slugger = $sluggerInterface;
-        $this->passwordHasher = $passwordHasher;
         $this->pageRepository = $pageRepository;
         $this->choiceRepository = $choiceRepository;
         $this->storyRepository = $storyRepository;
@@ -60,7 +62,6 @@ class AppFixtures extends Fixture
             $user->setPassword('$2y$13$jazC3eNbpUWrOI/dp5PVzOmakO9ZQrl47eIG7XlP2X7Lj/U8sSDQ.');
             $user->setRoles(['ROLE_ADMIN']);
             $manager->persist($user);
-            // dd($this->passwordHasher->isPasswordValid($user, ''));
 
             // empty array to store stories
             $storyArray=[];

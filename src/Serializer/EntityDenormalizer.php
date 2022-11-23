@@ -23,8 +23,8 @@ class EntityDenormalizer implements DenormalizerInterface
 
     /**
      * Cette méthode permet de vérifier si le denormalizer s'applique sur la donnée
-     * $data -> ID du genre
-     * $type -> La classe vers laquelle dénormaliser $data
+     * $data 
+     * $type 
      * 
      * @inheritDoc
      */
@@ -40,15 +40,10 @@ class EntityDenormalizer implements DenormalizerInterface
     {
         $entity = $this->em->find($class, $data);
         if(is_null($entity)) {
-            // erreur
-            // TODO gestion erreur quand on envoi une entité qui n'existe pas !
-            //throw new NotFoundHttpException($class . ' invalid !');
             $json = new JsonResponse();
             $json->setContent($class . ' invalid !');
-            //$json->prepare();
             $json->send();
         }
         return $entity;
-        // EntityManagerInterface::find() fonctionne comme les find() des repos
     }
 }

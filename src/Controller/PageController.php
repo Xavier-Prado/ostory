@@ -27,16 +27,14 @@ class PageController extends AbstractController
         $query = $pageRepository->findAll();
 
         $pagination = $paginator->paginate(
-        $query, /* query NOT result */
-        $request->query->getInt('page', 1), /*page number*/
-        10 /*limit per page*/
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
         );
-
 
         return $this->render('page/index.html.twig', [
             'pages' => $pagination,
         ]);
-        
     }
 
     /**
@@ -50,7 +48,7 @@ class PageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-                        // Get data from uploaded picture
+            // Get data from uploaded picture
             /** @var UploadFile $pictureFile */
             $pictureFile = $form->get('image')->getData();
 

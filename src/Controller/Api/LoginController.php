@@ -59,8 +59,6 @@ class LoginController extends AbstractController
         // validates user entity conformity (validation constraints)
         $errors = $validator->validate($user);
 
-
-
         // error management
         if (count($errors) > 0) {
             $cleanErrors = [];
@@ -81,6 +79,7 @@ class LoginController extends AbstractController
         if (empty($user->getPassword())) {
             return $this->json(["Vous devez renseigner un mot de passe"], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
+        
         $regex = "/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&-])[A-Za-z\d@$!%*#?&-]{8,}$/";
         
         if(!preg_match($regex, $user->getPassword())) {

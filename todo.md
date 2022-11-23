@@ -1,3 +1,17 @@
-# To do
+# Todo
 
-Modifier/Vérifier les messages d'erreurs des contraintes sur les entités
+## UserStory Entity
+
+Remove entity if not used
+
+## Character Image
+
+Remove id when character is created => field name already unique
+
+## Upload File Service
+
+Add condition => if image comes from 'character' do not add id
+
+## Story Controller
+
+Remove listV2 => pagination already added

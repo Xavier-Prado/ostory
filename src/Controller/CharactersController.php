@@ -27,9 +27,9 @@ class CharactersController extends AbstractController
         $query = $charactersRepository->findAll();
 
         $pagination = $paginator->paginate(
-        $query, /* query NOT result */
-        $request->query->getInt('page', 1), /*page number*/
-        10 /*limit per page*/
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
         );
 
         return $this->render('characters/index.html.twig', [
@@ -97,7 +97,6 @@ class CharactersController extends AbstractController
         $form = $this->createForm(CharactersType::class, $character);
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Get data from uploaded picture
@@ -141,7 +140,6 @@ class CharactersController extends AbstractController
             $filesystem->remove($this->getParameter('character_image_directory').'/'.$character->getImage());
             $charactersRepository->remove($character, true);
         }
-
 
         return $this->redirectToRoute('app_characters_index', [], Response::HTTP_SEE_OTHER);
     }

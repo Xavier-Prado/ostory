@@ -52,7 +52,6 @@ class UserController extends AbstractController
         // get the content of the request
         $json = $request->getContent();
 
-        
         $user = $security->getUser();
         
         if (!$user) {
@@ -90,7 +89,6 @@ class UserController extends AbstractController
         } else {
             $user->getPassword();
         }
-
 
         // validates user entity conformity (validation constraints)
         $errors = $validator->validate($user);

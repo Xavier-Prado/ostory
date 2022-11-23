@@ -60,13 +60,13 @@ class CharactersType extends AbstractType
             });
     }
                     
-                    public function configureOptions(OptionsResolver $resolver): void
-                    {
-                        $resolver->setDefaults([
-            'data_class' => Characters::class,
-            'attr' => [
-                'novalidate' => 'novalidate'
-            ]
-        ]);
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+        'data_class' => Characters::class,
+        'attr' => [
+            'novalidate' => 'novalidate'
+        ]
+    ]);
     }
 }

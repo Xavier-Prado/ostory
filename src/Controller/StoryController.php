@@ -24,13 +24,12 @@ class StoryController extends AbstractController
      */
     public function index(StoryRepository $storyRepository, PaginatorInterface $paginator, Request $request): Response
     {
-
         // Pagination with bundle
         $query = $storyRepository->findAll();
         $pagination = $paginator->paginate(
-        $query, /* query NOT result */
-        $request->query->getInt('page', 1), /*page number*/
-        10 /*limit per page*/
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
         );
 
         return $this->render('story/index.html.twig', [
