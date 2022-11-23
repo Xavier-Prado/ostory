@@ -18,32 +18,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class StoryController extends AbstractController
 {
-
-    /**
-     * Return list of available stories
-     * 
-     * @Route("/histoireV2", name="api_histoireV2")
-     * 
-     * @return JsonResponse
-     */
-    public function listV2(StoryRepository $storyRepository, Request $request): JsonResponse
-    {
-
-        $json = $request->getContent();
-        $limit = 1;
-
-        // désérialisation
-        $page = json_decode($json);
-
-        $stories = $storyRepository->findXfirst($page->page, $limit);
-
-        $storiesToDisplay = $this->checkStartPage($stories);
-
-        return $this->json($storiesToDisplay, Response::HTTP_OK, [], [
-            'groups' => 'story_list'
-        ]);
-    }
-
     /**
      * Return list of available stories
      * 

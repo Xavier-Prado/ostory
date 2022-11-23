@@ -39,28 +39,4 @@ class StoryRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-    /**
-     * Return fixed number of stories based on the page the user is currently on and the limit decided
-     *
-     * @param integer $pageNumber = the number of the current page
-     * @param integer $limit = the limit of stories to display
-     * @return void
-     */
-    public function findXfirst(int $pageNumber,int $limit)
-    {
-        $entityManager = $this->getEntityManager();
-    
-        $qb = $entityManager->createQueryBuilder();
-    
-        $qb->select('s')
-           ->from('App\Entity\Story','s')
-           ->setFirstResult($pageNumber * $limit)
-           ->setMaxResults($limit);
-        $query = $qb->getQuery();
-    
-        $result = $query->getResult();
-
-        return $result;
-    }
 }

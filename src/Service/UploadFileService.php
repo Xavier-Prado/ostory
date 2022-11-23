@@ -30,8 +30,13 @@ class UploadFileService extends AbstractController
         // transform filename to avoid errors
         $safeFileName = $this->slugger->slug($originalFilename);
         
-        // create the new filename with slugified filename, a unique id (to avoid same filename), and extension based on original uploaded file 
-        $newFilename = $safeFileName.'-'.uniqid().'.'.$pictureFile->guessExtension();
+        if ($file === 'character') {
+            // create the new filename with slugified filename and extension based on original uploaded file 
+            $newFilename = $safeFileName.'.'.$pictureFile->guessExtension();
+        } else {
+            // create the new filename with slugified filename, a unique id (to avoid same filename), and extension based on original uploaded file 
+            $newFilename = $safeFileName.'-'.uniqid().'.'.$pictureFile->guessExtension();
+        }
         
         try {
             $pictureFile->move(
