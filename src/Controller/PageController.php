@@ -90,20 +90,25 @@ class PageController extends AbstractController
     {
         $form = $this->createForm(PageType::class, $page);
         $form->handleRequest($request);
+        $previousPicture = $page->getImage();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Get data from uploaded picture
             /** @var UploadFile $pictureFile */
             $pictureFile = $form->get('image')->getData();
-            
-            $newFilename = $uploadFileService->uploadFile($pictureFile, 'page');
-           
-            // remove the old story image before adding the new
-            
-            $filesystem->remove($this->getParameter('page_image_directory').'/'.$page->getImage());
-            $page->setImage($newFilename);
 
+            if(!empty($pictureFile)) {
+                $newFilename = $uploadFileService->uploadFile($pictureFile, 'page');
+               
+                // remove the old story image before adding the new
+                
+                $filesystem->remove($this->getParameter('page_image_directory').'/'.$page->getImage());
+                $page->setImage($newFilename);
+            } else {
+                $page->setImage($previousPicture);
+            }
+            
             $pageRepository->add($page, true);
 
             return $this->redirectToRoute('app_page_index', [], Response::HTTP_SEE_OTHER);

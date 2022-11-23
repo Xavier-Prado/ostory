@@ -15,3 +15,7 @@ Add condition => if image comes from 'character' do not add id
 ## Story Controller
 
 Remove listV2 => pagination already added
+
+## All controller with pictures
+
+Add option => no picture = no change

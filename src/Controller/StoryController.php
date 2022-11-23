@@ -97,6 +97,8 @@ class StoryController extends AbstractController
         $form = $this->createForm(StoryType::class, $story);
         $form->handleRequest($request);
 
+        $previousPicture = $story->getImage();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $story->setSlug($slugger->slug($story->getTitle())->lower());
 
@@ -104,12 +106,15 @@ class StoryController extends AbstractController
             /** @var UploadFile $pictureFile */
             $pictureFile = $form->get('image')->getData();
 
-            $newFilename = $uploadFileService->uploadFile($pictureFile, 'story');
-           
-            // remove the old story image before adding the new
-            $filesystem->remove($this->getParameter('story_image_directory').'/'.$story->getImage());
-            
-            $story->setImage($newFilename);
+            if (!empty($pictureFile)) {
+                $newFilename = $uploadFileService->uploadFile($pictureFile, 'story');
+                // remove the old story image before adding the new
+                $filesystem->remove($this->getParameter('story_image_directory').'/'.$story->getImage());
+                
+                $story->setImage($newFilename);
+            } else {
+                $story->setImage($previousPicture);
+            }
             $storyRepository->add($story, true);
 
             return $this->redirectToRoute('app_story_index', [], Response::HTTP_SEE_OTHER);
