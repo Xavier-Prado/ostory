@@ -31,12 +31,14 @@
         {
           document.body.classList.replace('text-dark', 'text-light'),
           document.querySelector('h1').classList.replace('text-dark', 'text-light'),
+          document.querySelector('small>a').classList.replace('text-dark', 'text-light'),
           document.querySelector('h4').classList.replace('text-dark', 'text-light');
         } 
     else 
         {
           document.body.classList.add('text-light'),
           document.querySelector('h1').classList.add('text-light'),
+          document.querySelector('small>a').classList.add('text-light'),
           document.querySelector('h4').classList.add('text-light');
         }
 
@@ -70,6 +72,7 @@
     {
         document.body.classList.replace('text-light', 'text-dark'),
         document.querySelector('h1').classList.replace('text-light', 'text-dark'),
+        document.querySelector('small>a').classList.replace('text-light', 'text-dark'), 
         document.querySelector('h4').classList.replace('text-light', 'text-dark');
     } 
       else 

@@ -4,9 +4,15 @@
 
 {% block body %}
 
-<div class="my-5 py-5">
+    {% if device.isSmartphone %}
+        {% set lengthText = 30 %}
+    {% else %}
+        {% set lengthText = 125 %}
+    {% endif %}
+
+<div class="my-5 py-md-0 py-lg-5">
     <div class="col-lg-9 mx-auto">
-    <h1>Liste des histoires</h1>
+    <h1 class="mt-0 ms-2">Liste des histoires</h1>
     <a class="btn btn-primary float-end m-2" href="{{ path('app_story_new') }}">Créer une nouvelle histoire</a>
 
         <div class="navigation d-flex justify-content-center">
@@ -18,7 +24,9 @@
             <tr>
                 <th>Titre</th>
                 <th>Contenu</th>
-                <th>Image</th>
+                {% if not device.isSmartphone %}
+                    <th>Image</th>
+                {% endif %}
                 <th></th>
             </tr>
         </thead>
@@ -26,7 +34,7 @@
         {% for story in stories %}
             <tr>
                 <td>{{ story.title }}</td>
-                <td>{{ story.content|u.truncate(215, '...') }}</td>
+                <td>{{ story.content|u.truncate(lengthText, '...') }}</td>
                 <td><img src="{{ asset('uploads/image/story/') ~ story.image }}" height="100px" alt="poster de {{ story.title }}"></td>
                 <td>
                 <div class="btn-group-vertical">

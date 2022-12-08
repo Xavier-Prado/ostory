@@ -61,11 +61,6 @@ class Story
     private $image;
 
     /**
-     * @ORM\OneToMany(targetEntity=UserStory::class, mappedBy="stories", orphanRemoval=true)
-     */
-    private $userStories;
-
-    /**
      * @ORM\OneToMany(targetEntity=Page::class, mappedBy="story")
      * 
      */
@@ -131,36 +126,6 @@ class Story
     public function setImage(?string $image): self
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, UserStory>
-     */
-    public function getUserStories(): Collection
-    {
-        return $this->userStories;
-    }
-
-    public function addUserStory(UserStory $userStory): self
-    {
-        if (!$this->userStories->contains($userStory)) {
-            $this->userStories[] = $userStory;
-            $userStory->setStories($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserStory(UserStory $userStory): self
-    {
-        if ($this->userStories->removeElement($userStory)) {
-            // set the owning side to null (unless already changed)
-            if ($userStory->getStories() === $this) {
-                $userStory->setStories(null);
-            }
-        }
 
         return $this;
     }

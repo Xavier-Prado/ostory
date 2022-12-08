@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="my-5 py-5">
+<div class="my-sm-5 py-5">
     <div class="col-lg-9 col-md-10 col-sm-10 col-10 mx-auto">
         <form method="post">
             {% if error %}
@@ -19,12 +19,12 @@
 
             <h1 class="h3 mb-3 font-weight-normal">Connectez-vous</h1>
             <label for="inputEmail">Email</label>
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control border border-dark" autocomplete="email" required autofocus>
             <label for="inputPassword">Mot de passe</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <input type="password" name="password" id="inputPassword" class="form-control border border-dark" autocomplete="current-password" required>
                 <div>
                     <small>
-                        <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
+                        <a class="text-light" href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
                     </small>
                 </div>
             <input type="hidden" name="_csrf_token"

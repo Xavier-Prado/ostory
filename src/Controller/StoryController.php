@@ -24,6 +24,8 @@ class StoryController extends AbstractController
      */
     public function index(StoryRepository $storyRepository, PaginatorInterface $paginator, Request $request): Response
     {
+
+        
         // Pagination with bundle
         $query = $storyRepository->findAll();
         $pagination = $paginator->paginate(

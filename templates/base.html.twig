@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="{{ asset('assets/favicon.ico') }}">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
@@ -25,6 +27,7 @@
         
         <!-- Our custom CSS -->
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -36,18 +39,18 @@
       <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav me-auto">
               {% if is_granted('ROLE_MANAGER') %}
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_main_home') }}">Accueil</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_story_index') }}">Histoire</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_page_index') }}">Page</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_choice_index') }}">Choix</a>
-              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('app_main_home') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('app_story_index') }}">Histoire</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('app_page_index') }}">Page</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('app_choice_index') }}">Choix</a>
+                </li>
               {% endif %}
               {% if is_granted('ROLE_ADMIN') %}
               <li class="nav-item">
@@ -93,6 +96,7 @@
         </div>
 
 {% block body %}{% endblock %}  
+
 <script src="{{ asset('assets/js/switch.js') }}"/></script>
 
   </body>

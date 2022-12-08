@@ -67,12 +67,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $nickname;
 
     /**
-     * @ORM\OneToMany(targetEntity=UserStory::class, mappedBy="users", orphanRemoval=true)
-     * @Groups({"app_user"})
-     */
-    private $userStories;
-
-    /**
      * @ORM\Column(type="string", length=2083, nullable=true)
      * @Groups({"app_user"})
      * 
@@ -179,36 +173,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setNickname(string $nickname): self
     {
         $this->nickname = $nickname;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, UserStory>
-     */
-    public function getUserStories(): Collection
-    {
-        return $this->userStories;
-    }
-
-    public function addUserStory(UserStory $userStory): self
-    {
-        if (!$this->userStories->contains($userStory)) {
-            $this->userStories[] = $userStory;
-            $userStory->setUsers($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserStory(UserStory $userStory): self
-    {
-        if ($this->userStories->removeElement($userStory)) {
-            // set the owning side to null (unless already changed)
-            if ($userStory->getUsers() === $this) {
-                $userStory->setUsers(null);
-            }
-        }
 
         return $this;
     }
