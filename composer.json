@@ -53,7 +53,7 @@
         "symfonycasts/reset-password-bundle": "^1.16",
         "twig/extra-bundle": "^3.4",
         "twig/string-extra": "^3.4",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^3.4.3"
     },
     "config": {
         "allow-plugins": {
