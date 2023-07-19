@@ -67,7 +67,7 @@ class Page
     private $start;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="page_end", type="integer")
      * @Assert\NotBlank(
      *  message = "Vous devez définir le type de fin à laquelle conduit la page")
      * @Groups({"page_content"})
