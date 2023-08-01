@@ -4,35 +4,45 @@
 
 {% block body %}
 
-<div class="my-5 py-5">
-    <div class="col-lg-6 mx-auto">
-    <a class="btn btn-info m-1 float-end" href="{{ path('app_story_index') }}">Revenir à la liste</a>
+    {% if device.isSmartphone %}
+        {% set lengthText = 30 %}
+    {% else %}
+        {% set lengthText = 125 %}
+    {% endif %}
 
-    <h1>Histoires</h1>
+    <div class="my-5 pt-4">
+        <div class="col-lg-6 mx-auto">
+            <div class="d-flex justify-content-between align-items-center mb-5">
+                <h1 class="ms-2">Histoires</h1>
+                <a class="btn btn-info m-1 float-end show--button" href="{{ path('app_story_index') }}">Revenir à la liste</a>
+            </div>
 
-    <table class="table table-hover">
-        <tbody>
-            <tr>
-                <th>Titre</th>
-                <td>{{ story.title }}</td>
-            </tr>
-            <tr>
-                <th>Contenu</th>
-                <td>{{ story.content }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td><img src="{{ asset('uploads/image/story/') ~ story.image }}" height="100px" alt="poster de {{ story.title }}"></td>
-            </tr>
-        </tbody>
-    </table>
 
-    
+            <table class="table table-hover text-center align-middle">
+                <tbody>
+                    <tr>
+                        <th>Titre</th>
+                        <td>{{ story.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Contenu</th>
+                        <td>{{ story.content|u.truncate(lengthText, '...') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Image</th>
+                        <td>
+                            <img src="{{ asset('uploads/image/story/') ~ story.image }}" height="100px" alt="poster de {{ story.title }}">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-    <a class="btn btn-primary col-2 m-1" href="{{ path('app_story_edit', {'id': story.id}) }}">Modifier</a>
-
-    {{ include('story/_delete_form.html.twig') }}
+        
+            <div class="d-flex flex-row-reverse">
+                <a class="btn btn-primary col-md-2 m-1 show--button" href="{{ path('app_story_edit', {'id': story.id}) }}">Modifier</a>
+                {{ include('story/_delete_form.html.twig') }}
+            </div>
+        </div>
     </div>
-</div>
 
 {% endblock %}

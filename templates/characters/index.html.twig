@@ -3,53 +3,52 @@
 {% block title %}Liste des personnages{% endblock %}
 
 {% block body %}
-<div class="my-5 py-5">
-    <div class="col-lg-9 mx-auto overflow-auto">
-    <h1>Liste des personnages</h1>
+    <div class="my-5 py-md-0 py-lg-5">
+        <div class="col-lg-9 mx-auto">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="my-5 ms-2">Liste des personnages</h1>
+                {% if not device.isSmartphone %}
+                    <a class="btn btn-primary float-end m-4" href="{{ path('app_characters_new') }}">Créer un nouveau personnage</a>
+                {% endif %}
+            </div>
+            {# display navigation #}
+            <div class="navigation d-flex justify-content-center">
+                {{ knp_pagination_render(characters) }}
+            </div>
 
-    <a class="btn btn-primary float-end m-2" href="{{ path('app_characters_new') }}">Créer un nouveau personnage</a>
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th class="align-middle">Nom</th>
+                        <th class="align-middle">Image</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for character in characters %}
+                    <tr>
+                        <td class="align-middle">{{ character.name }}</td>
+                        <td class="align-middle"><img src="{{ asset('assets/images/personnages/') ~ character.image }}" height="auto" width="100rem" alt="poster de {{ character.name }}"></td>
+                        <td>
+                        <div class="btn-group-vertical btn-sm">
+                            <a class="btn btn-info m-1" href="{{ path('app_characters_show', {'id': character.id}) }}">Voir</a>
+                            <a class="btn btn-warning m-1" href="{{ path('app_characters_edit', {'id': character.id}) }}">Modifier</a>
+                        </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">Pas de personnage trouvés</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-    {# display navigation #}
-    <div class="navigation d-flex justify-content-center">
-        {{ knp_pagination_render(characters) }}
-    </div>
-
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Image</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for character in characters %}
-            <tr>
-                <td>{{ character.id }}</td>
-                <td>{{ character.name }}</td>
-                <td><img src="{{ asset('assets/images/personnages/') ~ character.image }}" height="100px" alt="poster de {{ character.name }}"></td>
-                <td>
-                <div class="btn-group-vertical">
-                    <a class="btn btn-info m-1" href="{{ path('app_characters_show', {'id': character.id}) }}">Voir</a>
-                    <a class="btn btn-warning m-1" href="{{ path('app_characters_edit', {'id': character.id}) }}">Modifier</a>
-                </div>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">Pas de personnage trouvés</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-        <a class="btn btn-primary float-end m-2" href="{{ path('app_characters_new') }}">Créer un nouveau personnage</a>
-
-        {# display navigation #}
-        <div class="navigation d-flex justify-content-center">
-            {{ knp_pagination_render(characters) }}
-        </div>
+            {# display navigation #}
+            <div class="navigation d-flex justify-content-center">
+                {{ knp_pagination_render(characters) }}
+            </div>
+            <a class="btn btn-primary float-end m-4" href="{{ path('app_characters_new') }}">Créer un nouveau personnage</a>
     </div>
 </div>
 {% endblock %}

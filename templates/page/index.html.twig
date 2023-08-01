@@ -4,70 +4,76 @@
 
 {% block body %}
 
-{% if device.isSmartphone %}
-    {% set lengthText = 30 %}
-{% else %}
-    {% set lengthText = 80 %}
-{% endif %}
+    {% if device.isSmartphone %}
+        {% set lengthText = 20 %}
+    {% else %}
+        {% set lengthText = 80 %}
+    {% endif %}
 
-<div class="my-5 py-5">
-    <div class="col-lg-9 mx-auto overflow-auto">
-        <h1>Liste des pages</h1>
+    <div class="my-5 py-md-0 py-lg-5">
+        <div class="col-lg-9 mx-auto">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="my-5 ms-2">Liste des pages</h1>
+                {% if not device.isSmartphone %}
+                    <a class="btn btn-primary float-end m-2" href="{{ path('app_page_new') }}">Créer une nouvelle page</a>
+                {% endif %}
+            </div>
+            <div class="navigation d-flex justify-content-center">
+                {{ knp_pagination_render(pages) }}
+            </div>
+            
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th class="align-middle">Titre</th>
+                        {% if not device.isSmartphone %}
+                            <th class="align-middle">Image</th>
+                        {% endif %}
+                        <th class="align-middle">Contenu</th>
+                        {% if not device.isSmartphone %}
+                            <th class="align-middle">Histoire liée</th>
+                            <th class="align-middle">Page de démarrage</th>
+                            <th class="align-middle">Type de page</th>
+                        {% endif %}
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for page in pages %}
+                    <tr>
+                        <td class="align-middle">{{ page.title|length > lengthText ? page.title|slice(0, lengthText)|split(' ')|slice(0, -1)|join(' ') ~ '…' : page.title }}</td>
+                        {% if not device.isSmartphone %}
+                            <td class="align-middle">
+                                <img src="{{ asset('uploads/image/page/') ~ page.image }}" height="100px" alt="poster de {{ page.title }}">
+                            </td>
+                        {% endif %}
+                        <td class="align-middle">{{ page.content|length > lengthText ? page.content|slice(0, lengthText)|split(' ')|slice(0, -1)|join(' ') ~ '…' : page.content }}</td>
+                        {% if not device.isSmartphone %}
+                            <td class="align-middle">{{ page.story }}</td>
+                            <td class="align-middle">{{ page.start ? 'Oui' : 'Non' }}</td>
+                            <td class="align-middle">{{ page.pageEnd ? page.pageEnd|join(', ') : '' }}</td>
+                        {% endif %}
+                        <td class="align-middle">
+                            <div class="btn-group-vertical btn-sm">
+                                <a class="btn btn-info m-1" href="{{ path('app_page_show', {'id': page.id}) }}">Voir</a>
+                                <a class="btn btn-warning m-1" href="{{ path('app_page_edit', {'id': page.id}) }}">Modifier</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">Pas de pages trouvées</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-        <a class="btn btn-primary float-end m-2" href="{{ path('app_page_new') }}">Créer une nouvelle page</a>
-
-        <div class="navigation d-flex justify-content-center">
-            {{ knp_pagination_render(pages) }}
+            {# display navigation #}
+            <div class="navigation d-flex justify-content-center">
+                {{ knp_pagination_render(pages) }}
+            </div>
+            <a class="btn btn-primary float-end m-4" href="{{ path('app_page_new') }}">Créer une nouvelle page</a>
         </div>
-        
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Titre de la page</th>
-                    {% if not device.isSmartphone %}
-                        <th>Image</th>
-                    {% endif %}
-                    <th>Contenu</th>
-                    <th>Histoire liée</th>
-                    <th>Page de démarrage</th>
-                    <th>Type de page</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for page in pages %}
-                <tr>
-                    <td>{{ page.id }}</td>
-                    <td>{{ page.title }}</td>
-                    <td><img src="{{ asset('uploads/image/page/') ~ page.image }}" height="100px" alt="poster de {{ page.title }}"></td>
-                    <td>{{ page.content|length > lengthText ? page.content|slice(0, lengthText)|split(' ')|slice(0, -1)|join(' ') ~ '…' : page.content }}</td>
-                    <td>{{ page.story }}</td>
-                    <td>{{ page.start ? 'Oui' : 'Non' }}</td>
-                    <td>{{ page.pageEnd ? page.pageEnd|join(', ') : '' }}</td>
-                    <td>
-                    <div class="btn-group-vertical">
-                        <a class="btn btn-info m-1" href="{{ path('app_page_show', {'id': page.id}) }}">Voir</a>
-                        <a class="btn btn-warning m-1" href="{{ path('app_page_edit', {'id': page.id}) }}">Modifier</a>
-                    </div>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="7">Pas de pages trouvées</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
-        <a class="btn btn-primary float-end m-2" href="{{ path('app_page_new') }}">Créer une nouvelle page</a>
-
-        {# display navigation #}
-        <div class="navigation d-flex justify-content-center">
-            {{ knp_pagination_render(pages) }}
-        </div>
-
     </div>
-</div>
 
 {% endblock %}

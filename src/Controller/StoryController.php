@@ -31,7 +31,7 @@ class StoryController extends AbstractController
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
-            10 /*limit per page*/
+            Story::getLimitedResultPerPage() /*limit per page*/
         );
 
         return $this->render('story/index.html.twig', [

@@ -1,7 +1,5 @@
-# Todo
+# TODO PATATE
 
-## UserStory Entity
+## histoire page "edit"
 
-Remove entity if not used
-
-
+refaire le css pour que la page soit responsive + input en dark mode

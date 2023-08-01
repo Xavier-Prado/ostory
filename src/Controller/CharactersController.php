@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Characters;
+use App\Entity\Story;
 use App\Form\CharactersType;
 use App\Repository\CharactersRepository;
 use App\Service\UploadFileService;
@@ -29,7 +30,7 @@ class CharactersController extends AbstractController
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
-            10 /*limit per page*/
+            Story::getLimitedResultPerPage() /*limit per page*/
         );
 
         return $this->render('characters/index.html.twig', [

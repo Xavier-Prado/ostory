@@ -8,12 +8,32 @@
     return;
   }
 
+  function replaceClass(elementArray, classToReplace, newClass) {
+    elementArray.forEach((element) => {
+      if(document.querySelector(element)) {
+          document.querySelector(element).classList.remove(classToReplace);
+          document.querySelector(element).classList.add(newClass);
+      }
+    })
+  }
+
+  function replacePaginationClass(element, classToReplace, newClass){
+    paginationElements = document.querySelectorAll(element);
+    paginationElements.forEach((element) => {
+      if((element)) {
+          element.classList.remove(classToReplace);
+          element.classList.add(newClass);
+      }
+    })
+  }
+
+
   /**
    * @function darkmode
    * @summary: changes the theme to 'dark mode' and save settings to local storage.
    * Basically, replaces/toggles every CSS class that has '-light' class with '-dark'
    */
-  function darkMode() {
+  function darkMode(elementArray) {
     document.querySelectorAll('.bg-light').forEach((element) => {
       element.className = element.className.replace(/-light/g, '-dark');
     });
@@ -27,20 +47,27 @@
 
     document.body.classList.add('bg-dark');
 
-    if (document.body.classList.contains('text-dark'))
-        {
-          document.body.classList.replace('text-dark', 'text-light'),
-          document.querySelector('h1').classList.replace('text-dark', 'text-light'),
-          document.querySelector('small>a').classList.replace('text-dark', 'text-light'),
-          document.querySelector('h4').classList.replace('text-dark', 'text-light');
-        } 
-    else 
-        {
-          document.body.classList.add('text-light'),
-          document.querySelector('h1').classList.add('text-light'),
-          document.querySelector('small>a').classList.add('text-light'),
-          document.querySelector('h4').classList.add('text-light');
-        }
+    if (document.body.classList.contains('text-dark')) {
+          document.body.classList.replace('text-dark', 'text-light');
+          replaceClass(elementArray, 'text-dark', 'text-light');
+          replacePaginationClass('ul.pagination', 'pagination', 'pagination-light');
+          replacePaginationClass('.disabled', 'disabled', 'disabled-light');
+    } else {
+      document.body.classList.add('text-light')
+      replaceClass(elementArray, 'text-dark', 'text-light');
+
+      if(document.querySelector('ul.pagination-light')) {
+        document.querySelector('ul.pagination-light').classList.replace('pagination-light', 'pagination');
+      } else {
+        replacePaginationClass('ul.pagination', 'pagination', 'pagination-light');
+      }
+
+      if(document.querySelector('.disabled-light')) {
+        document.querySelector('.disabled-light').classList.replace('disabled-light', 'disabled');
+      } else {
+        replacePaginationClass('.disabled', 'disabled', 'disabled-light');
+      }
+    }
 
     // set light switch input to true
     if (!lightSwitch.checked) {
@@ -53,7 +80,7 @@
    * @function lightmode
    * @summary: changes the theme to 'light mode' and save settings to local stroage.
    */
-  function lightMode() {
+  function lightMode(elementArray) {
     document.querySelectorAll('.bg-dark').forEach((element) => {
       element.className = element.className.replace(/-dark/g, '-light');
     });
@@ -68,18 +95,24 @@
 
     document.body.classList.add('bg-light');
 
-    if (document.body.classList.contains('text-light')) 
-    {
-        document.body.classList.replace('text-light', 'text-dark'),
-        document.querySelector('h1').classList.replace('text-light', 'text-dark'),
-        document.querySelector('small>a').classList.replace('text-light', 'text-dark'), 
-        document.querySelector('h4').classList.replace('text-light', 'text-dark');
-    } 
-      else 
-    {
-        document.body.classList.add('text-dark'),
-        document.querySelector('h1').classList.add('text-dark'),
-        document.querySelector('h4').classList.add('text-dark');
+    if (document.body.classList.contains('text-light')) {
+        document.body.classList.replace('text-light', 'text-dark');
+        replaceClass(elementArray, 'text-light', 'text-dark');
+        replacePaginationClass('ul.pagination-light', 'pagination-light', 'pagination');
+        replacePaginationClass('.disabled-light', 'disabled-light', 'disabled');
+    } else {
+      document.body.classList.add('text-dark')
+      replaceClass(elementArray, 'text-light', 'text-dark');
+
+      if(document.querySelector('ul.pagination-light')) {
+          replacePaginationClass('ul.pagination-light', 'pagination-light', 'pagination');
+      }
+
+      if(document.querySelector('.disabled-light')) {
+        document.querySelector('.disabled-light').classList.replace('disabled-light', 'disabled');
+      } else {
+        replacePaginationClass('.disabled-light', 'disabled-light', 'disabled');
+      }
     }
 
     if (lightSwitch.checked) {
@@ -93,10 +126,11 @@
    * @summary: the event handler attached to the switch. calling @darkMode or @lightMode depending on the checked state.
    */
   function onToggleMode() {
+    const elementArray = ['h1', 'small>a', 'h4'];
     if (lightSwitch.checked) {
-      darkMode();
+      darkMode(elementArray);
     } else {
-      lightMode();
+      lightMode(elementArray);
     }
   }
 

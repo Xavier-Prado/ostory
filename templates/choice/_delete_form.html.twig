@@ -1,4 +1,6 @@
-<form method="post" action="{{ path('app_choice_delete', {'id': choice.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+<form id="confirmDelete" method="post" action="{{ path('app_choice_delete', {'id': choice.id}) }}" onsubmit="return false;">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ choice.id) }}">
-    <button class="btn btn-danger col-2 m-1">Supprimer</button>
+    <button id='delete' class="btn btn-danger col-md-2 m-1 show--button">Supprimer</button>
 </form>
+
+{{ include('partials/_delete_button.html.twig') }}

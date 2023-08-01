@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Page;
+use App\Entity\Story;
 use App\Form\PageType;
 use App\Repository\PageRepository;
 use App\Service\UploadFileService;
@@ -29,7 +30,7 @@ class PageController extends AbstractController
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
-            10 /*limit per page*/
+            Story::getLimitedResultPerPage() /*limit per page*/
         );
 
         return $this->render('page/index.html.twig', [

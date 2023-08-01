@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Story;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -19,6 +20,11 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
  */
 class UserController extends AbstractController
 {
+
+    const ROLES = [
+            "ROLE_USER" => 'Utilisateur',
+            "ROLE_MANAGER" => 'Modérateur',
+            "ROLE_ADMIN" => 'Administrateur'];
     /**
      * @Route("/", name="app_user_index", methods={"GET"})
      */
@@ -30,10 +36,11 @@ class UserController extends AbstractController
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
-            10 /*limit per page*/
+            Story::getLimitedResultPerPage() /*limit per page*/
         );
         return $this->render('user/index.html.twig', [
             'users' => $pagination,
+            'roles' => self::ROLES
         ]);
     }
 

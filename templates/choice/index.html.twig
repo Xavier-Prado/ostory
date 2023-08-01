@@ -3,57 +3,70 @@
 {% block title %}Liste des choix{% endblock %}
 
 {% block body %}
-<div class="my-5 py-5">
-    <div class="col-lg-9 mx-auto overflow-auto">
-        <h1>Liste des choix</h1>
-        <a class="btn btn-primary float-end m-2" href="{{ path('app_choice_new') }}">Créer un nouveau choix</a>
 
-        <div class="navigation d-flex justify-content-center">
-            {{ knp_pagination_render(choices) }}
+    {% if device.isSmartphone %}
+        {% set lengthText = 25 %}
+    {% else %}
+        {% set lengthText = 80 %}
+    {% endif %}
+
+    <div class="my-5 py-md-0 py-lg-5">
+        <div class="col-lg-9 mx-auto">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="my-5 ms-2">Liste des choix</h1>
+                {% if not device.isSmartphone %}
+                    <a class="btn btn-primary float-end m-4" href="{{ path('app_choice_new') }}">Créer un nouveau choix</a>
+                {% endif %}
+            </div>
+            <div class="navigation d-flex justify-content-center">
+                {{ knp_pagination_render(choices) }}
+            </div>
+
+        <table class="table table-hover text-center">
+            <thead>
+                <tr>
+                    <th class="align-middle">Nom</th>
+                    {% if not device.isSmartphone %}
+                        <th class="align-middle">Histoire liée</th>
+                    {% endif %}
+                    <th class="align-middle">Description</th>
+                    {% if not device.isSmartphone %}
+                        <th class="align-middle">Page suivante</th>
+                    {% endif %}
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for choice in choices %}
+                <tr>
+                    <td class="align-middle">{{ choice.name|u.truncate(lengthText, '...') }}</td>
+                    {% if not device.isSmartphone %}
+                        <td class="align-middle">{{ choice.title }} </td>
+                    {% endif %}
+                    <td class="align-middle">{{ choice.description|u.truncate(lengthText, '...') }}</td>
+                    {% if not device.isSmartphone %}
+                        <td class="align-middle">{{ choice.page_to_redirect }}</td>
+                    {% endif %}
+                    <td>
+                        <div class="btn-group-vertical btn-sm">
+                            <a class="btn btn-info m-1" href="{{ path('app_choice_show', {'id': choice.id}) }}">Voir</a>
+                            <a class="btn btn-warning m-1" href="{{ path('app_choice_edit', {'id': choice.id}) }}">Modifier</a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Pas de choix trouvés</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {# display navigation #}
+            <div class="navigation d-flex justify-content-center">
+                {{ knp_pagination_render(choices) }}
+            </div>
+            <a class="btn btn-primary float-end m-4" href="{{ path('app_choice_new') }}">Créer un nouveau choix</a>
         </div>
-
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Histoire liée</th>
-                <th>Description</th>
-                <th>Page suivante</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for choice in choices %}
-        {% dump choice %}
-            <tr>
-                <td>{{ choice.id }}</td>
-                <td>{{ choice.name }}</td>
-                <td>{{ choice.title }} </td>
-                <td>{{ choice.description }}</td>
-                <td>{{ choice.page_to_redirect }}</td>
-                <td>
-                <div class="btn-group-vertical">
-                    <a class="btn btn-info m-1" href="{{ path('app_choice_show', {'id': choice.id}) }}">Voir</a>
-                    <a class="btn btn-warning m-1" href="{{ path('app_choice_edit', {'id': choice.id}) }}">Modifier</a>
-                </div>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">Pas de choix trouvés</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-         <a class="btn btn-primary float-end m-2" href="{{ path('app_choice_new') }}">Créer un nouveau choix</a>
-    {# display navigation #}
-        <div class="navigation d-flex justify-content-center">
-            {{ knp_pagination_render(choices) }}
-        </div>
-
-    
     </div>
-</div>
 {% endblock %}

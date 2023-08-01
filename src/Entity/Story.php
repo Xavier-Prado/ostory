@@ -71,10 +71,16 @@ class Story
      */
     private $startPage;
 
+    private static $limitResultPerPage = 5 ;
+
     public function __construct()
     {
-        $this->userStories = new ArrayCollection();
+        // $this->userStories = new ArrayCollection();
         $this->pages = new ArrayCollection();
+    }
+
+    public static function getLimitedResultPerPage(){
+        return self::$limitResultPerPage;
     }
 
     public function getId(): ?int

@@ -5,47 +5,46 @@
 {% block body %}
 <div class="my-5 py-5">
     <div class="col-lg-6 mx-auto">
-    <a class="btn btn-info m-1 float-end" href="{{ path('app_user_index') }}">Revenir à la liste</a>
+        <a class="btn btn-info m-1 float-end" href="{{ path('app_user_index') }}">Revenir à la liste</a>
+
+        <h1>Utilisateur</h1>
+        
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th>Roles</th>
+                        {% if ((user.roles ? user.roles|json_encode : '') == '["ROLE_USER"]') %}
+                            <td>Utilisateur</td>
+                        {% elseif ((user.roles ? user.roles|json_encode : '') == '["ROLE_MANAGER"]') %}
+                            <td>Modérateur</td>
+                        {% elseif ((user.roles ? user.roles|json_encode : '') == '["ROLE_ADMIN"]') %}
+                            <td>Administrateur</td>
+                        {% else %}
+                            <td> </td>
+                        {% endif %}
+                </tr>
+                <tr>
+                    <th>Pseudo</th>
+                    <td>{{ user.nickname }}</td>
+                </tr>
+                <tr>
+                    <th>Image de profile</th>
+                    <td><img src="{{ asset('uploads/image/user/') ~ user.profilePicture }}" height="100px" alt="poster de {{ user.nickname }}"></td>
+                </tr>
+
+
+
+            </tbody>
+        </table>
     
-    <h1>Utilisateur</h1>
-
-    <table class="table table-hover">
-        <tbody>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                    {% if ((user.roles ? user.roles|json_encode : '') == '["ROLE_USER"]') %}
-                        <td>Utilisateur</td>
-                    {% elseif ((user.roles ? user.roles|json_encode : '') == '["ROLE_MANAGER"]') %}
-                        <td>Modérateur</td>
-                    {% elseif ((user.roles ? user.roles|json_encode : '') == '["ROLE_ADMIN"]') %}
-                        <td>Administrateur</td>
-                    {% else %}
-                        <td> </td>
-                    {% endif %}
-            </tr>
-            <tr>
-                <th>Pseudo</th>
-                <td>{{ user.nickname }}</td>
-            </tr>
-            <tr>
-                <th>Image de profile</th>
-                <td><img src="{{ asset('uploads/image/user/') ~ user.profilePicture }}" height="100px" alt="poster de {{ user.nickname }}"></td>
-            </tr>
-
-
-
-        </tbody>
-    </table>
-
-    
-
-    <a class="btn btn-primary col-2 m-1" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
-
-    {{ include('user/_delete_form.html.twig') }}
+        <div class="d-flex flex-row-reverse">
+            <a class="btn btn-primary col-2 m-1 show--button" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+            {{ include('user/_delete_form.html.twig') }}
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -10,54 +10,58 @@
         {% set lengthText = 125 %}
     {% endif %}
 
-<div class="my-5 py-md-0 py-lg-5">
-    <div class="col-lg-9 mx-auto">
-    <h1 class="mt-0 ms-2">Liste des histoires</h1>
-    <a class="btn btn-primary float-end m-2" href="{{ path('app_story_new') }}">Créer une nouvelle histoire</a>
-
-        <div class="navigation d-flex justify-content-center">
-            {{ knp_pagination_render(stories) }}
-        </div>
-        
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Contenu</th>
+    <div class="my-5 py-md-0 py-lg-5">
+        <div class="col-lg-9 mx-auto">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="my-5 ms-2">Liste des histoires</h1>
                 {% if not device.isSmartphone %}
-                    <th>Image</th>
+                    <a class="btn btn-primary float-end m-4" href="{{ path('app_story_new') }}">Créer une nouvelle histoire</a>
                 {% endif %}
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for story in stories %}
-            <tr>
-                <td>{{ story.title }}</td>
-                <td>{{ story.content|u.truncate(lengthText, '...') }}</td>
-                {% if not device.isSmartphone %}
-                    <td><img src="{{ asset('uploads/image/story/') ~ story.image }}" height="100px" alt="poster de {{ story.title }}"></td>
-                {% endif %}
-                <td>
-                <div class="btn-group-vertical">
-                    <a class="btn btn-info m-1" href="{{ path('app_story_show', {'id': story.id}) }}">Voir</a>
-                    <a class="btn btn-warning m-1" href="{{ path('app_story_edit', {'id': story.id}) }}">Modifier</a>
-                </div>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">Pas d'histoires trouvées</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </div>
+            <div class="navigation d-flex justify-content-center">
+                {{ knp_pagination_render(stories) }}
+            </div>
+                
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th class="align-middle">Titre</th>
+                        <th class="align-middle">Contenu</th>
+                        {% if not device.isSmartphone %}
+                            <th class="align-middle">Image</th>
+                        {% endif %}
+                        <th class="align-middle"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for story in stories %}
+                    <tr>
+                        <td class="align-middle">{{ story.title }}</td>
+                        <td class="align-middle">{{ story.content|u.truncate(lengthText, '...') }}</td>
+                        {% if not device.isSmartphone %}
+                            <td class="align-middle"><img src="{{ asset('uploads/image/story/') ~ story.image }}" height="100px" alt="poster de {{ story.title }}"></td>
+                        {% endif %}
+                        <td class="align-middle">
+                            <div class="btn-group-vertical  btn-sm">
+                                <a class="btn btn-info m-1" href="{{ path('app_story_show', {'id': story.id}) }}">Voir</a>
+                                <a class="btn btn-warning m-1" href="{{ path('app_story_edit', {'id': story.id}) }}">Modifier</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">Pas d'histoires trouvées</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-     <a class="btn btn-primary float-end m-2" href="{{ path('app_story_new') }}">Créer une nouvelle histoire</a>
-    {# display navigation #}
-        <div class="navigation d-flex justify-content-center">
-            {{ knp_pagination_render(stories) }}
+            {# display navigation #}
+            <div class="navigation d-flex justify-content-center">
+                {{ knp_pagination_render(stories) }}
+            </div>
+            <a class="btn btn-primary float-end m-4" href="{{ path('app_story_new') }}">Créer une nouvelle histoire</a>
         </div>
-
+    </div>
     
 {% endblock %}

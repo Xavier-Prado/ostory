@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Choice;
+use App\Entity\Story;
 use App\Form\TheChoiceType;
 use App\Repository\ChoiceRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -28,7 +29,7 @@ public function index(ChoiceRepository $choiceRepository, PaginatorInterface $pa
     $pagination = $paginator->paginate(
         $query, /* query NOT result */
         $request->query->getInt('page', 1), /*page number*/
-        10 /*limit per page*/
+        Story::getLimitedResultPerPage() /*limit per page*/
     );
 
     return $this->render('choice/index.html.twig', [

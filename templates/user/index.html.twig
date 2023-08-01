@@ -4,47 +4,53 @@
 
 {% block body %}
 
-<div class="my-5 py-5">
+<div class="my-5 py-md-0 py-lg-5">
     <div class="col-lg-9 mx-auto">
-    <h1>Liste des utilisateurs</h1>
-    <a class="btn btn-primary float-end m-2" href="{{ path('app_user_new') }}">Créer un nouvel utilisateur</a>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="my-5 ms-2">Liste des utilisateurs</h1>
+            {% if not device.isSmartphone %}
+                <a class="btn btn-primary float-end m-4" href="{{ path('app_user_new') }}">Créer un nouvel utilisateur</a>
+            {% endif %}
+        </div>
 
     <div class="navigation d-flex justify-content-center">
         {{ knp_pagination_render(users) }}
     </div>
     
-    <table class="table table-hover">
+    <table class="table table-hover text-center">
         <thead>
             <tr>
-                <th>Email</th>
-                <th>Rôles</th>
-                <th>Pseudo</th>
-                <th>Image de profile</th>
+                {% if not device.isSmartphone %}
+                    <th class="align-middle">Email</th>
+                {% endif %}
+                    <th class="align-middle">Rôles</th>
+                <th class="align-middle">Pseudo</th>
+                {% if not device.isSmartphone %}
+                    <th class="align-middle">Image de profile</th>
+                {% endif %}
                 <th class="col-1"></th>
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.email }}</td>
-                {% if (user.roles) %}
-                    {% if ((user.roles ? user.roles|json_encode : '') == '["ROLE_USER"]') %}
-                        <td>Utilisateur</td>
-                    {% elseif ((user.roles ? user.roles|json_encode : '') == '["ROLE_MANAGER"]') %}
-                        <td>Modérateur</td>
-                    {% elseif ((user.roles ? user.roles|json_encode : '') == '["ROLE_ADMIN"]') %}
-                        <td>Administrateur</td>
-                    {% else %}
-                        <td> </td>
-                    {% endif %}
+                {% if not device.isSmartphone %}
+                    <td class="align-middle">{{ user.email }}</td>
                 {% endif %}
-                <td>{{ user.nickname }}</td>
-                    <td><img src="{{ asset('uploads/image/user/') ~ user.profilePicture }}" height="100px" alt="poster de {{ user.nickname }}"></td>
+                    {% if (user.roles) %}
+                        {% if (user.roles[0] in roles|keys) %}
+                            <td class="align-middle">{{ roles[user.roles[0]] }}</td>
+                        {% endif %}
+                    {% endif %}
+                <td class="align-middle">{{ user.nickname }}</td>
+                {% if not device.isSmartphone %}
+                    <td class="align-middle"><img src="{{ asset('uploads/image/user/') ~ user.profilePicture }}" height="100px" alt="poster de {{ user.nickname }}"></td>
+                {% endif %}
                 <td>
-                <div class="btn-group-vertical">
-                    <a class="btn btn-info m-1" href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a>
-                    <a class="btn btn-warning m-1" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
-                </div>
+                    <div class="btn-group-vertical btn-sm">
+                        <a class="btn btn-info m-1" href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a>
+                        <a class="btn btn-warning m-1" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                    </div>
                 </td>
             </tr>
         {% else %}
@@ -54,12 +60,12 @@
         {% endfor %}
         </tbody>
     </table>
-
-     <a class="btn btn-primary float-end m-2" href="{{ path('app_user_new') }}">Créer un nouvel utilisateur</a>
     {# display navigation #}
-        <div class="navigation d-flex justify-content-center">
-            {{ knp_pagination_render(users) }}
-        </div>
+    <div class="navigation d-flex justify-content-center">
+        {{ knp_pagination_render(users) }}
+    </div>
+
+     <a class="btn btn-primary float-end m-4" href="{{ path('app_user_new') }}">Créer un nouvel utilisateur</a>
 
     </div>
 </div>
