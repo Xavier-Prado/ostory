@@ -63,8 +63,21 @@ body {
     font-size: 1.4em;
   }
 
+  .form-control-dark, .form-control-dark:focus{
+    color: #fff;
+    background-color: darkgray;
+  } 
+
+  .form-control-dark:focus{
+    box-shadow: 0 0 0 0.25rem rgba(218, 217, 217, 0.938);
+  }
+  
   th{
     padding: 1.5rem!important;
+  }
+
+  td{
+    font-size: 0.9em!important;
   }
 
   .delete-button_element {

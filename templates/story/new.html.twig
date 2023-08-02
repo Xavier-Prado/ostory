@@ -4,13 +4,17 @@
 
 {% block body %}
 
-<div class="my-5 py-5">
-    <div class="col-lg-6 mx-auto">
-    <a class="btn btn-info m-1 float-end" href="{{ path('app_story_index') }}">Revenir à la liste</a>
+    <div class="my-5 pt-4">
+        <div class="col-lg-6 mx-auto">
 
-    <h1>Ajouter une histoire</h1>
-    {{ include('story/_form.html.twig') }}
+            <div class="text-center">
+                <h1>Ajouter une histoire</h1>
+                <a class="btn btn-info mx-1 my-4" href="{{ path('app_story_index') }}">Revenir à la liste</a>
+            </div>
+            <div class="text-center mx-1">
+                {{ include('story/_form.html.twig') }}
+            </div>
+        </div>
     </div>
-</div>
 
 {% endblock %}

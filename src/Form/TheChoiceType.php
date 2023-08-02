@@ -33,7 +33,10 @@ class TheChoiceType extends AbstractType
 
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom du choix'
+                'label' => 'Nom du choix',
+                'attr' => [
+                    'autocomplete' => 'off'
+                ]
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description du choix',

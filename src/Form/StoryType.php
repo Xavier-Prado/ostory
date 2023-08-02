@@ -21,7 +21,10 @@ class StoryType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Titre de l\'histoire'
+                'label' => 'Titre de l\'histoire',
+                'attr' => [
+                    'autocomplete' => 'off'
+                ]
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'Contenu',

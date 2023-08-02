@@ -121,6 +121,16 @@
     localStorage.setItem('lightSwitch', 'light');
   }
 
+  function formControlClassUpdate(){
+    formControlElements = document.querySelectorAll('.form-control');
+    formControlElements.forEach((formControlElement) => formControlElement.classList.toggle('form-control-dark'));
+  }
+
+  function formControlSetUp(){
+    formControlElements = document.querySelectorAll('.form-control');
+    formControlElements.forEach((formControlElement) => formControlElement.classList.add('form-control-dark'));
+  }
+
   /**
    * @function onToggleMode
    * @summary: the event handler attached to the switch. calling @darkMode or @lightMode depending on the checked state.
@@ -132,6 +142,7 @@
     } else {
       lightMode(elementArray);
     }
+    formControlClassUpdate();
   }
 
   /**
@@ -154,6 +165,8 @@
 
     if (settings == 'dark') {
       lightSwitch.checked = true;
+    } else {
+      formControlSetUp();
     }
 
     lightSwitch.addEventListener('change', onToggleMode);

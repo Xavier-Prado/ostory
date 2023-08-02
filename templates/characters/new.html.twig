@@ -3,12 +3,16 @@
 {% block title %}New Characters{% endblock %}
 
 {% block body %}
-<div class="my-5 py-5">
+<div class="my-5 pt-4">
     <div class="col-lg-6 mx-auto">
-        <a class="btn btn-info m-1 float-end" href="{{ path('app_characters_index') }}">Revenir à la liste</a>
-    <h1>Créer un nouveau personnage</h1>
 
-    {{ include('characters/_form.html.twig') }}
+        <div class="text-center">
+            <h1>Créer un nouveau personnage</h1>
+            <a class="btn btn-info mx-1 my-4" href="{{ path('app_characters_index') }}">Revenir à la liste</a>
+        </div>
+        <div class="text-center mx-1">
+            {{ include('characters/_form.html.twig') }}
+        </div>
 
     </div>
 </div>

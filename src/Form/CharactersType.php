@@ -19,7 +19,10 @@ class CharactersType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom du personnage'
+                'label' => 'Nom du personnage',
+                'attr' => [
+                    'autocomplete' => 'off'
+                ]
             ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $character = $event->getData();

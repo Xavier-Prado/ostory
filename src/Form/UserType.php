@@ -25,7 +25,10 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'Adresse mail'
+                'label' => 'Adresse mail',
+                'attr' => [
+                    'autocomplete' => 'off'
+                ]
             ])
             ->add('roles', ChoiceType::class, [
                 'label' => 'Rôle de l\'utilisateur',
@@ -38,7 +41,10 @@ class UserType extends AbstractType
                 'expanded' => true
             ])
             ->add('nickname', TextType::class, [
-                'label' => 'Pseudo'
+                'label' => 'Pseudo',
+                'attr' => [
+                    'autocomplete' => 'off'
+                ]
             ])
             ->add('image', FileType::class, [
                 'label' => 'Image',

@@ -23,7 +23,10 @@ class PageType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Titre de la page'
+                'label' => 'Titre de la page',
+                'attr' => [
+                    'autocomplete' => 'off'
+                ]
             ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 // we recover page
