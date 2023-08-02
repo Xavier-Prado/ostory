@@ -1,26 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Characters{% endblock %}
+{% block title %}Personnage{% endblock %}
 
 {% block body %}
-<div class="my-5 py-5">
+<div class="my-5 pt-4">
     <div class="col-lg-6 mx-auto">
-        <a class="btn btn-info m-1 float-end" href="{{ path('app_characters_index') }}">Revenir à la liste</a>
-        <h1>Characters</h1>
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <h1 class="ms-2 title-character__font">Personnage</h1>
+            <a class="btn btn-info m-1 float-end show--button" href="{{ path('app_characters_index') }}">Revenir à la liste</a>
+        </div>
 
-        <table class="table table-hover">
+        <table class="table table-hover text-center align-middle">
             <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ character.id }}</td>
-                </tr>
                 <tr>
                     <th>Nom</th>
                     <td>{{ character.name }}</td>
                 </tr>
                 <tr>
                     <th>Image</th>
-                    <td><img src="{{ asset('assets/images/personnages/') ~ character.image }}" height="100px" alt="poster de {{ character.name }}"></td>
+                    <td>
+                        <img src="{{ asset('assets/images/personnages/') ~ character.image }}" height="100px" alt="poster de {{ character.name }}">
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -59,6 +59,10 @@ body {
     width: auto;
   }
 
+  .title-character__font{
+    font-size: 1.4em;
+  }
+
   th{
     padding: 1.5rem!important;
   }

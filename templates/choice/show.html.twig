@@ -3,32 +3,29 @@
 {% block title %}Choix{% endblock %}
 
 {% block body %}
-<div class="my-5 py-5">
+<div class="my-5 pt-4">
     <div class="col-lg-6 mx-auto">
-        <a class="btn btn-info m-1 float-end" href="{{ path('app_choice_index') }}">Revenir à la liste</a>
-        
-        <h1>Choix</h1>
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <h1 class="ms-2">Choix</h1>
+            <a class="btn btn-info m-1 float-end show--button" href="{{ path('app_choice_index') }}">Revenir à la liste</a>
+        </div>
 
-        <table class="table table-hover">
+        <table class="table table-hover text-center align-middle">
             <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ choice.id }}</td>
-                </tr>
                 <tr>
                     <th>Histoire</th>
                     <td>{{ choice.title }}</td>
                 </tr>
                 <tr>
-                    <th>Nom</th>
+                    <th>Titre</th>
                     <td>{{ choice.name }}</td>
                 </tr>
                 <tr>
-                    <th>Description</th>
+                    <th>Contenu</th>
                     <td>{{ choice.description }}</td>
                 </tr>
                 <tr>
-                    <th>Numéro de la page suivante</th>
+                    <th>Page suivante</th>
                     <td>{{ choice.page_to_redirect }}</td>
                 </tr>
             </tbody>
