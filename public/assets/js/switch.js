@@ -123,11 +123,15 @@
 
   function formControlClassUpdate(){
     formControlElements = document.querySelectorAll('.form-control');
+    formSelectElements = document.querySelectorAll('.form-select');
     formControlElements.forEach((formControlElement) => formControlElement.classList.toggle('form-control-dark'));
+    formSelectElements.forEach((formControlElement) => formControlElement.classList.toggle('form-select-dark'));
   }
 
   function formControlSetUp(){
     formControlElements = document.querySelectorAll('.form-control');
+    formSelectElements = document.querySelectorAll('.form-select');
+    formSelectElements.forEach((formControlElement) => formControlElement.classList.add('form-select-dark'));
     formControlElements.forEach((formControlElement) => formControlElement.classList.add('form-control-dark'));
   }
 

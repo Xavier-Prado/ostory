@@ -31,8 +31,8 @@
                         <td class="align-middle"><img src="{{ asset('assets/images/personnages/') ~ character.image }}" height="auto" width="100rem" alt="poster de {{ character.name }}"></td>
                         <td>
                         <div class="btn-group-vertical btn-sm">
-                            <a class="btn btn-info m-1" href="{{ path('app_characters_show', {'id': character.id}) }}">Voir</a>
-                            <a class="btn btn-warning m-1" href="{{ path('app_characters_edit', {'id': character.id}) }}">Modifier</a>
+                            <a class="btn btn-info m-1 show--button" href="{{ path('app_characters_show', {'id': character.id}) }}">Voir</a>
+                            <a class="btn btn-warning m-1 show--button" href="{{ path('app_characters_edit', {'id': character.id}) }}">Modifier</a>
                         </div>
                         </td>
                     </tr>

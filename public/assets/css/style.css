@@ -63,7 +63,7 @@ body {
     font-size: 1.4em;
   }
 
-  .form-control-dark, .form-control-dark:focus{
+  .form-control-dark, .form-control-dark:focus, .form-select-dark{
     color: #fff;
     background-color: darkgray;
   } 
