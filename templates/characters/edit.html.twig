@@ -3,15 +3,20 @@
 {% block title %}Edit Characters{% endblock %}
 
 {% block body %}
-<div class="my-5 py-5">
-    <div class="col-lg-6 mx-auto">
-    <a class="btn btn-info m-1 float-end" href="{{ path('app_characters_index') }}">Revenir à la liste</a>
-    <h1>Modifier un personnage</h1>
+    <div class="my-5 pt-4">
+        <div class="col-lg-6 mx-auto">
+            <div class="text-center">
+                <h1>Modifier un personnage</h1>
+                <a class="btn btn-info m-1 my-4 show--button" href="{{ path('app_characters_index') }}">Revenir à la liste</a>
+            </div>
 
-    {{ include('characters/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
-
-    {{ include('characters/_delete_form.html.twig') }}
+            <div class="mx-1">
+                {{ include('characters/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+                <div class="float-end">
+                    {{ include('characters/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
 {% endblock %}

@@ -3,17 +3,17 @@
 {% block title %}Ajouter un choix{% endblock %}
 
 {% block body %}
-<div class="my-5 pt-4">
-    <div class="col-lg-6 mx-auto">
+    <div class="my-5 pt-4">
+        <div class="col-lg-6 mx-auto">
 
-        <div class="text-center">
-            <h1>Ajouter un choix</h1>
-            <a class="btn btn-info mx-1 my-4" href="{{ path('app_choice_index') }}">Revenir à la liste</a>
+            <div class="text-center">
+                <h1>Ajouter un choix</h1>
+                <a class="btn btn-info mx-1 my-4 show--button" href="{{ path('app_choice_index') }}">Revenir à la liste</a>
+            </div>
+            <div class="text-center mx-1">
+                {{ include('choice/_form.html.twig') }}
+            </div>
+        
         </div>
-        <div class="text-center mx-1">
-            {{ include('choice/_form.html.twig') }}
-        </div>
-    
     </div>
-</div>
 {% endblock %}
