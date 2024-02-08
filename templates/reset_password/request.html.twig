@@ -4,8 +4,8 @@
 
 {% block body %}
 
-<div class="my-5 py-5">
-    <div class="col-lg-6 mx-auto">
+<div class="my-sm-5 py-5">
+    <div class="col-lg-9 col-md-10 col-sm-10 col-10 mx-auto">
             {% for flash_error in app.flashes('reset_password_error') %}
                 <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
             {% endfor %}

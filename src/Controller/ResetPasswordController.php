@@ -161,7 +161,8 @@ class ResetPasswordController extends AbstractController
                 $translator->trans($e->getReason(), [], 'ResetPasswordBundle')
             ));
 
-            return $this->redirectToRoute('app_check_email');
+            // return $this->redirectToRoute('app_check_email');
+            return $this->redirectToRoute('app_forgot_password_request');
         }
 
         $email = (new TemplatedEmail())
@@ -173,6 +174,11 @@ class ResetPasswordController extends AbstractController
                 'resetToken' => $resetToken,
             ])
         ;
+        // TODO PATATE
+// attendre et retester quand ça sera de nouveau disponible
+// tester ensuite l'envoie d'email et voir ce qu'il retourne
+dd($resetToken);
+
 
         $mailer->send($email);
 

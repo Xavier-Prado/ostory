@@ -4,8 +4,8 @@
 
 {% block body %}
 
-<div class="my-5 py-5">
-    <div class="col-lg-6 mx-auto">
+<div class="my-sm-5 py-5">
+    <div class="col-lg-9 col-md-10 col-sm-10 col-10 mx-auto">
         <p>
             Si un compte correspondant à votre adresse e-mail existe, un e-mail vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.
             Ce lien expire dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
